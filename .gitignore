@@ -1,0 +1,7 @@
+# this is a global .gitignore file for all projects
+
+TODO
+# virtual environments for python
+.venv
+.venv27
+

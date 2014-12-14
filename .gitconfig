@@ -1,0 +1,10 @@
+[user]
+	name = Sean Marshallsay
+	email = srm.1708@gmail.com
+[core]
+	excludesfile = /Users/seanmarshallsay/.gitignore
+	editor = vim
+[color]
+	ui = true
+[github]
+	user = Sean1708

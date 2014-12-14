@@ -1,0 +1,10 @@
+$include /etc/inputrc
+
+set editing-mode vi
+
+set keymap vi-command
+"\C-l": clear-screen
+
+set keymap vi-insert
+"jk": vi-movement-mode
+"\C-l": clear-screen

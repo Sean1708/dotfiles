@@ -1,0 +1,10 @@
+/* EXTENSIONS */
+
+-- perl-style regular expression (X REGEXP Y)
+
+
+/* STYLE */
+
+.header ON
+.mode column
+.prompt ">>> " "... "
