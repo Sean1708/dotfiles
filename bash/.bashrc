@@ -19,9 +19,6 @@ alias goto_blog="cd ${BLOG}"
 # alias git to hub
 eval "$(hub alias -s)"
 
-# use nicer ls output by default
-alias ls="ls -G"
-
 
 ## FUNCTIONS
 # cd to dir then run ls
