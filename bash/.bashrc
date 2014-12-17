@@ -1,26 +1,15 @@
 ## VARIABLES
-# allows getting rid of .CFUserTextEncoding
-# if anything breaks recreate .CFUserTextEncoding with a single line, no line
-# breaks saying 0:0
-export __CF_USER_TEXT_ENCODING=0x501:0x08000100:0
-
 # default text editor
 export EDITOR=/usr/local/bin/vim
 
 # make git stop complaining about brew
-export GIT_SSL_NO_VERIFY=1
+#export GIT_SSL_NO_VERIFY=1
 
 # path to blog folder
-export BLOG="~/Documents/Programming/Projects/sean1708.github.io"
+export BLOG="~/Documents/Projects/sean1708.github.io"
 
 
 ## ALIASES
-# cd to Programming folder
-alias goto_Pg="cd ~/Documents/Programming/"
-
-#cd to Projects folder
-alias goto_Pj="goto_Pg; cd Projects/"
-
 # use github-pages jekyll not system jekyll
 alias jekyll="bundle exec jekyll"
 
@@ -29,6 +18,9 @@ alias goto_blog="cd ${BLOG}"
 
 # alias git to hub
 eval "$(hub alias -s)"
+
+# use nicer ls output by default
+alias ls="ls -G"
 
 
 ## FUNCTIONS
