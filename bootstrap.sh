@@ -22,7 +22,7 @@ done
 echo -n "Stowing .gitignore... "
 
 rm -f "${HOME}/.gitignore"
-ln -s git/.gitignore "${HOME}"
+ln -s "$(pwd)/git/.gitignore" "${HOME}"
 
 if [ $? -ne 0 ]
 then
