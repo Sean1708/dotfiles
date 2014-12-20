@@ -2,7 +2,7 @@
 	name = Sean Marshallsay
 	email = srm.1708@gmail.com
 [core]
-	excludesfile = /Users/seanmarshallsay/.gitignore
+	excludesfile = /Users/sean/.gitignore
 	editor = vim
 [color]
 	ui = true
