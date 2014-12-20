@@ -163,7 +163,7 @@ set gdefault
 " VISUAL {{{1
 " 256-bit colors
 set t_Co=256
-colorscheme spacegray
+colorscheme solarized
 
 " highlight current line
 set cursorline
