@@ -6,7 +6,7 @@ export EDITOR=/usr/local/bin/vim
 #export GIT_SSL_NO_VERIFY=1
 
 # path to blog folder
-export BLOG="~/Documents/Projects/sean1708.github.io"
+export BLOG="${HOME}/Documents/Projects/sean1708.github.io"
 
 
 ## ALIASES
