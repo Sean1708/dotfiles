@@ -19,6 +19,9 @@ alias goto_blog="cd ${BLOG}"
 # alias git to hub
 eval "$(hub alias -s)"
 
+# using homebrew causes GMP mismatch
+alias julia-dev="${HOME}/Downloads/src/julia-dev/julia"
+
 
 ## FUNCTIONS
 # cd to dir then run ls
