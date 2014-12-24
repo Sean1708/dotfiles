@@ -6,7 +6,7 @@ do
     then
         echo -n "Stowing ${pkg}... "
 
-        stow --restow --target=${HOME} ${pkg}
+        stow --overide='\.gitignore' --target=${HOME} ${pkg}
 
         if [ $? -ne 0 ]
         then
@@ -16,17 +16,3 @@ do
         fi
     fi
 done
-
-# lookup if this can be done with stow
-# stow ignores .gitignore annoyingly
-echo -n "Stowing .gitignore... "
-
-rm -f "${HOME}/.gitignore"
-ln -s "$(pwd)/git/.gitignore" "${HOME}"
-
-if [ $? -ne 0 ]
-then
-    echo 'failed.'
-else
-    echo 'ok!'
-fi
