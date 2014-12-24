@@ -17,7 +17,7 @@ do
                 unset opts
                 ;;
         esac
-        stow "${opts}" --target="${HOME}" "${pkg}"
+        stow --target="${HOME}" ${opts} "${pkg}"
 
         if [ $? -ne 0 ]
         then
