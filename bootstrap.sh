@@ -28,4 +28,12 @@ do
     fi
 done
 
-# automatically install Vundle.vim and vim stuffs
+for cmd in vim nvim
+do
+    if [ ! -e ~/.${cmd}/bundle/Vundle.vim ]
+    then
+        git clone https://github.com/gmarik/Vundle.vim.git ~/.${cmd}/bundle/Vundle.vim
+        ${cmd} +PluginInstall +qall
+        mkdir ~/.${cmd}/backup
+    fi
+done
