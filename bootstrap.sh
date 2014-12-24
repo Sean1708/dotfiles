@@ -19,10 +19,8 @@ do
         esac
         stow --target="${HOME}" ${opts} "${pkg}"
 
-        if [ $? -ne 0 ]
+        if [ $? -eq 0 ]
         then
-            echo 'failed.'
-        else
             echo 'ok!'
         fi
     fi
