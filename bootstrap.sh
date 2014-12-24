@@ -2,11 +2,11 @@
 
 for pkg in [^.]*
 do
-    if [ ${pkg} != 'bootstrap.sh' ]
+    if [ "${pkg}" != 'bootstrap.sh' ]
     then
         echo -n "Stowing ${pkg}... "
 
-        stow --override='\.gitignore' --target=${HOME} ${pkg}
+        stow --override='\.gitignore' --target="${HOME}" "${pkg}"
 
         if [ $? -ne 0 ]
         then
