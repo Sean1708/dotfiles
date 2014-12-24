@@ -6,7 +6,7 @@ do
     then
         echo -n "Stowing ${pkg}... "
 
-        stow --overide='\.gitignore' --target=${HOME} ${pkg}
+        stow --override='\.gitignore' --target=${HOME} ${pkg}
 
         if [ $? -ne 0 ]
         then
