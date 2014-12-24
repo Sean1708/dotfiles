@@ -46,16 +46,12 @@ let g:pymode_options_colorcolumn = 0
 
 " }}}2 END PYTHON-MODE
 " INCSEARCH.VIM {{{2
-" turn on incremental searching to begin
-set incsearch
-
 " incrementally search whole page
 map / <Plug>(incsearch-forward)
 map ? <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
 " turn off highlighting when non-search related key is pressed
-set hlsearch
 let g:incsearch#auto_nohlsearch = 1
 map n <Plug>(incsearch-nohl-n)
 map N <Plug>(incsearch-nohl-N)
@@ -134,16 +130,6 @@ set timeout
 set timeoutlen=500
 " }}}1 END EDITING
 " SEARCHING {{{1
-" use pcre regex, not vim regex
-"nnoremap / /\v
-cnoremap s/ s/\v
-
-" switch on highlighting the last used search pattern.
-"set hlsearch
-
-" do incremental searching
-"set incsearch
-
 " ignore case in searches unless a capital letter is used
 set ignorecase
 set smartcase
