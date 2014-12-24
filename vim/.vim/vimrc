@@ -21,6 +21,7 @@ Plugin 'klen/python-mode'
 Plugin 'JuliaLang/julia-vim'
 Plugin 'vim-scripts/repmo.vim'
 Plugin 'haya14busa/incsearch.vim'
+Plugin 'chrisbra/csv.vim'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'ajh17/Spacegray.vim'
 
