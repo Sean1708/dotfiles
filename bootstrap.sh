@@ -6,10 +6,7 @@ do
     then
         echo -n "Stowing ${pkg}... "
 
-        case ${pkg} in
-            git)
-                opts='--override=\.gitignore'
-                ;;
+        case "${pkg}" in
             *vim | ipython)
                 opts='--no-folding'
                 ;;
