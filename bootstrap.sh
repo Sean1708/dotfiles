@@ -6,7 +6,18 @@ do
     then
         echo -n "Stowing ${pkg}... "
 
-        stow --override='\.gitignore' --target="${HOME}" "${pkg}"
+        case ${pkg} in
+            git)
+                opts='--override=\.gitignore'
+                ;;
+            *vim | ipython)
+                opts='--no-folding'
+                ;;
+            *)
+                unset opts
+                ;;
+        esac
+        stow "${opts}" --target="${HOME}" "${pkg}"
 
         if [ $? -ne 0 ]
         then
@@ -16,3 +27,5 @@ do
         fi
     fi
 done
+
+# automatically install Vundle.vim and vim stuffs
