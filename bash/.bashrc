@@ -2,11 +2,8 @@
 # default text editor
 export EDITOR=/usr/local/bin/vim
 
-# make git stop complaining about brew
-#export GIT_SSL_NO_VERIFY=1
-
 # path to blog folder
-export BLOG="${HOME}/Documents/Projects/sean1708.github.io"
+export BLOG="${HOME}/Projects/sean1708.github.io"
 
 
 ## ALIASES
