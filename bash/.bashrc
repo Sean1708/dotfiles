@@ -51,10 +51,10 @@ function sqlite {
   local SQLITE_DIR="/usr/local/Cellar/sqlite"
   local EXEC_FILE="bin/sqlite3"
 
-  local lv_num="/0.0.0/"
+  local lv_num="/0.0.0.0/"
   for dir in ${SQLITE_DIR}/**/
   do
-      local cv_num=${dir:(-7):(7)}
+      local cv_num=${dir:(-9):9}
 
       local l_maj=${lv_num:1:1}
       local c_maj=${cv_num:1:1}
@@ -65,6 +65,9 @@ function sqlite {
       local l_pch=${lv_num:5:1}
       local c_pch=${cv_num:5:1}
 
+      local l_min_pch=${lv_num:7:1}
+      local c_min_pch=${cv_num:7:1}
+
       if [ "${c_maj}" -gt "${l_maj}" ]
       then
           lv_num=${cv_num}
@@ -72,6 +75,9 @@ function sqlite {
       then
           lv_num=${cv_num}
       elif [ "${c_pch}" -gt "${l_pch}" ]
+      then
+          lv_num=${cv_num}
+      elif [ "${c_min_pch}" -gt "${l_min_pch}" ]
       then
           lv_num=${cv_num}
       fi
