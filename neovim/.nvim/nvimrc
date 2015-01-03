@@ -76,64 +76,44 @@ let g:rust_fold = 1
 " }}}2
 " }}}1 END PLUGINS
 " GENERAL {{{1
-" enable file type detection
 filetype plugin indent on
 
-" don't save backup files or swapfiles
 set nobackup
 set noswapfile
 
-" save files automatically
 set autowrite
 
-" keep 50 lines of command line history
 set history=50
 " }}}1 END GENERAL
 " MAPPINGS {{{1
-" remap leader to a nicer button
 let mapleader = " "
-" set a personal leader
 let maplocalleader = "\\"
 
-" quickly edit a new file
 nnoremap <localleader>e :argedit 
-" quickly move between args
 nnoremap <localleader>n :next<CR>
 nnoremap <localleader>p :previous<CR>
 
 " ' is more convenient than , and has redundancy with `
 nnoremap ' ,
 
-" make moving back into normal mode quicker
 inoremap jk <ESC>
 vnoremap jk <ESC>
 
-" Y follows standards of other capitals
 nnoremap Y y$
 
-" quicker bracket finding
 noremap <Tab> %
 
-" set up and down to move the entire screen one line
 nnoremap <Up> <C-Y>
 nnoremap <Down> <C-E>
-
-" set left and right to move the entire screen half a page
 nnoremap <Right> <C-D>
 nnoremap <Left> <C-U>
 
 " }}}1 END MAPPINGS
 " EDITING {{{1
-" allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-
-" nav keys move to previous and successive lines
 set whichwrap=h,l
-
-" don't use 2 spaces at end of sentence
 set nojoinspaces
 
-" timeout more quckly on incomplete sequences
 set timeout
 set timeoutlen=500
 " }}}1 END EDITING
@@ -141,39 +121,24 @@ set timeoutlen=500
 " incsearch doesn't set magic in substitutions
 cnoremap s/ s/\v
 
-" ignore case in searches unless a capital letter is used
 set ignorecase
 set smartcase
-
-" apply substitutions globally on line by default
 set gdefault
 " }}}1 END SEARCHING
 " VISUAL {{{1
 colorscheme solarized
-
-" highlight current line
-set cursorline
-
-" syntax highlighting
 syntax on
 
-" show line number on current line and relative line numbers on all others
+set cursorline
+
 set number
 set relativenumber
 
-" show the cursor position all the time in status bar
 set ruler
-
-" display incomplete commands
 set showcmd
 
-" force linebreaks at column 80
 set textwidth=80
-
-" don't wrap text
 set nowrap
-
-" set tabs to 4 spaces and expand them
 set tabstop=4  " number of columns <Tab> counts as in normal mode
 set shiftwidth=4  " columns added/removed when changing indent level
 set softtabstop=4  " amount of whitespace corresponding to tab presses
