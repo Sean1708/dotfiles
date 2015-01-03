@@ -1,6 +1,6 @@
 ## VARIABLES
 # default text editor
-export EDITOR=/usr/local/bin/vim
+export EDITOR=/usr/local/bin/nvim
 
 # path to blog folder
 export BLOG="${HOME}/Projects/sean1708.github.io"
