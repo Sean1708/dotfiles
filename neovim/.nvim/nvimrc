@@ -14,11 +14,11 @@ Plugin 'gmarik/Vundle.vim'
 " VUNDLE PACKAGES
 Plugin 'klen/python-mode'
 Plugin 'JuliaLang/julia-vim'
+Plugin 'wting/rust.vim'
 Plugin 'vim-scripts/repmo.vim'
 Plugin 'haya14busa/incsearch.vim'
 Plugin 'chrisbra/csv.vim'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'ajh17/Spacegray.vim'
 
 
 "" VUNDLE HELP
@@ -31,6 +31,9 @@ Plugin 'ajh17/Spacegray.vim'
 
 " }}}2 END VUNDLE
 " PYTHON-MODE {{{2
+" USE PYTHON3 YOU WHORES!
+"let g:python_host_prog = 'python3'
+"let g:pymode_python = 'python3'
 
 " start with all folds open
 " see if this can be done with python-mode options
@@ -67,6 +70,10 @@ let g:incsearch#consistent_n_direction = 1
 " automatically set magic with no portability problems
 let g:incsearch#magic = '\v'
 " }}}2 END INCSEARCH.VIM
+" RUST.VIM {{{2
+" fold braced blocks
+let g:rust_fold = 1
+" }}}2
 " }}}1 END PLUGINS
 " GENERAL {{{1
 " enable file type detection
@@ -131,6 +138,9 @@ set timeout
 set timeoutlen=500
 " }}}1 END EDITING
 " SEARCHING {{{1
+" incsearch doesn't set magic in substitutions
+cnoremap s/ s/\v
+
 " ignore case in searches unless a capital letter is used
 set ignorecase
 set smartcase
