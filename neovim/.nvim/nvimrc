@@ -1,8 +1,9 @@
 " PLUGINS {{{1
-" VUNDLE {{{2
 
 " required for vundle
 filetype off
+
+" VUNDLE {{{2
 
 " add vundle to the runtime path and initialise it
 set rtp+=~/.nvim/bundle/Vundle.vim
@@ -11,45 +12,41 @@ call vundle#rc('~/.nvim/bundle')
 " use vundle on vundle
 Plugin 'gmarik/Vundle.vim'
 
-" VUNDLE PACKAGES
-Plugin 'klen/python-mode'
-Plugin 'JuliaLang/julia-vim'
-Plugin 'wting/rust.vim'
-Plugin 'vim-scripts/repmo.vim'
-Plugin 'haya14busa/incsearch.vim'
-Plugin 'chrisbra/csv.vim'
-Plugin 'flazz/vim-colorschemes'
-
-
-"" VUNDLE HELP
-"   :PluginList          - list configured plugins
-"   :PluginInstall(!)    - install (update) plugins
-"   :PluginSearch(!) foo - search (or refresh cache first) for foo
-"   :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
-"  
-"   see :h vundle for more details or wiki for FAQ
-
 " }}}2 END VUNDLE
+" JULIA.VIM {{{2
+
+Plugin 'JuliaLang/julia-vim'
+
+" }}}2 END JULIA
+" RUST.VIM {{{2
+
+Plugin 'wting/rust.vim'
+
+" fold braced blocks
+let g:rust_fold = 1
+
+" }}}2 END RUST
 " PYTHON-MODE {{{2
+
+Plugin 'klen/python-mode'
+
 " USE PYTHON3 YOU WHORES!
 "let g:python_host_prog = 'python3'
 "let g:pymode_python = 'python3'
 
-" start with all folds open
-" see if this can be done with python-mode options
+" TODO: see if this can be done with python-mode options
 set foldlevelstart=99
 
-" don't use rope
 let g:pymode_rope = 0
-" use custom set of linters
 let g:pymode_lint_checkers = ['pep8', 'pep257', 'pylint', 'pyflakes']
-" ensure print is highlighted as a function
 let g:pymode_syntax_print_as_function = 1
-" remove annoying column
 let g:pymode_options_colorcolumn = 0
 
 " }}}2 END PYTHON-MODE
 " INCSEARCH.VIM {{{2
+
+Plugin 'haya14busa/incsearch.vim'
+
 " incrementally search whole page
 map / <Plug>(incsearch-forward)
 map ? <Plug>(incsearch-backward)
@@ -69,25 +66,55 @@ let g:incsearch#consistent_n_direction = 1
 
 " automatically set magic with no portability problems
 let g:incsearch#magic = '\v'
+
 " }}}2 END INCSEARCH.VIM
-" RUST.VIM {{{2
-" fold braced blocks
-let g:rust_fold = 1
-" }}}2
-" }}}1 END PLUGINS
-" GENERAL {{{1
+" REPMO.VIM {{{2
+
+Plugin 'vim-scripts/repmo.vim'
+
+" }}}2 END REPMO
+" CSV.VIM {{{2
+
+Plugin 'chrisbra/csv.vim'
+
+" }}}2 END CSV
+" COLORSCHEMES {{{2
+
+Plugin 'flazz/vim-colorschemes'
+
+colorscheme solarized
+syntax enable
+
+" }}}2 END COLORSCHEMES
+
 filetype plugin indent on
 
-set nobackup
+" }}}1 END PLUGINS
+" GENERAL {{{1
+
+set encoding=utf-8
+
 set noswapfile
 
-set autowrite
+set autoread
+set autowriteall
 
-set history=50
+set lazyredraw
+
+set clipboard+=unnamed
+
+set history=500
+
+augroup focus
+    autocmd!
+    autocmd FocusLost * :silent! wall
+augroup END
+
 " }}}1 END GENERAL
 " MAPPINGS {{{1
-let mapleader = " "
-let maplocalleader = "\\"
+
+let g:mapleader = " "
+let g:maplocalleader = "\\"
 
 nnoremap <localleader>e :argedit 
 nnoremap <localleader>n :next<CR>
@@ -96,8 +123,10 @@ nnoremap <localleader>p :previous<CR>
 " ' is more convenient than , and has redundancy with `
 nnoremap ' ,
 
-inoremap jk <ESC>
-vnoremap jk <ESC>
+" TODO: why doesn't lnoremap work here
+inoremap <localleader>jk <ESC>
+cnoremap <localleader>jk <ESC>
+vnoremap <localleader>jk <ESC>
 
 nnoremap Y y$
 
@@ -110,24 +139,35 @@ nnoremap <Left> <C-U>
 
 " }}}1 END MAPPINGS
 " EDITING {{{1
+
+set nrformats+=alpha
+
 set backspace=indent,eol,start
 set whichwrap=h,l
 set nojoinspaces
+set formatoptions+=j
 
-set timeout
-set timeoutlen=500
+set textwidth=80
+set nowrap
+" I reckon setting these all to 4 gives the best result nowadays
+set tabstop=4  " number of columns <Tab> counts as in normal mode
+set shiftwidth=4  " columns added/removed when changing indent level
+set softtabstop=4  " amount of whitespace corresponding to tab presses
+set expandtab
+set shiftround
+
 " }}}1 END EDITING
 " SEARCHING {{{1
+
 " incsearch doesn't set magic in substitutions
 cnoremap s/ s/\v
 
 set ignorecase
 set smartcase
 set gdefault
+
 " }}}1 END SEARCHING
 " VISUAL {{{1
-colorscheme solarized
-syntax on
 
 set cursorline
 
@@ -137,13 +177,9 @@ set relativenumber
 set ruler
 set showcmd
 
-set textwidth=80
-set nowrap
-set tabstop=4  " number of columns <Tab> counts as in normal mode
-set shiftwidth=4  " columns added/removed when changing indent level
-set softtabstop=4  " amount of whitespace corresponding to tab presses
-set expandtab
 " }}}1 END VISUAL
 
+" TODO: look into changing the status line
 
+" put this in after
 " vim: foldmethod=marker foldlevel=0
