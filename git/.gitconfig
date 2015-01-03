@@ -3,7 +3,7 @@
 	email = srm.1708@gmail.com
 [core]
 	excludesfile = /Users/sean/.gitignore
-	editor = vim
+	editor = /usr/local/bin/nvim
 [color]
 	ui = true
 [github]
