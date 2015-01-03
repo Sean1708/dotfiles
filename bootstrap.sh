@@ -23,12 +23,11 @@ do
     fi
 done
 
-for cmd in vim nvim
-do
-    if [ ! -e ~/.${cmd}/bundle/Vundle.vim ]
-    then
-        git clone https://github.com/gmarik/Vundle.vim.git ~/.${cmd}/bundle/Vundle.vim
-        ${cmd} +PluginInstall +qall
-        mkdir ~/.${cmd}/backup
-    fi
-done
+nvim +PlugInstall +qall
+
+if [ ! -e ~/.vim/bundle/Vundle.vim ]
+then
+    git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    vim +PluginInstall +qall
+    mkdir ~/.vim/backup
+fi

@@ -1,26 +1,15 @@
 " PLUGINS {{{1
 
-" required for vundle
-filetype off
+call plug#begin('~/.nvim/plugged')
 
-" VUNDLE {{{2
-
-" add vundle to the runtime path and initialise it
-set rtp+=~/.nvim/bundle/Vundle.vim
-call vundle#rc('~/.nvim/bundle')
-
-" use vundle on vundle
-Plugin 'gmarik/Vundle.vim'
-
-" }}}2 END VUNDLE
 " JULIA.VIM {{{2
 
-Plugin 'JuliaLang/julia-vim'
+Plug 'JuliaLang/julia-vim'
 
 " }}}2 END JULIA
 " RUST.VIM {{{2
 
-Plugin 'wting/rust.vim'
+Plug 'wting/rust.vim'
 
 " fold braced blocks
 let g:rust_fold = 1
@@ -28,7 +17,7 @@ let g:rust_fold = 1
 " }}}2 END RUST
 " PYTHON-MODE {{{2
 
-Plugin 'klen/python-mode'
+Plug 'klen/python-mode'
 
 " USE PYTHON3 YOU WHORES!
 "let g:python_host_prog = 'python3'
@@ -45,7 +34,7 @@ let g:pymode_options_colorcolumn = 0
 " }}}2 END PYTHON-MODE
 " INCSEARCH.VIM {{{2
 
-Plugin 'haya14busa/incsearch.vim'
+Plug 'haya14busa/incsearch.vim'
 
 " incrementally search whole page
 map / <Plug>(incsearch-forward)
@@ -70,29 +59,32 @@ let g:incsearch#magic = '\v'
 " }}}2 END INCSEARCH.VIM
 " REPMO.VIM {{{2
 
-Plugin 'vim-scripts/repmo.vim'
+Plug 'vim-scripts/repmo.vim'
 
 " }}}2 END REPMO
 " CSV.VIM {{{2
 
-Plugin 'chrisbra/csv.vim'
+Plug 'chrisbra/csv.vim'
 
 " }}}2 END CSV
 " COLORSCHEMES {{{2
 
-Plugin 'flazz/vim-colorschemes'
-
-colorscheme solarized
-syntax enable
+Plug 'flazz/vim-colorschemes'
 
 " }}}2 END COLORSCHEMES
 
-filetype plugin indent on
+call plug#end()
 
 " }}}1 END PLUGINS
 " GENERAL {{{1
 
+filetype plugin indent on
+syntax enable
+
+colorscheme solarized
+
 set encoding=utf-8
+set spelllang=en_gb
 
 set noswapfile
 
@@ -116,9 +108,9 @@ augroup END
 let g:mapleader = " "
 let g:maplocalleader = "\\"
 
-nnoremap <localleader>e :argedit 
-nnoremap <localleader>n :next<CR>
-nnoremap <localleader>p :previous<CR>
+nnoremap <localleader>e :edit 
+nnoremap <localleader>n :bnext<CR>
+nnoremap <localleader>p :bprevious<CR>
 
 " ' is more convenient than , and has redundancy with `
 nnoremap ' ,
