@@ -79,9 +79,9 @@ let g:rust_fold = 1
 " enable file type detection
 filetype plugin indent on
 
-" don't save backup files and set directory for .swp files
+" don't save backup files or swapfiles
 set nobackup
-set directory=~/.vim/backup/
+set noswapfile
 
 " save files automatically
 set autowrite
@@ -149,8 +149,6 @@ set smartcase
 set gdefault
 " }}}1 END SEARCHING
 " VISUAL {{{1
-" 256-bit colors
-set t_Co=256
 colorscheme solarized
 
 " highlight current line
