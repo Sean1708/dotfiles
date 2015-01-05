@@ -96,9 +96,14 @@ set clipboard+=unnamed
 
 set history=500
 
-augroup focus
+augroup User
   autocmd!
-  autocmd FocusLost * :silent! wall
+  autocmd FocusLost * :silent wall
+augroup END
+
+augroup NoMarkDown
+  autocmd!
+  autocmd BufWritePre * if &ft !=? 'markdown' | :silent %s/\s\+$//e | endif
 augroup END
 
 " }}}1 END GENERAL
@@ -107,7 +112,7 @@ augroup END
 let g:mapleader = " "
 let g:maplocalleader = "\\"
 
-nnoremap <localleader>e :edit 
+nnoremap <localleader>e :edit
 nnoremap <Right> <ESC>:bnext<CR>
 nnoremap <Left> <ESC>:bprev<CR>
 
@@ -154,12 +159,14 @@ set number
 set relativenumber
 
 set ruler
+" TODO: have git branch
+set rulerformat=%30(%t%=%4l\ \ %-3c\ \ %P%)
 set showcmd
 
 set textwidth=80
 set nowrap
 " I reckon setting these all to 4 gives the best result nowadays
-set tabstop=4  " number of columns <Tab> counts as in normal mode
+set tabstop=4  " number of columns <Tab> counts as visually
 set shiftwidth=4  " columns added/removed when changing indent level
 set softtabstop=4  " amount of whitespace corresponding to tab presses
 set expandtab
