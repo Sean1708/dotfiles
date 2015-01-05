@@ -108,8 +108,8 @@ let g:mapleader = " "
 let g:maplocalleader = "\\"
 
 nnoremap <localleader>e :edit 
-nnoremap <localleader>n :bnext<CR>
-nnoremap <localleader>p :bprevious<CR>
+nnoremap <Right> <ESC>:bnext<CR>
+nnoremap <Left> <ESC>:bprev<CR>
 
 " ' is more convenient than , and has redundancy with `
 nnoremap ' ,
@@ -123,10 +123,8 @@ nnoremap Y y$
 
 noremap <Tab> %
 
-nnoremap <Up> <C-Y>
-nnoremap <Down> <C-E>
-nnoremap <Right> <C-D>
-nnoremap <Left> <C-U>
+nnoremap <Up> <C-U>
+nnoremap <Down> <C-D>
 
 " }}}1 END MAPPINGS
 " EDITING {{{1
