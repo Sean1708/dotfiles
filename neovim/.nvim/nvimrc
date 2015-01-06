@@ -2,6 +2,11 @@
 
 call plug#begin('~/.nvim/plugged')
 
+" FUGITIVE {{{2
+
+Plug 'tpope/vim-fugitive'
+
+" }}}2 END FUGITIVE
 " JULIA.VIM {{{2
 
 Plug 'JuliaLang/julia-vim'
@@ -56,7 +61,7 @@ let g:incsearch#consistent_n_direction = 1
 " automatically set magic with no portability problems
 let g:incsearch#magic = '\v'
 
-" }}}2 END INCSEARCH.VIM
+" }}}2 END INCSEARCH
 " REPMO.VIM {{{2
 
 Plug 'vim-scripts/repmo.vim'
@@ -96,7 +101,7 @@ set clipboard+=unnamed
 
 set history=500
 
-augroup User
+augroup Focus
   autocmd!
   autocmd FocusLost * :silent wall
 augroup END
@@ -159,8 +164,7 @@ set number
 set relativenumber
 
 set ruler
-" TODO: have git branch
-set rulerformat=%30(%t%=%4l\ \ %-3c\ \ %P%)
+set rulerformat=%50(%{fugitive#statusline()}\ %t%=%4l\ \ %-3c\ \ %P%)
 set showcmd
 
 set textwidth=80
