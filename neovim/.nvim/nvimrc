@@ -113,7 +113,9 @@ augroup END
 " }}}1 END GENERAL
 " MAPPINGS {{{1
 
-let g:maplocalleader = " "
+" I DON'T LIKE SPACE AS A LEADER!!!!!!
+let g:mapleader = ","
+let g:maplocalleader = "\\"
 
 nnoremap <localleader>g <ESC>:Gstatus<CR>
 
