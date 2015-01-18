@@ -120,8 +120,11 @@ let g:maplocalleader = "\\"
 nnoremap <localleader>g :Gstatus<CR>
 
 nnoremap <localleader>e :edit 
+nnoremap <localleader>d :bdelete<CR>
 nnoremap <Right> :bnext<CR>
 nnoremap <Left> :bprev<CR>
+
+nnoremap <localleader>rc :edit $MYVIMRC<CR>
 
 " ' is more convenient than , and has redundancy with `
 nnoremap ' ,
