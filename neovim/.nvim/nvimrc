@@ -115,8 +115,7 @@ augroup END
 " }}}1 END GENERAL
 " MAPPINGS {{{1
 
-let g:mapleader = " "
-let g:maplocalleader = "\\"
+let g:maplocalleader = " "
 
 nnoremap <localleader>e :edit 
 nnoremap <Right> <ESC>:bnext<CR>
