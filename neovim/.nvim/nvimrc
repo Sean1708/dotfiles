@@ -101,14 +101,13 @@ set clipboard+=unnamed
 
 set history=500
 
-augroup Focus
+augroup NeoVimRC
   autocmd!
   autocmd FocusLost * :silent wall
-augroup END
-
-augroup NoMarkDown
-  autocmd!
-  autocmd BufWritePre * if &ft !=? 'markdown' | :silent %s/\s\+$//e | endif
+  autocmd BufWritePre *
+    \ if &ft !=? 'markdown' && expand('%:t') !~? '^n\?vimrc$' |
+    \   :silent %s/\s\+$//e |
+    \ endif
 augroup END
 
 " }}}1 END GENERAL
@@ -117,7 +116,7 @@ augroup END
 let g:mapleader = " "
 let g:maplocalleader = "\\"
 
-nnoremap <localleader>e :edit
+nnoremap <localleader>e :edit 
 nnoremap <Right> <ESC>:bnext<CR>
 nnoremap <Left> <ESC>:bprev<CR>
 
@@ -125,9 +124,9 @@ nnoremap <Left> <ESC>:bprev<CR>
 nnoremap ' ,
 
 " TODO: why doesn't lnoremap work here
-inoremap <localleader>jk <ESC>
-cnoremap <localleader>jk <ESC>
-vnoremap <localleader>jk <ESC>
+inoremap <localleader>j <ESC>
+cnoremap <localleader>j <ESC>
+vnoremap <localleader>j <ESC>
 
 nnoremap Y y$
 
@@ -164,7 +163,7 @@ set number
 set relativenumber
 
 set ruler
-set rulerformat=%50(%{fugitive#statusline()}\ %t%=%4l\ \ %-3c\ \ %P%)
+set rulerformat=%50(%{fugitive#statusline()}\ %t%=L\ %-4l\ \ C\ %-3c\ \ %P%)
 set showcmd
 
 set textwidth=80
