@@ -6,6 +6,8 @@ call plug#begin('~/.nvim/plugged')
 
 Plug 'tpope/vim-fugitive'
 
+nnoremap <localleader>g <Esc>:Gstatus<CR>
+
 " }}}2 END FUGITIVE
 " JULIA.VIM {{{2
 
