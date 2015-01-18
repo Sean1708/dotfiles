@@ -117,11 +117,11 @@ augroup END
 let g:mapleader = ","
 let g:maplocalleader = "\\"
 
-nnoremap <localleader>g <ESC>:Gstatus<CR>
+nnoremap <localleader>g :Gstatus<CR>
 
 nnoremap <localleader>e :edit 
-nnoremap <Right> <ESC>:bnext<CR>
-nnoremap <Left> <ESC>:bprev<CR>
+nnoremap <Right> :bnext<CR>
+nnoremap <Left> :bprev<CR>
 
 " ' is more convenient than , and has redundancy with `
 nnoremap ' ,
