@@ -124,7 +124,7 @@ nnoremap <localleader>d :bdelete<CR>
 nnoremap <Right> :bnext<CR>
 nnoremap <Left> :bprev<CR>
 
-nnoremap <localleader>rc :edit $MYVIMRC<CR>
+nnoremap <localleader>rc :split $MYVIMRC<CR>
 
 " ' is more convenient than , and has redundancy with `
 nnoremap ' ,
