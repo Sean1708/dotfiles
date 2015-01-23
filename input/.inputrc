@@ -6,5 +6,5 @@ set keymap vi-command
 "\C-l": clear-screen
 
 set keymap vi-insert
-"jk": vi-movement-mode
+"\\j": vi-movement-mode
 "\C-l": clear-screen
