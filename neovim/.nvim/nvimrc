@@ -7,9 +7,9 @@ call plug#begin('~/.nvim/plugged')
 Plug 'tpope/vim-fugitive'
 
 " }}}2 END FUGITIVE
-" JULIA.VIM {{{2
+" JULIAN.VIM {{{2
 
-Plug 'JuliaLang/julia-vim'
+Plug 'Sean1708/julian-vim'
 
 " }}}2 END JULIA
 " RUST.VIM {{{2
@@ -86,6 +86,8 @@ call plug#end()
 filetype plugin indent on
 syntax enable
 
+runtime! macros/matchit.vim
+
 colorscheme solarized
 
 set encoding=utf-8
@@ -136,7 +138,8 @@ vnoremap <localleader>j <ESC>
 
 nnoremap Y y$
 
-noremap <Tab> %
+" needs map so that matchit works
+map <Tab> %
 
 nnoremap <Up> <C-U>
 nnoremap <Down> <C-D>
