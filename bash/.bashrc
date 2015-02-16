@@ -22,6 +22,9 @@ alias julia-dev="${HOME}/Downloads/src/julia-dev/julia"
 # fuck knows how cargo's install process works
 alias cargo="${HOME}/Downloads/src/cargo/target/x86_64-apple-darwin/cargo"
 
+# only while I'm doing LVTHW
+alias potion="${HOME}/Downloads/src/potion/bin/potion"
+
 
 ## FUNCTIONS
 # cd to dir then run ls
@@ -47,6 +50,12 @@ function cdl {
 function mcd {
   mkdir "${1}"
   cd "${1}"
+}
+
+# not that much quicker to type but at least I don't have to remember how to
+# spell caffeinate
+function nosleep {
+  caffeinate -dim
 }
 
 # use newest homebrew sqlite
