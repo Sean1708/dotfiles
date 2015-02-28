@@ -6,7 +6,7 @@ max_peers = 80
 min_peers_seed = -1
 max_peers_seed = -1
 
-# Maximum number of simultanious uploads per torrent.
+# Maximum number of simultaneous uploads per torrent.
 max_uploads = 4
 
 # Global upload and download rate in KiB. "0" for unlimited.
@@ -23,7 +23,7 @@ session = ~/Downloads/torrents/.session
 
 # Watch a directory for new torrents, and stop those that have been
 # deleted.
-schedule = watch_directory,5,300,load_start=~/Downloads/torrents/.watch/*.torrent
+schedule = watch_directory,5,60,load_start=~/Downloads/torrents/.watch/*.torrent
 #schedule = untied_directory,5,5,stop_untied=
 
 # Close torrents when diskspace is low.
