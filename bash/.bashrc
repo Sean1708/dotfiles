@@ -31,19 +31,15 @@ function error {
 
 # cd to dir then run ls
 function cdl {
-  local E_BADARGS = 85
-  # Argument Check
-  if [[ ! -e "${1}" ]]
+  if [[ ! -e "$1" ]]
   then
-    echo "Error: Directory ${1} does not exist."
-    return "${E_BADARGS}"
-  elif [[ ! -d "${1}" ]]
+    error "Directory $1 does not exist."
+  elif [[ ! -d "$1" ]]
   then
-    echo "Error: File ${1} is not a directory."
-    return "${E_BADARGS}"
+    error "File $1 is not a directory."
   fi
 
-  cd "${1}"
+  cd "$1"
   ls
 }
 
@@ -131,7 +127,7 @@ function ijulia {
 }
 
 function magnet {
-  cd ~/Downloads/torrents/.watch || error "Could not find .watch directory."
+  pushd ~/Downloads/torrents/.watch || error "Could not find .watch directory."
   [[ "$1" =~ xt=urn:btih:([^&/]+) ]] || error "Bad magnet link."
 
   local hashh=${BASH_REMATCH[1]}
@@ -144,4 +140,5 @@ function magnet {
 
   echo "d10:magnet-uri${#1}:${1}e" > "meta-$filename.torrent"
   echo "Sucessful! :D"
+  popd
 }
