@@ -23,7 +23,7 @@ session = ~/Downloads/torrents/.session
 
 # Watch a directory for new torrents, and stop those that have been
 # deleted.
-schedule = watch_directory,5,5,load_start=~/Downloads/torrents/.watch/*.torrent
+schedule = watch_directory,5,300,load_start=~/Downloads/torrents/.watch/*.torrent
 #schedule = untied_directory,5,5,stop_untied=
 
 # Close torrents when diskspace is low.
@@ -70,7 +70,7 @@ encryption = allow_incoming,try_outgoing,enable_retry
 # The default is "off". For DHT to work, a session directory must be defined.
 dht = auto
 
-# UDP port to use for DHT. 
+# UDP port to use for DHT.
 dht_port = 6342
 
 # Enable peer exchange (for torrents not marked private)
