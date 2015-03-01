@@ -27,6 +27,9 @@ Temporary Items
 # I sometimes like to make notes in TODO files
 TODO
 
+# I use a fair few ipynbs, TODO: this will need to change when Jupyter comes out
+.ipynb_checkpoints/
+
 # virtual environments for python
 .venv
 .venv27
