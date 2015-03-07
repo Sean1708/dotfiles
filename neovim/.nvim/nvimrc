@@ -11,6 +11,8 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'Sean1708/julian-vim'
 
+let g:julian_folding = 1
+
 " }}}2 END JULIA
 " RUST.VIM {{{2
 
@@ -20,6 +22,12 @@ Plug 'wting/rust.vim'
 let g:rust_fold = 1
 
 " }}}2 END RUST
+" MATCHIT.VIM {{{2
+
+" yes it's already in the distro but I like having the docs
+Plug 'vim-scripts/matchit.zip'
+
+" }}}2 END MATCHIT
 " PYTHON-MODE {{{2
 
 Plug 'klen/python-mode'
@@ -86,11 +94,6 @@ call plug#end()
 filetype plugin indent on
 syntax enable
 
-runtime! macros/matchit.vim
-
-colorscheme solarized
-
-set encoding=utf-8
 set spelllang=en_gb
 
 set noswapfile
@@ -165,6 +168,9 @@ set gdefault
 
 " }}}1 END EDITING
 " DISPLAY {{{1
+
+colorscheme solarized
+set background=dark
 
 set cursorline
 
