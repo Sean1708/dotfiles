@@ -43,7 +43,8 @@ let g:pymode_options_colorcolumn = 0
 
 Plug 'LaTeX-Box-Team/LaTeX-Box'
 
-let g:LatexBox_latexmk_async = 1
+" I don't have VIM Server yet
+"let g:LatexBox_latexmk_async = 1
 let g:LatexBox_quickfix = 2
 
 let g:LatexBox_viewer = 'open'
