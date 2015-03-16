@@ -148,8 +148,8 @@ augroup END
 " MAPPINGS {{{1
 
 " I DON'T LIKE SPACE AS A LEADER!!!!!!
-let g:mapleader = ","
-let g:maplocalleader = "\\"
+let g:mapleader = "\\"
+let g:maplocalleader = g:mapleader
 
 nnoremap <localleader>g :Gstatus<CR>
 
@@ -164,9 +164,9 @@ nnoremap <localleader>rc :split $MYVIMRC<CR>
 nnoremap ' ,
 
 " TODO: why doesn't lnoremap work here
-inoremap <localleader>j <ESC>
-cnoremap <localleader>j <ESC>
-vnoremap <localleader>j <ESC>
+inoremap <localleader>jk <ESC>
+cnoremap <localleader>jk <ESC>
+vnoremap <localleader>jk <ESC>
 
 nnoremap Y y$
 
