@@ -24,6 +24,14 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# Vim files which might pop up, they shouldn't but they might
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+
 # I sometimes like to make notes in TODO files
 TODO
 
