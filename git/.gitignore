@@ -1,5 +1,5 @@
-# this is a global .gitignore file for all projects
-# mostly taken from https://github.com/github/gitignore/blob/master/Global/OSX.gitignore
+# This is a global .gitignore file for all projects.
+# Mostly taken from https://github.com/github/gitignore/blob/master/Global/OSX.gitignore
 
 # file system stuffs
 .DS_Store
@@ -25,6 +25,7 @@ Temporary Items
 .apdisk
 
 # Vim files which might pop up, they shouldn't but they might
+# https://github.com/github/gitignore/blob/master/Global/Vim.gitignore
 [._]*.s[a-w][a-z]
 [._]s[a-w][a-z]
 *.un~
@@ -32,12 +33,19 @@ Session.vim
 .netrwhist
 *~
 
+# Virtualenv
+# https://github.com/github/gitignore/blob/master/Global/VirtualEnv.gitignore
+# http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
+.Python
+[Bb]in
+[Ii]nclude
+[Ll]ib
+[Ss]cripts
+pyvenv.cfg
+pip-selfcheck.json
+
 # I sometimes like to make notes in TODO files
 TODO
 
 # I use a fair few ipynbs, TODO: this will need to change when Jupyter comes out
 .ipynb_checkpoints/
-
-# virtual environments for python
-.venv
-.venv27
