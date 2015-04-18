@@ -9,9 +9,10 @@ Plug 'tpope/vim-fugitive'
 " }}}2 END FUGITIVE
 " JULIAN.VIM {{{2
 
-Plug 'Sean1708/julian-vim'
+Plug 'JuliaLang/julia-vim'
+"Plug 'Sean1708/julian-vim'
 
-let g:julian_folding = 1
+"let g:julian_folding = 1
 
 " }}}2 END JULIA
 " RUST.VIM {{{2
@@ -155,10 +156,12 @@ nnoremap <localleader>g :Gstatus<CR>
 
 nnoremap <localleader>e :edit 
 nnoremap <localleader>d :bdelete<CR>
+
+" TODO: maybe just :next and :prev
 nnoremap <Right> :bnext<CR>
 nnoremap <Left> :bprev<CR>
-
-nnoremap <localleader>rc :split $MYVIMRC<CR>
+nnoremap <Up> <C-U>
+nnoremap <Down> <C-D>
 
 " ' is more convenient than , and has redundancy with `
 nnoremap ' ,
@@ -172,9 +175,6 @@ nnoremap Y y$
 
 " needs map so that matchit works
 map <Tab> %
-
-nnoremap <Up> <C-U>
-nnoremap <Down> <C-D>
 
 " }}}1 END MAPPINGS
 " EDITING {{{1
