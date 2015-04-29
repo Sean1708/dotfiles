@@ -40,30 +40,6 @@ let g:pymode_syntax_print_as_function = 1
 let g:pymode_options_colorcolumn = 0
 
 " }}}2 END PYTHON-MODE
-" LATEX-BOX {{{2
-
-Plug 'LaTeX-Box-Team/LaTeX-Box'
-
-" I don't have VIM Server yet
-"let g:LatexBox_latexmk_async = 1
-let g:LatexBox_quickfix = 2
-
-let g:LatexBox_viewer = 'open'
-
-let g:LatexBox_Folding = 1
-let g:LatexBox_fold_toc = 1
-
-"""
-" Mappings
-"""
-
-" <LocalLeader>ll  -  Compile document.
-" <LocalLeader>lc  -  Clean temporary ouput.
-" <LocalLeader>lC  -  Clean ouput.
-" <LocalLeader>lv  -  View PDF.
-
-
-" }}}2 END LATEX-BOV
 " MATCHIT.VIM {{{2
 
 " yes it's already in the distro but I like having the docs
