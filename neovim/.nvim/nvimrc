@@ -2,95 +2,16 @@
 
 call plug#begin('~/.nvim/plugged')
 
-" FUGITIVE {{{2
-
 Plug 'tpope/vim-fugitive'
-
-" }}}2 END FUGITIVE
-" JULIAN.VIM {{{2
-
 Plug 'JuliaLang/julia-vim'
-"Plug 'Sean1708/julian-vim'
-
-"let g:julian_folding = 1
-
-" }}}2 END JULIA
-" RUST.VIM {{{2
-
 Plug 'wting/rust.vim'
-
-" fold braced blocks
-let g:rust_fold = 1
-
-" }}}2 END RUST
-" PYTHON-MODE {{{2
-
 Plug 'klen/python-mode'
-
-" USE PYTHON3 YOU WHORES!
-"let g:python_host_prog = 'python3'
-"let g:pymode_python = 'python3'
-
-" TODO: see if this can be done with python-mode options
-set foldlevelstart=99
-
-let g:pymode_rope = 0
-let g:pymode_lint_checkers = ['pep8', 'pep257', 'pylint', 'pyflakes']
-let g:pymode_syntax_print_as_function = 1
-let g:pymode_options_colorcolumn = 0
-
-" }}}2 END PYTHON-MODE
-" MATCHIT.VIM {{{2
-
-" yes it's already in the distro but I like having the docs
 Plug 'vim-scripts/matchit.zip'
-
-" }}}2 END MATCHIT
-" INCSEARCH.VIM {{{2
-
 Plug 'haya14busa/incsearch.vim'
-
-" incrementally search whole page
-map / <Plug>(incsearch-forward)
-map ? <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-
-" turn off highlighting when non-search related key is pressed
-let g:incsearch#auto_nohlsearch = 1
-map n <Plug>(incsearch-nohl-n)
-map N <Plug>(incsearch-nohl-N)
-map * <Plug>(incsearch-nohl-*)
-map # <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
-
-" n always forward and N always backward
-let g:incsearch#consistent_n_direction = 1
-
-" automatically set magic with no portability problems
-let g:incsearch#magic = '\v'
-
-" }}}2 END INCSEARCH
-" REPMO.VIM {{{2
-
 Plug 'vim-scripts/repmo.vim'
-
-" }}}2 END REPMO
-" VIM-TOML {{{2
-
 Plug 'cespare/vim-toml'
-
-" }}}2 END VIM-TOML
-" CSV.VIM {{{2
-
 Plug 'chrisbra/csv.vim'
-
-" }}}2 END CSV
-" COLORSCHEMES {{{2
-
 Plug 'flazz/vim-colorschemes'
-
-" }}}2 END COLORSCHEMES
 
 call plug#end()
 
@@ -128,10 +49,8 @@ augroup END
 let g:mapleader = "\\"
 let g:maplocalleader = g:mapleader
 
-nnoremap <localleader>g :Gstatus<CR>
-
-nnoremap <localleader>e :edit 
-nnoremap <localleader>d :bdelete<CR>
+nnoremap <leader>e :edit 
+nnoremap <leader>d :bdelete<CR>
 
 " TODO: maybe just :next and :prev
 nnoremap <Right> :bnext<CR>
@@ -143,9 +62,9 @@ nnoremap <Down> <C-D>
 nnoremap ' ,
 
 " TODO: why doesn't lnoremap work here
-inoremap <localleader>jk <ESC>
-cnoremap <localleader>jk <ESC>
-vnoremap <localleader>jk <ESC>
+inoremap <leader>jk <ESC>
+cnoremap <leader>jk <ESC>
+vnoremap <leader>jk <ESC>
 
 nnoremap Y y$
 
@@ -174,9 +93,6 @@ set gdefault
 " }}}1 END EDITING
 " DISPLAY {{{1
 
-colorscheme solarized
-set background=dark
-
 set cursorline
 
 set number
@@ -195,5 +111,62 @@ set softtabstop=4  " amount of whitespace corresponding to tab presses
 set expandtab
 
 " }}}1 END DISPLAY
+" PLUGIN-SETTINGS {{{1
+" FUGITIVE {{{2
+
+nnoremap <leader>g :Gstatus<CR>
+
+" }}}2 END FUGITIVE
+" RUST.VIM {{{2
+
+" fold braced blocks
+let g:rust_fold = 1
+
+" }}}2 END RUST
+" PYTHON-MODE {{{2
+
+" USE PYTHON3 YOU WHORES!
+"let g:python_host_prog = 'python3'
+"let g:pymode_python = 'python3'
+
+" TODO: see if this can be done with python-mode options
+set foldlevelstart=99
+
+let g:pymode_rope = 0
+let g:pymode_lint_checkers = ['pep8', 'pep257', 'pylint', 'pyflakes']
+let g:pymode_syntax_print_as_function = 1
+let g:pymode_options_colorcolumn = 0
+
+" }}}2 END PYTHON-MODE
+" INCSEARCH.VIM {{{2
+
+" incrementally search whole page
+map / <Plug>(incsearch-forward)
+map ? <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
+" turn off highlighting when non-search related key is pressed
+let g:incsearch#auto_nohlsearch = 1
+map n <Plug>(incsearch-nohl-n)
+map N <Plug>(incsearch-nohl-N)
+map * <Plug>(incsearch-nohl-*)
+map # <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+
+" n always forward and N always backward
+let g:incsearch#consistent_n_direction = 1
+
+" automatically set magic with no portability problems
+let g:incsearch#magic = '\v'
+
+" }}}2 END INCSEARCH
+" COLORSCHEMES {{{2
+
+colorscheme solarized
+set background=dark
+
+" }}}2 END COLORSCHEMES
+" }}}1 END PLUGIN-SETTINGS
 
 " vim: foldmethod=marker foldlevel=0
