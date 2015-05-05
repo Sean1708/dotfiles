@@ -2,6 +2,7 @@
 
 call plug#begin('~/.nvim/plugged')
 
+Plug 'benekastah/neomake'
 Plug 'tpope/vim-fugitive'
 Plug 'JuliaLang/julia-vim'
 Plug 'wting/rust.vim'
@@ -112,6 +113,11 @@ set expandtab
 
 " }}}1 END DISPLAY
 " PLUGIN-SETTINGS {{{1
+" NEOMAKE {{{2
+
+" TODO: use Neomake for python!
+
+" }}}2 END NEOMAKE
 " FUGITIVE {{{2
 
 nnoremap <leader>g :Gstatus<CR>
