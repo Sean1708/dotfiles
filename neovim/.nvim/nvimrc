@@ -6,7 +6,6 @@ Plug 'benekastah/neomake'
 Plug 'tpope/vim-fugitive'
 Plug 'JuliaLang/julia-vim'
 Plug 'wting/rust.vim'
-Plug 'klen/python-mode'
 Plug 'vim-scripts/matchit.zip'
 Plug 'haya14busa/incsearch.vim'
 Plug 'vim-scripts/repmo.vim'
@@ -113,11 +112,6 @@ set expandtab
 
 " }}}1 END DISPLAY
 " PLUGIN-SETTINGS {{{1
-" NEOMAKE {{{2
-
-" TODO: use python (adjust for python3), flake8 (include McCabe), pep256 and pylint
-
-" }}}2 END NEOMAKE
 " FUGITIVE {{{2
 
 nnoremap <leader>g :Gstatus<CR>

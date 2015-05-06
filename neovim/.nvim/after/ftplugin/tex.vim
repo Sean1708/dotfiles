@@ -1,6 +1,7 @@
 let g:neomake_tex_make_maker = {'exe': 'make', 'errorformat': '%f:%l: %m'}
 
-augroup LaTeX
+augroup NeomakeLaTeX
+  autocmd!
   autocmd BufWritePost <buffer> Neomake chktex lacheck
 augroup END
 
