@@ -142,3 +142,14 @@ function magnet {
   echo "Sucessful! :D"
   popd
 }
+
+function ltx-init {
+  if [ ! -f Makefile ]
+  then
+    curl -sO https://raw.githubusercontent.com/Sean1708/LaTeX-Build-Files/master/Makefile || error 'Could not download Makefile.'
+  fi
+  if [ ! -f .gitignore ]
+  then
+    curl -sO https://raw.githubusercontent.com/Sean1708/LaTeX-Build-Files/master/.gitignore || error 'Could not download Makefile.'
+  fi
+}
