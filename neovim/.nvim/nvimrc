@@ -115,7 +115,7 @@ set expandtab
 " PLUGIN-SETTINGS {{{1
 " NEOMAKE {{{2
 
-" TODO: use Neomake for python!
+" TODO: use python (adjust for python3), flake8 (include McCabe), pep256 and pylint
 
 " }}}2 END NEOMAKE
 " FUGITIVE {{{2
