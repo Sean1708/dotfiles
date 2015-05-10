@@ -26,15 +26,18 @@ let g:neomake_python_flake8_maker = {
     \ '%-G%.%#',
 \ }
 
-let g:neomake_nosetests_maker = {}
+" NOTE: requires nose-terse-output: https://github.com/joakimkarlsson/nose-terse-output
+let g:neomake_nosetests_maker = {
+  \ 'args': ['--with-terseout'],
+  \ 'errorformat': '%f:%l: %m',
+\ }
 
 augroup NeomakePython
   autocmd!
   autocmd BufWritePost <buffer> Neomake python3 flake8 pep257
 augroup END
 
-" TODO: use neomake for this!
-nnoremap <buffer> <localleader>t :write <bar> !nosetests<CR>
+nnoremap <buffer> <localleader>t :update <bar> Neomake! nosetests <bar> copen<CR>
 
 setlocal keywordprg=pydoc3
 setlocal tabstop=4

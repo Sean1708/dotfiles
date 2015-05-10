@@ -5,7 +5,7 @@ augroup NeomakeLaTeX
   autocmd BufWritePost <buffer> Neomake chktex lacheck
 augroup END
 
-nnoremap <buffer> <localleader>m :write <bar> Neomake! tex_make<CR>
+nnoremap <buffer> <localleader>m :update <bar> Neomake! tex_make<CR>
 " two <CR>s so you don't get the "Press any key..."
 nnoremap <buffer> <localleader>o :!open %:r.pdf<CR><CR>
 
