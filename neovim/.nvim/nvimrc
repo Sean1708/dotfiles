@@ -5,7 +5,7 @@ call plug#begin('~/.nvim/plugged')
 Plug 'benekastah/neomake'
 Plug 'tpope/vim-fugitive'
 Plug 'JuliaLang/julia-vim'
-Plug 'wting/rust.vim'
+Plug 'rust-lang/rust.vim'
 Plug 'hdima/python-syntax'
 Plug 'vim-scripts/matchit.zip'
 Plug 'haya14busa/incsearch.vim'
@@ -120,8 +120,8 @@ nnoremap <leader>g :Gstatus<CR>
 " }}}2 END FUGITIVE
 " RUST.VIM {{{2
 
-" fold braced blocks
 let g:rust_fold = 1
+let g:rust_bang_comment_leader = 1
 
 " }}}2 END RUST
 " PYTHON-SYNTAX {{{2
