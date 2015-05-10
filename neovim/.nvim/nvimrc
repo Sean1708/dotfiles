@@ -6,6 +6,7 @@ Plug 'benekastah/neomake'
 Plug 'tpope/vim-fugitive'
 Plug 'JuliaLang/julia-vim'
 Plug 'wting/rust.vim'
+Plug 'hdima/python-syntax'
 Plug 'vim-scripts/matchit.zip'
 Plug 'haya14busa/incsearch.vim'
 Plug 'vim-scripts/repmo.vim'
@@ -123,21 +124,13 @@ nnoremap <leader>g :Gstatus<CR>
 let g:rust_fold = 1
 
 " }}}2 END RUST
-" PYTHON-MODE {{{2
+" PYTHON-SYNTAX {{{2
 
-" USE PYTHON3 YOU WHORES!
-"let g:python_host_prog = 'python3'
-"let g:pymode_python = 'python3'
+let python_highlight_indent_errors = 0
+let python_highlight_space_errors = 0
+let python_highlight_all = 1
 
-" TODO: see if this can be done with python-mode options
-set foldlevelstart=99
-
-let g:pymode_rope = 0
-let g:pymode_lint_checkers = ['pep8', 'pep257', 'pylint', 'pyflakes']
-let g:pymode_syntax_print_as_function = 1
-let g:pymode_options_colorcolumn = 0
-
-" }}}2 END PYTHON-MODE
+" }}}2 END PYTHON-SYNTAX
 " INCSEARCH.VIM {{{2
 
 " incrementally search whole page
