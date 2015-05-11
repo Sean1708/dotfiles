@@ -19,9 +19,6 @@ eval "$(hub alias -s)"
 # using homebrew causes GMP mismatch
 alias julia-dev="${HOME}/Downloads/src/julia-dev/julia"
 
-# fuck knows how cargo's install process works
-alias cargo="${HOME}/Downloads/src/cargo/target/x86_64-apple-darwin/cargo"
-
 
 ## FUNCTIONS
 function error {
