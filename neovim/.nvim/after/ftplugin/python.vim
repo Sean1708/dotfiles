@@ -10,8 +10,8 @@ let g:neomake_python_python3_maker = {
     \ "    exit(2)\n" .
     \ "except SyntaxError as s:\n" .
     \ "    print('{s.filename}:{s.lineno}:{s.offset}: {s.msg} ({s.text})'.format(s=s))\n" .
-    \ "    exit(3)\n"
-    \ ],
+    \ "    exit(3)\n",
+  \ ],
   \ 'errorformat': '%E%f:%l:%c: %m',
 \ }
 
