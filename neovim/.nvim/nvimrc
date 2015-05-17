@@ -70,6 +70,8 @@ nnoremap Y y$
 " needs map so that matchit works
 map <Tab> %
 
+nnoremap K :call utils#KeywordPrg()<CR>
+
 " }}}1 END MAPPINGS
 " EDITING {{{1
 

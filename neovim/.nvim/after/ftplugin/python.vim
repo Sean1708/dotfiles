@@ -38,7 +38,7 @@ augroup NeomakePython
 augroup END
 
 nnoremap <buffer> <localleader>t :update <bar> Neomake! nosetests <bar> copen<CR>
+nnoremap <buffer> K :call utils#KeywordPrg('pydoc3', 'rst')<CR>
 
-setlocal keywordprg=pydoc3
 setlocal tabstop=4
 setlocal indentkeys+=0(,0),0[,0]
