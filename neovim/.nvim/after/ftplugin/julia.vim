@@ -31,4 +31,4 @@ augroup END
 " TODO: use Neomake for this
 nnoremap <buffer> <localleader>t :update <bar> !julia test/runtests.jl<CR>
 
-setlocal keywordprg=julia\ -e\ 'help(ARGS[1]); println()'
+let &l:keywordprg = "julia -e 'help(ARGS[1]); println()'"
