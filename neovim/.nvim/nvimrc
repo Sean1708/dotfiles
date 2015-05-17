@@ -46,26 +46,24 @@ augroup END
 " }}}1 END GENERAL
 " MAPPINGS {{{1
 
-" I DON'T LIKE SPACE AS A LEADER!!!!!!
-let g:mapleader = "\\"
+let g:mapleader = '\'
 let g:maplocalleader = g:mapleader
 
-nnoremap <leader>e :edit 
-nnoremap <leader>d :bdelete<CR>
+inoremap <leader>jk <ESC>
+vnoremap <leader>jk <ESC>
 
-" TODO: maybe just :next and :prev
+nnoremap <S-Left> <C-W>h
+nnoremap <S-Down> <C-W>j
+nnoremap <S-Up> <C-W>k
+nnoremap <S-Right> <C-W>l
 nnoremap <Right> :bnext<CR>
 nnoremap <Left> :bprev<CR>
+
 nnoremap <Up> <C-U>
 nnoremap <Down> <C-D>
 
 " ' is more convenient than , and has redundancy with `
 nnoremap ' ,
-
-" TODO: why doesn't lnoremap work here
-inoremap <leader>jk <ESC>
-cnoremap <leader>jk <ESC>
-vnoremap <leader>jk <ESC>
 
 nnoremap Y y$
 
@@ -126,19 +124,17 @@ let g:rust_bang_comment_leader = 1
 " }}}2 END RUST
 " PYTHON-SYNTAX {{{2
 
-let python_highlight_indent_errors = 0
-let python_highlight_space_errors = 0
-let python_highlight_all = 1
+let g:python_highlight_indent_errors = 0
+let g:python_highlight_space_errors = 0
+let g:python_highlight_all = 1
 
 " }}}2 END PYTHON-SYNTAX
 " INCSEARCH.VIM {{{2
 
-" incrementally search whole page
 map / <Plug>(incsearch-forward)
 map ? <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
-" turn off highlighting when non-search related key is pressed
 let g:incsearch#auto_nohlsearch = 1
 map n <Plug>(incsearch-nohl-n)
 map N <Plug>(incsearch-nohl-N)
@@ -147,10 +143,8 @@ map # <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 
-" n always forward and N always backward
 let g:incsearch#consistent_n_direction = 1
 
-" automatically set magic with no portability problems
 let g:incsearch#magic = '\v'
 
 " }}}2 END INCSEARCH
