@@ -6,6 +6,7 @@ augroup NeomakeLaTeX
 augroup END
 
 nnoremap <buffer> <localleader>m :update <bar> Neomake! tex_make<CR>
+" TODO: how about jobstart for this?
 " two <CR>s so you don't get the "Press any key..."
 nnoremap <buffer> <localleader>o :!open %:r.pdf<CR><CR>
 
@@ -13,3 +14,5 @@ noremap <buffer> <silent> <script> ]] :<C-U>call utils#Move('\v\C\\%(sub){0,2}se
 noremap <buffer> <silent> <script> [[ :<C-U>call utils#Move('\v\C\\%(sub){0,2}section', 'b')<CR>
 vnoremap <buffer> <silent> <script> ]] :<C-U>call utils#VMove('\v\C\\%(sub){0,2}section', '')<CR>
 vnoremap <buffer> <silent> <script> [[ :<C-U>call utils#VMove('\v\C\\%(sub){0,2}section', 'b')<CR>
+
+setlocal spell
