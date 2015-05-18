@@ -1,5 +1,7 @@
 " PLUGINS {{{1
 
+let g:plug_window = 'if 2*winheight(0) < winwidth(0) | vertical topleft new | else | topleft new | endif'
+
 call plug#begin('~/.nvim/plugged')
 
 Plug 'benekastah/neomake'
