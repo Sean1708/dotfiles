@@ -22,5 +22,3 @@ do
         fi
     fi
 done
-
-nvim +PlugInstall +qall
