@@ -8,7 +8,6 @@ function! utils#Move(pattern, flags)
 endfunction
 
 function! utils#VMove(pattern, flags)
-  " TODO: support linewise and blockwise
   let l:start_pos = getpos("'<")[1:2]
   call cursor(getpos("'>")[1:2])
 
