@@ -86,8 +86,7 @@ set formatoptions+=j
 set shiftround
 
 " incsearch doesn't set magic in substitutions
-nnoremap :s/ s/\v
-nnoremap :%s/ s/\v
+cnoremap s/ s/\v
 
 set ignorecase
 set smartcase
@@ -97,6 +96,7 @@ set gdefault
 " DISPLAY {{{1
 
 set cursorline
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 set number
 set relativenumber
