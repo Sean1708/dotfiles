@@ -40,8 +40,8 @@ augroup NeoVimRC
   autocmd!
   autocmd FocusLost * :silent wall
   autocmd BufWritePre *
-    \ if &ft !=? 'markdown' && expand('%:t') !~? '^n\?vimrc$' |
-    \   :silent %s/\s\+$//e |
+    \ if &ft !=? 'markdown' && expand('%:t') !~ '\v\c^n\?vimrc$' |
+    \   silent %s/\s\+$//e |
     \ endif
 augroup END
 

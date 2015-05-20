@@ -5,8 +5,8 @@ function! s:UpgradeVimPlugWeekly()
   if l:weeks_since_update > 1
     let g:VIM_PLUG_UPGRADE_TIME = l:curtime
     if tolower(input("It's been " . string(l:weeks_since_update) . " week(s) since Vim-Plug was updated. Update now? <y/[n]> "))[0] == 'y'
-      silent :PlugUpgrade
-      silent :PlugUpdate
+      silent PlugUpgrade
+      silent PlugUpdate
       quit
     endif
   endif
@@ -14,5 +14,5 @@ endfunction
 
 augroup UpgradeVimPlug
   autocmd!
-  autocmd VimEnter * :call <SID>UpgradeVimPlugWeekly()
+  autocmd VimEnter * call <SID>UpgradeVimPlugWeekly()
 augroup END
