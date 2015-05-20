@@ -79,7 +79,6 @@ nnoremap K :call utils#KeywordPrg()<CR>
 
 set nrformats+=alpha
 
-set backspace=indent,eol,start
 set whichwrap=h,l
 set nojoinspaces
 set formatoptions+=j
@@ -87,7 +86,8 @@ set formatoptions+=j
 set shiftround
 
 " incsearch doesn't set magic in substitutions
-cnoremap s/ s/\v
+nnoremap :s/ s/\v
+nnoremap :%s/ s/\v
 
 set ignorecase
 set smartcase
