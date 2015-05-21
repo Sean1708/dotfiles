@@ -46,5 +46,7 @@ noremap <buffer> <silent> [[ :<C-U>call move#Move('\v\C^\s*%(class<bar>def)', 'b
 vnoremap <buffer> <silent> ]] :<C-U>call move#VMove('\v\C^\s*%(class<bar>def)', '')<CR>
 vnoremap <buffer> <silent> [[ :<C-U>call move#VMove('\v\C^\s*%(class<bar>def)', 'b')<CR>
 
+let b:repl = ['python3', 'python3 -i %']
+
 setlocal tabstop=4
 setlocal indentkeys+=0(,0),0[,0]

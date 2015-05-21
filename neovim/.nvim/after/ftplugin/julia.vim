@@ -28,9 +28,7 @@ augroup NeomakeJulia
   autocmd BufWritePost <buffer> Neomake lint
 augroup END
 
-if has(':terminal')
-  nnoremap <buffer> <localleader>t :update <bar> terminal julia --color test/runtests.jl<CR>
-else
-  nnoremap <buffer> <localleader>t :update <bar> !julia test/runtests.jl<CR>
-endif
+nnoremap <buffer> <localleader>t :update <bar> terminal julia --color test/runtests.jl<CR>
 nnoremap <buffer> K :call kwp#KeywordPrg("julia -e 'help(ARGS[1])'", 'markdown')<CR>
+
+let b:repl = ['julia', 'julia --load %']

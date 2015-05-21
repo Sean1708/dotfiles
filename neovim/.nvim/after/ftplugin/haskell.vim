@@ -6,3 +6,5 @@ let b:hs_highlight_debug = 1
 let b:hs_allow_hash_operator = 1
 
 setlocal iskeyword+='
+
+let b:repl = 'ghci'
