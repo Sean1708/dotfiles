@@ -38,7 +38,13 @@ augroup NeomakePython
 augroup END
 
 nnoremap <buffer> <localleader>t :update <bar> Neomake! nosetests <bar> copen<CR>
-nnoremap <buffer> K :call utils#KeywordPrg('pydoc3', 'rst')<CR>
+nnoremap <buffer> <silent> K :call kwp#KeywordPrg('pydoc3', 'rst')<CR>
+
+" TODO: maybe use <expr> instead
+noremap <buffer> <silent> ]] :<C-U>call move#Move('\v\C^\s*%(class<bar>def)', '')<CR>
+noremap <buffer> <silent> [[ :<C-U>call move#Move('\v\C^\s*%(class<bar>def)', 'b')<CR>
+vnoremap <buffer> <silent> ]] :<C-U>call move#VMove('\v\C^\s*%(class<bar>def)', '')<CR>
+vnoremap <buffer> <silent> [[ :<C-U>call move#VMove('\v\C^\s*%(class<bar>def)', 'b')<CR>
 
 setlocal tabstop=4
 setlocal indentkeys+=0(,0),0[,0]

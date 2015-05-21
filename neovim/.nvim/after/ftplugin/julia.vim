@@ -33,4 +33,4 @@ if has(':terminal')
 else
   nnoremap <buffer> <localleader>t :update <bar> !julia test/runtests.jl<CR>
 endif
-nnoremap <buffer> K :call utils#KeywordPrg("julia -e 'help(ARGS[1])'", 'markdown')<CR>
+nnoremap <buffer> K :call kwp#KeywordPrg("julia -e 'help(ARGS[1])'", 'markdown')<CR>

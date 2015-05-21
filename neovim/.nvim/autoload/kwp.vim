@@ -1,24 +1,4 @@
-function! utils#Move(pattern, flags)
-  let l:count = v:count1
-  while l:count
-    let [line, column] = searchpos(a:pattern, a:flags)
-    let l:count -= 1
-  endwhile
-  return [line, column]
-endfunction
-
-function! utils#VMove(pattern, flags)
-  let l:start_pos = getpos("'<")[1:2]
-  call cursor(getpos("'>")[1:2])
-
-  let l:end_pos = utils#Move(a:pattern, a:flags)
-
-  call cursor(start_pos)
-  normal! v
-  call cursor(end_pos)
-endfunction
-
-function! utils#KeywordPrg(...) range
+function! kwp#KeywordPrg(...) range
   let l:keyword = get(a:000, 2, expand('<cword>'))
   let l:markup = get(a:000, 1, 'text')
   let l:program = get(a:000, 0, &keywordprg)
