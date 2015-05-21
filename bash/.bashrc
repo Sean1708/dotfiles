@@ -1,32 +1,19 @@
-## VARIABLES
-# default text editor
+## VARIABLES {{{1
 export EDITOR=/usr/local/bin/nvim
-
-# path to blog folder
 export BLOG="${HOME}/Projects/sean1708.github.io"
-
-
-## ALIASES
-# use github-pages jekyll not system jekyll
+# }}}1 END VARIABLES
+## ALIASES {{{1
 alias jekyll="bundle exec jekyll"
-
-# cd to blog folder
 alias goto_blog="cd ${BLOG}"
-
-# alias git to hub
 eval "$(hub alias -s)"
-
-# using homebrew causes GMP mismatch
 alias julia-dev="${HOME}/Downloads/src/julia-dev/julia"
-
-
-## FUNCTIONS
+# }}}1 END ALIASES
+## FUNCTIONS {{{1
 function error {
   echo "Error: ${1:-"Unknown"}"
   kill -INT $$
 }
 
-# cd to dir then run ls
 function cdl {
   if [[ ! -e "$1" ]]
   then
@@ -40,19 +27,15 @@ function cdl {
   ls
 }
 
-# mkdir then cd to that dir
 function mcd {
   mkdir "${1}"
   cd "${1}"
 }
 
-# not that much quicker to type but at least I don't have to remember how to
-# spell caffeinate
 function nosleep {
   caffeinate -dim
 }
 
-# use newest homebrew sqlite
 function sqlite {
   local sqlite_dir="/usr/local/Cellar/sqlite/"
   local exec_file="/bin/sqlite3"
@@ -80,8 +63,6 @@ function sqlite {
 }
 
 # TODO: I need to change this now that 3.0.0 is out
-# make `ijulia` args into `ipython3 args --profile=julia` and `ijulia` into
-# `ipython3 console --profile=julia`
 function ijulia {
   local mode="false"
 
@@ -135,3 +116,6 @@ function ltx-init {
     curl -sO https://raw.githubusercontent.com/Sean1708/LaTeX-Build-Files/master/.gitignore || error 'Could not download Makefile.'
   fi
 }
+# }}}1 END FUNCTIONS
+
+# vim: foldmethod=marker foldlevel=0
