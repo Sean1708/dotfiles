@@ -1,3 +1,5 @@
+" TODO: Defaults will be changing soon (https://github.com/neovim/neovim/issues/2676)
+" NOTE: set viminfo+=! is in plugin/vim-plug-update.vim
 " PLUGINS {{{1
 
 let g:plug_window = 'if 2*winheight(0) < winwidth(0) | vertical topleft new | else | topleft new | endif'
@@ -81,7 +83,6 @@ set nrformats+=alpha
 
 set whichwrap=h,l
 set nojoinspaces
-set formatoptions+=j
 
 set shiftround
 
@@ -107,7 +108,7 @@ set showcmd
 
 set textwidth=80
 set nowrap
-" I reckon setting these all to 4 gives the best result nowadays
+" TODO: reexamine these settings
 set tabstop=4  " number of columns <Tab> counts as visually
 set shiftwidth=4  " columns added/removed when changing indent level
 set softtabstop=4  " amount of whitespace corresponding to tab presses
