@@ -52,46 +52,31 @@ function nosleep {
   caffeinate -dim
 }
 
-# TODO: no cap letters and prgm is not needed
 # use newest homebrew sqlite
 function sqlite {
-  local SQLITE_DIR="/usr/local/Cellar/sqlite"
-  local EXEC_FILE="bin/sqlite3"
+  local sqlite_dir="/usr/local/Cellar/sqlite/"
+  local exec_file="/bin/sqlite3"
 
-  local lv_num="/0.0.0.0/"
-  for dir in ${SQLITE_DIR}/**/
+  local latest_version_string="0.0.0.0"
+  for dir in ${sqlite_dir}/**/
   do
-    local cv_num=${dir:(-9):9}
-
-    local l_maj=${lv_num:1:1}
-    local c_maj=${cv_num:1:1}
-
-    local l_min=${lv_num:3:1}
-    local c_min=${cv_num:3:1}
-
-    local l_pch=${lv_num:5:1}
-    local c_pch=${cv_num:5:1}
-
-    local l_min_pch=${lv_num:7:1}
-    local c_min_pch=${cv_num:7:1}
-
-    if [ "${c_maj}" -gt "${l_maj}" ]
-    then
-      lv_num=${cv_num}
-    elif [ "${c_min}" -gt "${l_min}" ]
-    then
-      lv_num=${cv_num}
-    elif [ "${c_pch}" -gt "${l_pch}" ]
-    then
-      lv_num=${cv_num}
-    elif [ "${c_min_pch}" -gt "${l_min_pch}" ]
-    then
-      lv_num=${cv_num}
-    fi
+    IFS='.' read -a latest_version <<< "${latest_version_string}"
+    local current_version_string=$(basename "${dir}")
+    IFS='.' read -a current_version <<< "${current_version_string}"
+    for i in 0 1 2 3
+    do
+      if [ "${current_version[i]}" -gt "${latest_version[i]}" ]
+      then
+        latest_version_string="${current_version_string}"
+        break
+      elif [ "${current_version[i]}" -lt "${latest_version[i]}" ]
+      then
+        break
+      fi
+    done
   done
 
-  local prgm="${SQLITE_DIR}${lv_num}${EXEC_FILE}"
-  $prgm $@
+  ${sqlite_dir}${latest_version_string}${exec_file} $@
 }
 
 # TODO: I need to change this now that 3.0.0 is out
