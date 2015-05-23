@@ -11,18 +11,6 @@ let g:neomake_julia_lint_maker = {
   \ 'errorformat': '%f:%l [%.%#] %t%[%^ ]%# %#%m',
 \ }
 
-" TODO: give FactCheck a setstyle(:machine) for file:line: code error (should also set :compact)
-" let g:neomake_julia_test_maker = {
-"   \ 'exe': 'julia',
-"   \ 'args': ['-e',
-"     \ "import FactCheck\n" .
-"     \ "FactCheck.setstyle(:machine)\n" .
-"     \ "include(\"test/runtests.jl\")\n" .
-"     \ "FactCheck.exitstatus()\n",
-"   \ ],
-"   \ 'errorformat': '%f:%l: %t %m',
-" \ }
-
 augroup NeomakeJulia
   autocmd!
   autocmd BufWritePost <buffer> Neomake lint

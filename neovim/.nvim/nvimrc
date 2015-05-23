@@ -10,7 +10,7 @@ Plug 'benekastah/neomake'
 Plug 'tpope/vim-fugitive'
 Plug 'JuliaLang/julia-vim'
 Plug 'rust-lang/rust.vim'
-Plug 'hdima/python-syntax'
+Plug 'klen/python-mode'
 Plug 'vim-scripts/matchit.zip'
 Plug 'haya14busa/incsearch.vim'
 Plug 'vim-scripts/repmo.vim'
@@ -25,6 +25,8 @@ call plug#end()
 
 filetype plugin indent on
 syntax enable
+
+set foldlevelstart=99
 
 set spelllang=en_gb
 
@@ -127,13 +129,19 @@ let g:rust_fold = 1
 let g:rust_bang_comment_leader = 1
 
 " }}}2 END RUST
-" PYTHON-SYNTAX {{{2
+" PYTHON-MODE {{{2
 
-let g:python_highlight_indent_errors = 0
-let g:python_highlight_space_errors = 0
-let g:python_highlight_all = 1
+let g:pymode_python = 'python3'
+let g:pymode_lint_checkers = ['pyflakes', 'pylint', 'pep8', 'pep257', 'mccabe']
+let g:pymode_syntax_print_as_function = 1
 
-" }}}2 END PYTHON-SYNTAX
+let g:pymode_options_colorcolumn = 0
+let g:pymode_doc = 0
+let g:pymode_virtualenv = 0
+let g:pymode_run = 0
+let g:pymode_rope = 0
+
+" }}}2 END PYTHON-MODE
 " INCSEARCH.VIM {{{2
 
 map / <Plug>(incsearch-forward)
