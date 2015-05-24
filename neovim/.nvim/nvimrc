@@ -137,7 +137,6 @@ let g:pymode_syntax_print_as_function = 1
 
 let g:pymode_options_colorcolumn = 0
 let g:pymode_doc = 0
-let g:pymode_virtualenv = 0
 let g:pymode_run = 0
 let g:pymode_rope = 0
 
