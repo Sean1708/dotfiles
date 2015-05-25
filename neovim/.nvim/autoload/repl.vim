@@ -10,10 +10,12 @@ function repl#REPL(index)
   let l:cmd = substitute(l:cmd, '%:p', expand('%:p'), 'g')
   let l:cmd = substitute(l:cmd, '%', expand('%'), 'g')
 
-  if 2*winheight(0) < winwidth(0)
-    vertical botright new
-  else
+  update
+
+  if winwidth(0)/2 < 80
     botright new
+  else
+    vertical botright new
   endif
 
   if l:cmd == ''

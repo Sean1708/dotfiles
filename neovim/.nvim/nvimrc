@@ -2,7 +2,7 @@
 " NOTE: set viminfo+=! is in plugin/vim-plug-update.vim
 " PLUGINS {{{1
 
-let g:plug_window = 'if 2*winheight(0) < winwidth(0) | vertical topleft new | else | topleft new | endif'
+let g:plug_window = 'if winwidth(0)/2 < 80 | topleft new | else | vertical topleft new | endif'
 
 call plug#begin('~/.nvim/plugged')
 
@@ -105,7 +105,7 @@ set number
 set relativenumber
 
 set ruler
-set rulerformat=%50(%{fugitive#statusline()}\ %t%=L\ %-4l\ \ C\ %-3c\ \ %P%)
+set rulerformat=%50(%{fugitive#statusline()}\ %t%=\ %P:\ %4l:\ %3c%)
 set showcmd
 
 set textwidth=80
