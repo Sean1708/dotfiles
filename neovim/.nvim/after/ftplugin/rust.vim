@@ -33,7 +33,6 @@ let g:neomake_cargo_test_maker = {
     \ '%f:%l: %tarning: %m,'.
     \ '%f:%l: %m',
 \ }
-\ }
 
 
 augroup NeomakeRust
