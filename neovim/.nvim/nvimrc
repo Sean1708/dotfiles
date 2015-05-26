@@ -10,6 +10,8 @@ Plug 'benekastah/neomake'
 Plug 'tpope/vim-fugitive'
 Plug 'JuliaLang/julia-vim'
 Plug 'rust-lang/rust.vim'
+" Currently this doesn't work.
+" Plug 'critiqjo/lldb.nvim', {'for': 'rust'}
 Plug 'klen/python-mode'
 Plug 'vim-scripts/matchit.zip'
 Plug 'haya14busa/incsearch.vim'
