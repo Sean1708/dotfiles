@@ -10,7 +10,9 @@ Plug 'benekastah/neomake'
 Plug 'tpope/vim-fugitive'
 Plug 'JuliaLang/julia-vim'
 Plug 'rust-lang/rust.vim'
-" Currently this doesn't work.
+" I want to use this but it's just more trouble than it's worth at the moment.
+" It requires system python and a patch to update sys.path before import lldb.
+" Maybe when the issues with homebrew's llvm have been sorted I can use it.
 " Plug 'critiqjo/lldb.nvim', {'for': 'rust'}
 Plug 'klen/python-mode'
 Plug 'vim-scripts/matchit.zip'
