@@ -9,6 +9,7 @@ let g:plug_window = 'if winwidth(0)/2 < 80 | topleft new | else | vertical tople
 call plug#begin('~/.nvim/plugged')
 
 Plug 'benekastah/neomake'
+Plug 'ap/vim-buftabline'
 Plug 'tpope/vim-fugitive'
 Plug 'JuliaLang/julia-vim'
 Plug 'rust-lang/rust.vim'
@@ -130,6 +131,18 @@ set expandtab
 
 " }}}1 END DISPLAY
 " PLUGIN-SETTINGS {{{1
+" BUFTABLINE {{{2
+
+let g:buftabline_show = 1
+let g:buftabline_indicators = 1
+let g:buftabline_seperators = 1
+
+highlight link BufTabLineCurrent StatusLine
+highlight link BufTablineActive StatusLineNC
+highlight link BufTablineHidden Normal
+highlight link BufTablineFill Normal
+
+" }}}2 END BUFTABLINE
 " FUGITIVE {{{2
 
 nnoremap <leader>g :Gstatus<CR>
