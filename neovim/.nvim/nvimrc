@@ -1,3 +1,5 @@
+" TODO: Anything (including Fugitive) that comes from a plugin should have an
+"     if_has guard around it.
 " TODO: Defaults will be changing soon (https://github.com/neovim/neovim/issues/2676)
 " NOTE: set viminfo+=! is in plugin/vim-plug-update.vim
 " PLUGINS {{{1
@@ -46,11 +48,12 @@ set history=500
 
 augroup NeoVimRC
   autocmd!
-  autocmd FocusLost * :silent wall
+  autocmd FocusLost * silent wall
   autocmd BufWritePre *
     \ if &ft !=? 'markdown' && expand('%:t') !~ '\v\c^n\?vimrc$' |
     \   silent %s/\s\+$//e |
     \ endif
+  autocmd WinEnter term://* startinsert
 augroup END
 
 " }}}1 END GENERAL
@@ -61,16 +64,21 @@ let g:maplocalleader = g:mapleader
 
 inoremap <leader>jk <ESC>
 vnoremap <leader>jk <ESC>
+tnoremap <ESC><ESC> <C-\><C-N>
 
 nnoremap <S-Left> <C-W>h
 nnoremap <S-Down> <C-W>j
 nnoremap <S-Up> <C-W>k
 nnoremap <S-Right> <C-W>l
-nnoremap <Right> :bnext<CR>
-nnoremap <Left> :bprev<CR>
+tnoremap <S-Left> <C-\><C-N><C-W>h
+tnoremap <S-Down> <C-\><C-N><C-W>j
+tnoremap <S-Up> <C-\><C-N><C-W>k
+tnoremap <S-Right> <C-\><C-N><C-W>l
 
-nnoremap <Up> <C-U>
+nnoremap <Left> :bprev<CR>
+nnoremap <Right> :bnext<CR>
 nnoremap <Down> <C-D>
+nnoremap <Up> <C-U>
 
 " ' is more convenient than , and has redundancy with `
 nnoremap ' ,
