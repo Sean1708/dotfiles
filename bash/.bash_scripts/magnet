@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+cd ~/Downloads/torrents/.watch || error "Could not find .watch directory."
+[[ "$1" =~ xt=urn:btih:([^&/]+) ]] || error "Bad magnet link."
+
+hashh=${BASH_REMATCH[1]}
+if [[ "$1" =~ dn=([^&/]+) ]]
+then
+  filename=${BASH_REMATCH[1]}
+else
+  filename=$hashh
+fi
+
+echo "d10:magnet-uri${#1}:${1}e" > "meta-$filename.torrent"
+echo "Sucessful! :D"

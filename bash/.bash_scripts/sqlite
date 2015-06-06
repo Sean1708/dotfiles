@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+if [[ $(uname) == Linux ]]
+then
+  sqlite3 $@
+else
+  local sqlite_dir="/usr/local/Cellar/sqlite/"
+  local exec_file="/bin/sqlite3"
+
+  local latest_version_string="0.0.0.0"
+  for dir in ${sqlite_dir}/**/
+  do
+    IFS='.' read -a latest_version <<< "${latest_version_string}"
+    local current_version_string=$(basename "${dir}")
+    IFS='.' read -a current_version <<< "${current_version_string}"
+    for i in 0 1 2 3
+    do
+      if [ "${current_version[i]}" -gt "${latest_version[i]}" ]
+      then
+        latest_version_string="${current_version_string}"
+        break
+      elif [ "${current_version[i]}" -lt "${latest_version[i]}" ]
+      then
+        break
+      fi
+    done
+  done
+
+  ${sqlite_dir}${latest_version_string}${exec_file} $@
+fi
