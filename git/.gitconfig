@@ -2,8 +2,7 @@
 	name = Sean Marshallsay
 	email = srm.1708@gmail.com
 [core]
-	excludesfile = /Users/sean/.gitignore
-	editor = /usr/local/bin/nvim
+	excludesfile = ~/.gitignore
 [color]
 	ui = true
 [github]
