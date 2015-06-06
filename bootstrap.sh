@@ -2,11 +2,11 @@
 
 for pkg in [^.]*
 do
-    if [ "${pkg}" != 'bootstrap.sh' -a "${pkg}" != 'README.md' ]
+    if [ "$pkg" != 'bootstrap.sh' -a "$pkg" != 'README.md' ]
     then
         echo -n "Stowing ${pkg}... "
 
-        case "${pkg}" in
+        case "$pkg" in
             *vim | ipython)
                 opts='--no-folding'
                 ;;
@@ -14,7 +14,7 @@ do
                 unset opts
                 ;;
         esac
-        stow --target="${HOME}" ${opts} "${pkg}"
+        stow --target="$HOME" $opts "$pkg"
 
         if [ $? -eq 0 ]
         then
