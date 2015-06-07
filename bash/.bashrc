@@ -19,6 +19,10 @@ exists() {
   fi
 }
 
+# make these available to non-interactive shells
+export -f error
+export -f exists
+
 
 # system specific config goes in .bash/profile
 if [[ -f "$HOME/.bash/profile" ]]
