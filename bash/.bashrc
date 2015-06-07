@@ -43,15 +43,8 @@ else
 fi
 
 
-if exists bundle
-then
-  alias jekyll="bundle exec jekyll"
-fi
-
-if [[ -d "$HOME/Downloads/src/julia-dev/julia" ]]
-then
-  alias julia-dev="$HOME/Downloads/src/julia-dev/julia"
-fi
+alias jekyll="bundle exec jekyll"
+alias julia-dev="$HOME/Downloads/src/julia-dev/julia"
 
 if exists hub
 then
