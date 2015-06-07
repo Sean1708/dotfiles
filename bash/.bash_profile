@@ -11,7 +11,7 @@ error() {
 }
 
 exists() {
-  if [[ $# -e 1 ]]
+  if [[ "$#" -eq 1 ]]
   then
     hash "$1" 2>/dev/null
   else
@@ -69,7 +69,8 @@ cdl() {
   fi
 
   cd "$1"
-  ls
+  # `cd` has no useful command line arguments
+  ls $@
 }
 
 mcd() {
