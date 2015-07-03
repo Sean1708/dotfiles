@@ -66,6 +66,7 @@ cdl() {
   fi
 
   cd "$1"
+  shift
   # `cd` has no useful command line arguments
   ls $@
 }
