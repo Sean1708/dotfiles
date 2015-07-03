@@ -44,8 +44,9 @@ Session.vim
 pyvenv.cfg
 pip-selfcheck.json
 
-# I sometimes like to make notes in TODO files
-TODO
+# Todo.txt stuffs
+todo.txt
+done.txt
 
 # I use a fair few ipynbs, TODO: this will need to change when Jupyter comes out
 .ipynb_checkpoints/
