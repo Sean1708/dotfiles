@@ -1,7 +1,9 @@
 # This is a global .gitignore file for all projects.
-# Mostly taken from https://github.com/github/gitignore/blob/master/Global/OSX.gitignore
+# Mostly taken from https://github.com/github/gitignore/blob/master/Global/
 
-# file system stuffs
+## OSX
+## https://github.com/github/gitignore/blob/master/Global/
+# File system stuffs
 .DS_Store
 .AppleDouble
 .LSOverride
@@ -24,8 +26,16 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-# Vim files which might pop up, they shouldn't but they might
-# https://github.com/github/gitignore/blob/master/Global/Vim.gitignore
+## Linux
+## https://github.com/github/gitignore/blob/master/Global/Linux.gitignore
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+## Vim files which might pop up, they shouldn't but they might
+## https://github.com/github/gitignore/blob/master/Global/Vim.gitignore
 [._]*.s[a-w][a-z]
 [._]s[a-w][a-z]
 *.un~
@@ -33,20 +43,18 @@ Session.vim
 .netrwhist
 *~
 
-# Virtualenv
-# https://github.com/github/gitignore/blob/master/Global/VirtualEnv.gitignore
-# http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
-.Python
-[Bb]in
-[Ii]nclude
-[Ll]ib
-[Ss]cripts
+## Virtualenv
+## https://github.com/github/gitignore/blob/master/Global/VirtualEnv.gitignore
+## http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
+/.Python
+/[Bb]in
+/[Ii]nclude
+/[Ll]ib
+/[Ss]cripts
 pyvenv.cfg
 pip-selfcheck.json
 
-# Todo.txt stuffs
+## MISC
 todo.txt
 done.txt
-
-# I use a fair few ipynbs, TODO: this will need to change when Jupyter comes out
 .ipynb_checkpoints/
