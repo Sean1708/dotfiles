@@ -95,7 +95,7 @@ nnoremap Y y$
 " needs map so that matchit works
 map <Tab> %
 
-nnoremap <silent> K :call kwp#KeywordPrg()<CR>
+nnoremap <silent> K :<C-U>call kwp#KeywordPrg()<CR>
 
 " }}}1 END MAPPINGS
 " EDITING {{{1
