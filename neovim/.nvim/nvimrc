@@ -20,7 +20,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'JuliaLang/julia-vim'
 Plug 'rust-lang/rust.vim'
 " I want to use this but it's just more trouble than it's worth at the moment.
-" It requires system python and a patch to update sys.path before import lldb.
+" It requires system python.
 " Maybe when the issues with homebrew's llvm have been sorted I can use it.
 " Plug 'critiqjo/lldb.nvim', {'for': 'rust'}
 Plug 'klen/python-mode'
@@ -69,9 +69,11 @@ augroup END
 let g:mapleader = '\'
 let g:maplocalleader = g:mapleader
 
-inoremap <leader>jk <ESC>
-vnoremap <leader>jk <ESC>
-tnoremap <ESC><ESC> <C-\><C-N>
+" maps <C-Space>
+" TODO: how fragile is this?
+inoremap <NUL> <ESC>
+vnoremap <NUL> <ESC>
+tnoremap <NUL> <C-\><C-N>
 
 nnoremap <S-Left> <C-W>h
 nnoremap <S-Down> <C-W>j
@@ -193,8 +195,8 @@ let g:incsearch#magic = '\v'
 " }}}2 END INCSEARCH
 " COLORSCHEMES {{{2
 
-colorscheme solarized
 set background=dark
+colorscheme solarized
 
 " }}}2 END COLORSCHEMES
 " }}}1 END PLUGIN-SETTINGS
