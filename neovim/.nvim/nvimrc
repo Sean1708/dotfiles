@@ -1,11 +1,11 @@
 " TODO: Anything (including Fugitive) that comes from a plugin should have an
 "     if_has guard around it.
 " TODO: Defaults will be changing soon (https://github.com/neovim/neovim/issues/2676)
-" NOTE: set viminfo+=! is in plugin/vim-plug-update.vim
 " PLUGINS {{{1
 
 let g:plug_window = 'if winwidth(0)/2 < 80 | topleft new | else | vertical topleft new | endif'
-command! VimPlugUpgrade silent PlugUpgrade | silent PlugUpdate | quit
+" launchd uses this command so don't fucking delete it!
+command! VimPlugUpgrade silent PlugUpgrade | silent PlugUpdate | silent UpdateRemotePlugins | quit
 if !filereadable($HOME . '/.nvim/autoload/plug.vim')
   silent !curl -fLo ~/.nvim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
