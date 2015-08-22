@@ -11,12 +11,9 @@ let g:neomake_julia_lint_maker = {
   \ 'errorformat': '%f:%l [%.%#] %t%[%^ ]%# %#%m',
 \ }
 
-augroup NeomakeJulia
-  autocmd!
-  autocmd BufWritePost <buffer> Neomake lint
-augroup END
+let g:neomake_julia_enabled_makers = ['lint']
+let b:test_cmd = 'terminal julia --color test/runtests.jl'
 
-nnoremap <buffer> <localleader>t :update <bar> terminal julia --color test/runtests.jl<CR>
 nnoremap <buffer> K :call kwp#KeywordPrg("julia -e 'help(ARGS[1])'", 'markdown')<CR>
 
 let b:repl = ['julia', 'julia --load %']

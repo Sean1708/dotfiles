@@ -1,11 +1,8 @@
-let g:neomake_tex_make_maker = {'exe': 'make', 'errorformat': '%f:%l: %m'}
+let g:neomake_tex_maker = {'exe': 'make', 'errorformat': '%f:%l: %m'}
 
-augroup NeomakeLaTeX
-  autocmd!
-  autocmd BufWritePost <buffer> Neomake chktex lacheck
-augroup END
+let g:neomake_enabled_makers = ['tex']
+let g:neomake_tex_enabled_makers = ['chktex', 'lacheck']
 
-nnoremap <buffer> <localleader>m :update <bar> Neomake! tex_make<CR>
 " TODO: how about jobstart for this?
 " TODO: how about <silent> will that get rid of "Press any...", if not maybe use :silent
 " two <CR>s so you don't get the "Press any key..."

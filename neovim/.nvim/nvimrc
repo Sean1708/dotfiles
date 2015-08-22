@@ -57,9 +57,9 @@ augroup NeoVimRC
   autocmd!
   autocmd FocusLost * silent wall
   autocmd BufWritePre *
-    \ if &ft !=? 'markdown' && expand('%:t') !~ '\v\c^n\?vimrc$' |
-    \   silent %s/\s\+$//e |
-    \ endif
+        \ if &ft !=? 'markdown' && expand('%:t') !~ '\v\c^n\?vimrc$' |
+        \   silent %s/\s\+$//e |
+        \ endif
   autocmd WinEnter term://* startinsert
 augroup END
 
@@ -98,6 +98,7 @@ nnoremap Y y$
 map <Tab> %
 
 nnoremap <silent> K :<C-U>call kwp#KeywordPrg()<CR>
+nnoremap <silent> <leader>t :update <BAR> execute b:test_cmd<CR>
 
 " }}}1 END MAPPINGS
 " EDITING {{{1
@@ -141,6 +142,18 @@ set expandtab
 " PLUGIN-SETTINGS {{{1
 " NEOMAKE {{{2
 
+function! s:Update()
+  if len(expand('%')) != 0
+    update
+  endif
+endfunction
+
+augroup Neomake
+  autocmd!
+  autocmd InsertLeave,BufWritePost * call <SID>Update() | Neomake
+augroup END
+
+nnoremap <localleader>m :update <bar> Neomake!<CR>
 
 " }}}2 END NEOMAKE
 " BUFTABLINE {{{2
