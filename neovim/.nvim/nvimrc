@@ -73,7 +73,7 @@ let g:maplocalleader = g:mapleader
 " TODO: how fragile is this?
 inoremap <NUL> <ESC>
 vnoremap <NUL> <ESC>
-tnoremap <NUL> <C-\><C-N>
+tnoremap <ESC><ESC> <C-\><C-N>
 
 nnoremap <S-Left> <C-W>h
 nnoremap <S-Down> <C-W>j
@@ -139,6 +139,10 @@ set expandtab
 
 " }}}1 END DISPLAY
 " PLUGIN-SETTINGS {{{1
+" NEOMAKE {{{2
+
+
+" }}}2 END NEOMAKE
 " BUFTABLINE {{{2
 
 let g:buftabline_show = 1
