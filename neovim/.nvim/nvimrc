@@ -94,9 +94,6 @@ nnoremap ' ,
 
 nnoremap Y y$
 
-" needs map so that matchit works
-map <Tab> %
-
 nnoremap <silent> K :<C-U>call kwp#KeywordPrg()<CR>
 nnoremap <silent> <leader>t :update <BAR> execute b:test_cmd<CR>
 
