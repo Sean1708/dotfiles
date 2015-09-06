@@ -5,15 +5,16 @@
 
 let g:plug_window = 'if winwidth(0)/2 < 80 | topleft new | else | vertical topleft new | endif'
 " launchd uses this command so don't fucking delete it!
-command! VimPlugUpgrade silent PlugUpgrade | silent PlugUpdate | silent UpdateRemotePlugins | quit
+command! UpgradePlugins silent PlugUpgrade | silent PlugUpdate | silent UpdateRemotePlugins | quit
 if !filereadable($HOME . '/.nvim/autoload/plug.vim')
   silent !curl -fLo ~/.nvim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * VimPlugUpgrade
+  autocmd VimEnter * UpgradePlugins
 endif
 
 call plug#begin('~/.nvim/plugged')
 
+Plug 'ervandew/supertab'
 Plug 'benekastah/neomake'
 Plug 'ap/vim-buftabline'
 Plug 'tpope/vim-fugitive'
@@ -100,6 +101,9 @@ nnoremap <silent> <leader>t :update <BAR> execute b:test_cmd<CR>
 " }}}1 END MAPPINGS
 " EDITING {{{1
 
+set complete+=kspell
+set omnifunc=syntaxcomplete#Complete
+
 set nrformats+=alpha
 
 set whichwrap=h,l
@@ -137,6 +141,16 @@ set expandtab
 
 " }}}1 END DISPLAY
 " PLUGIN-SETTINGS {{{1
+" SUPERTAB {{{2
+
+let g:SuperTabDefaultCompletionType = 'context'
+let g:SuperTabContextDefaultCompletionType = '<C-N>'
+let g:SuperTabLongestEnhaced = 1
+let g:SuperTabCrMapping = 1
+let g:SuperTabCompleteCase = 'match'
+autocmd FileType * call SuperTabChain(&omnifunc, '<C-N>')
+
+" }}}2 END SUPERTAB
 " NEOMAKE {{{2
 
 function! s:Update()
