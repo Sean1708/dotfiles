@@ -17,7 +17,6 @@ call plug#begin('~/.nvim/plugged')
 Plug 'ervandew/supertab'
 Plug 'benekastah/neomake'
 Plug 'ap/vim-buftabline'
-Plug 'tpope/vim-fugitive'
 Plug 'JuliaLang/julia-vim'
 Plug 'rust-lang/rust.vim'
 " I want to use this but it's just more trouble than it's worth at the moment.
@@ -25,7 +24,6 @@ Plug 'rust-lang/rust.vim'
 " Maybe when the issues with homebrew's llvm have been sorted I can use it.
 " Plug 'critiqjo/lldb.nvim', {'for': 'rust'}
 Plug 'klen/python-mode'
-Plug 'vim-scripts/matchit.zip'
 Plug 'haya14busa/incsearch.vim'
 Plug 'vim-scripts/repmo.vim'
 Plug 'cespare/vim-toml'
@@ -128,7 +126,7 @@ set number
 set relativenumber
 
 set ruler
-set rulerformat=%50(%{fugitive#statusline()}\ %t%=\ %P:\ %4l:\ %3c%)
+set rulerformat=%40(%t%=\ %P:\ %4l:\ %3c%)
 set showcmd
 
 set textwidth=80
@@ -179,11 +177,6 @@ highlight link BufTablineHidden Normal
 highlight link BufTablineFill Normal
 
 " }}}2 END BUFTABLINE
-" FUGITIVE {{{2
-
-nnoremap <leader>g :Gstatus<CR>
-
-" }}}2 END FUGITIVE
 " RUST.VIM {{{2
 
 let g:rust_fold = 1
