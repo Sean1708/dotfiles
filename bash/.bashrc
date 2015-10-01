@@ -55,6 +55,57 @@ then
   eval "$(hub alias -s)"
 fi
 
+# heavily influenced by https://github.com/jimeh/git-aware-prompt
+txtblk="$(tput setaf 0 2>/dev/null || echo '\e[0;30m')"  # Black
+txtred="$(tput setaf 1 2>/dev/null || echo '\e[0;31m')"  # Red
+txtgrn="$(tput setaf 2 2>/dev/null || echo '\e[0;32m')"  # Green
+txtylw="$(tput setaf 3 2>/dev/null || echo '\e[0;33m')"  # Yellow
+txtblu="$(tput setaf 4 2>/dev/null || echo '\e[0;34m')"  # Blue
+txtpur="$(tput setaf 5 2>/dev/null || echo '\e[0;35m')"  # Purple
+txtcyn="$(tput setaf 6 2>/dev/null || echo '\e[0;36m')"  # Cyan
+txtwht="$(tput setaf 7 2>/dev/null || echo '\e[0;37m')"  # White
+txtrst="$(tput sgr 0 2>/dev/null || echo '\e[0m')"  # Text Reset
+
+colour_last_status() {
+  local last_status="$?"
+  if [[ "$last_status" -eq "0" ]]
+  then
+    echo "$txtgrn$last_status$txtrst"
+  else
+    echo "$txtred$last_status$txtrst"
+  fi
+}
+
+git_branch() {
+  if exists git
+  then
+    local branch
+    if branch="$(git rev-parse --abbrev-ref HEAD 2> /dev/null)"
+    then
+      if [[ "$branch" == 'HEAD' ]]
+      then
+        branch='detached*'
+      fi
+      echo " ($branch)"
+    fi
+  fi
+}
+
+git_dirty() {
+  if exists git
+  then
+    local status="$(git status --porcelain 2> /dev/null)"
+    if [[ "$status" != '' ]]
+    then
+      echo '*'
+    else
+      echo ''
+    fi
+  fi
+}
+
+PS1='\[$txtpur\]\u:\W $(colour_last_status)\[$txtcyn\]$(git_branch)\[$txtred\]$(git_dirty)\[$txtblu\]\$\[$txtrst\] '
+
 
 cdl() {
   if [[ ! -e "$1" ]]
@@ -65,9 +116,9 @@ cdl() {
     error "File $1 is not a directory."
   fi
 
+  # `cd` has no useful command line arguments
   cd "$1"
   shift
-  # `cd` has no useful command line arguments
   ls $@
 }
 
