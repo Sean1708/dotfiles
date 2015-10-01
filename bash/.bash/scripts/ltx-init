@@ -2,9 +2,17 @@
 
 if [ ! -f Makefile ]
 then
+  echo -n 'Downloading Makefile... '
   curl -sO https://raw.githubusercontent.com/Sean1708/LaTeX-Build-Files/master/Makefile || error 'Could not download Makefile.'
+  echo 'ok!'
 fi
 if [ ! -f .gitignore ]
 then
+  echo -n 'Downloading .gitignore... '
   curl -sO https://raw.githubusercontent.com/Sean1708/LaTeX-Build-Files/master/.gitignore || error 'Could not download Makefile.'
+  echo 'ok!'
 fi
+
+mkdir media
+mkdir data
+mkdir graphs
