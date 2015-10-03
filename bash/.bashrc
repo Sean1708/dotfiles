@@ -1,3 +1,4 @@
+# {{{ Script Functions
 error() {
   local last_status="${2:-$?}"
   echo "Error: ${1:-Unknown}" 1>&2
@@ -22,8 +23,8 @@ exists() {
 # make these available to non-interactive shells
 export -f error
 export -f exists
-
-
+# }}} Script Functions
+# {{{ System-Specific Config
 # system specific config goes in .bash/profile
 if [[ -f "$HOME/.bash/profile" ]]
 then
@@ -35,7 +36,6 @@ then
   PATH="$HOME/.bash/scripts:$PATH"
 fi
 
-
 if exists nvim
 then
   export EDITOR=nvim
@@ -45,8 +45,8 @@ then
 else
   export EDITOR=vi
 fi
-
-
+# }}} System-Specifc Config
+# {{{ Aliases
 alias jekyll="bundle exec jekyll"
 alias julia-dev="$HOME/Downloads/src/julia-dev/julia"
 
@@ -54,7 +54,8 @@ if exists hub
 then
   eval "$(hub alias -s)"
 fi
-
+# }}} Aliases
+# {{{ Prompt Customisation
 # heavily influenced by https://github.com/jimeh/git-aware-prompt
 txtblk="$(tput setaf 0 2>/dev/null || echo '\e[0;30m')"  # Black
 txtred="$(tput setaf 1 2>/dev/null || echo '\e[0;31m')"  # Red
@@ -105,8 +106,9 @@ git_dirty() {
 }
 
 PS1='\[$txtpur\]\u:\W $(colour_last_status)\[$txtcyn\]$(git_branch)\[$txtred\]$(git_dirty)\[$txtblu\]\$\[$txtrst\] '
-
-
+# }}} Prompt Customisation
+# {{{ Interactive Functions
+# these functions can'tbe written as scripts since they must act on the current shell not a sub-shell
 cdl() {
   if [[ ! -e "$1" ]]
   then
@@ -126,3 +128,6 @@ mcd() {
   mkdir "$1"
   cd "$1"
 }
+# }}} Interactive Functions
+
+# vim: foldmethod=marker foldlevel=0
