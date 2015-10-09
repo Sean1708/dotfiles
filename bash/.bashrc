@@ -67,16 +67,6 @@ txtcyn="$(tput setaf 6 2>/dev/null || echo '\e[0;36m')"  # Cyan
 txtwht="$(tput setaf 7 2>/dev/null || echo '\e[0;37m')"  # White
 txtrst="$(tput sgr 0 2>/dev/null || echo '\e[0m')"  # Text Reset
 
-colour_last_status() {
-  local last_status="$?"
-  if [[ "$last_status" -eq "0" ]]
-  then
-    echo "$txtgrn$last_status$txtrst"
-  else
-    echo "$txtred$last_status$txtrst"
-  fi
-}
-
 git_branch() {
   if exists git
   then
@@ -99,13 +89,12 @@ git_dirty() {
     if [[ "$status" != '' ]]
     then
       echo '*'
-    else
-      echo ''
     fi
   fi
 }
 
-PS1='\[$txtpur\]\u:\W $(colour_last_status)\[$txtcyn\]$(git_branch)\[$txtred\]$(git_dirty)\[$txtblu\]\$\[$txtrst\] '
+PROMPT_COMMAND='last_status="$?"'
+PS1='\[$txtpur\]\u:\W \[$([[ $last_status -eq "0" ]] && echo $txtgrn || echo $txtred)\]$last_status\[$txtcyn\]$(git_branch)\[$txtred\]$(git_dirty)\[$txtblu\]\$\[$txtrst\] '
 # }}} Prompt Customisation
 # {{{ Interactive Functions
 # these functions can'tbe written as scripts since they must act on the current shell not a sub-shell
