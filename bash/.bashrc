@@ -97,7 +97,7 @@ PROMPT_COMMAND='last_status="$?"'
 PS1='\[$txtpur\]\u:\W \[$([[ $last_status -eq "0" ]] && echo $txtgrn || echo $txtred)\]$last_status\[$txtcyn\]$(git_branch)\[$txtred\]$(git_dirty)\[$txtblu\]\$\[$txtrst\] '
 # }}} Prompt Customisation
 # {{{ Interactive Functions
-# these functions can'tbe written as scripts since they must act on the current shell not a sub-shell
+# these functions can't be written as scripts since they must act on the current shell not a sub-shell
 cdl() {
   if [[ ! -e "$1" ]]
   then
