@@ -93,7 +93,7 @@ git_dirty() {
   fi
 }
 
-PROMPT_COMMAND='last_status="$?"'
+PROMPT_COMMAND="last_status=\"\$?\"; $PROMPT_COMMAND"
 PS1='\[$txtpur\]\u:\W \[$([[ $last_status -eq "0" ]] && echo $txtgrn || echo $txtred)\]$last_status\[$txtcyn\]$(git_branch)\[$txtred\]$(git_dirty)\[$txtblu\]\$\[$txtrst\] '
 # }}} Prompt Customisation
 # {{{ Interactive Functions
