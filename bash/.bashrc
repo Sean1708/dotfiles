@@ -104,7 +104,7 @@ git_dirty() {
   fi
 }
 
-PS1='\[$txtpur\]\u:\W $(colour_last_status)\[$txtcyn\]$(git_branch)\[$txtred\]$(git_dirty)\[$txtblu\]\$\[$txtrst\] '
+PS1='\[$txtpur\]\u@\h:\W $(colour_last_status)\[$txtcyn\]$(git_branch)\[$txtred\]$(git_dirty)\[$txtblu\]\$\[$txtrst\] '
 
 
 cdl() {
