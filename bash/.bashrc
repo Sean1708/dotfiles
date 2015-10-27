@@ -1,3 +1,6 @@
+# TODO: put non-bash-specific things in .profile
+# TODO: add a $PRoJECTS variable (can be used in cargo config for tools like clippy)
+# {{{ Script Functions
 error() {
   local last_status="${2:-$?}"
   echo "Error: ${1:-Unknown}" 1>&2
@@ -22,8 +25,8 @@ exists() {
 # make these available to non-interactive shells
 export -f error
 export -f exists
-
-
+# }}} Script Functions
+# {{{ System-Specific Config
 # system specific config goes in .bash/profile
 if [[ -f "$HOME/.bash/profile" ]]
 then
@@ -35,7 +38,6 @@ then
   PATH="$HOME/.bash/scripts:$PATH"
 fi
 
-
 if exists nvim
 then
   export EDITOR=nvim
@@ -45,8 +47,8 @@ then
 else
   export EDITOR=vi
 fi
-
-
+# }}} System-Specifc Config
+# {{{ Aliases
 alias jekyll="bundle exec jekyll"
 alias julia-dev="$HOME/Downloads/src/julia-dev/julia"
 
@@ -54,7 +56,8 @@ if exists hub
 then
   eval "$(hub alias -s)"
 fi
-
+# }}} Aliases
+# {{{ Prompt Customisation
 # heavily influenced by https://github.com/jimeh/git-aware-prompt
 txtblk="$(tput setaf 0 2>/dev/null || echo '\e[0;30m')"  # Black
 txtred="$(tput setaf 1 2>/dev/null || echo '\e[0;31m')"  # Red
@@ -65,16 +68,6 @@ txtpur="$(tput setaf 5 2>/dev/null || echo '\e[0;35m')"  # Purple
 txtcyn="$(tput setaf 6 2>/dev/null || echo '\e[0;36m')"  # Cyan
 txtwht="$(tput setaf 7 2>/dev/null || echo '\e[0;37m')"  # White
 txtrst="$(tput sgr 0 2>/dev/null || echo '\e[0m')"  # Text Reset
-
-colour_last_status() {
-  local last_status="$?"
-  if [[ "$last_status" -eq "0" ]]
-  then
-    echo "$txtgrn$last_status$txtrst"
-  else
-    echo "$txtred$last_status$txtrst"
-  fi
-}
 
 git_branch() {
   if exists git
@@ -98,15 +91,15 @@ git_dirty() {
     if [[ "$status" != '' ]]
     then
       echo '*'
-    else
-      echo ''
     fi
   fi
 }
 
-PS1='\[$txtpur\]\u@\h:\W $(colour_last_status)\[$txtcyn\]$(git_branch)\[$txtred\]$(git_dirty)\[$txtblu\]\$\[$txtrst\] '
-
-
+PROMPT_COMMAND="last_status=\"\$?\"; $PROMPT_COMMAND"
+PS1='\[$txtpur\]\u@\h:\W \[$([[ $last_status -eq "0" ]] && echo $txtgrn || echo $txtred)\]$last_status\[$txtcyn\]$(git_branch)\[$txtred\]$(git_dirty)\[$txtblu\]\$\[$txtrst\] '
+# }}} Prompt Customisation
+# {{{ Interactive Functions
+# these functions can't be written as scripts since they must act on the current shell not a sub-shell
 cdl() {
   if [[ ! -e "$1" ]]
   then
@@ -126,3 +119,6 @@ mcd() {
   mkdir "$1"
   cd "$1"
 }
+# }}} Interactive Functions
+
+# vim: foldmethod=marker foldlevel=0
