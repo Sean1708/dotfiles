@@ -7,3 +7,5 @@
 	ui = true
 [github]
 	user = Sean1708
+[push]
+	default = current
