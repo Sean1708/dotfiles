@@ -1,3 +1,6 @@
+# TODO: put non-bash-specific things in .profile
+# TODO: add a $PRoJECTS variable (can be used in cargo config for tools like
+# clippy)
 # {{{ Script Functions
 error() {
   local last_status="${2:-$?}"
