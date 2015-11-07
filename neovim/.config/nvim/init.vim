@@ -1,3 +1,15 @@
+" TODO: Get rid of:
+"     - Fugitive
+"         - All I want is the branch, maybe that comes with airline
+"     - supertab
+"         - will just using deoplete solve this
+"     - buftabline
+"         - airline
+"     - python-mode
+"         - neomake gets most of the way there
+"         - might need better syntax highlighting
+"         - virtualenv support
+"             - automatically pip install neovim
 " TODO: Anything (including Fugitive) that comes from a plugin should have an
 "     if_has guard around it.
 " TODO: Defaults will be changing soon (https://github.com/neovim/neovim/issues/2676)
