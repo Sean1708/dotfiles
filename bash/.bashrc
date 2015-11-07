@@ -97,7 +97,10 @@ git_dirty() {
 }
 
 PROMPT_COMMAND="last_status=\"\$?\"; $PROMPT_COMMAND"
-PS1='\[$txtpur\]\u@\h:\W \[$([[ $last_status -eq "0" ]] && echo $txtgrn || echo $txtred)\]$last_status\[$txtcyn\]$(git_branch)\[$txtred\]$(git_dirty)\[$txtblu\]\$\[$txtrst\] '
+case "$TERM" in
+*color*) PS1='\[$txtpur\]\u@\h:\W \[$([[ $last_status -eq "0" ]] && echo $txtgrn || echo $txtred)\]$last_status\[$txtcyn\]$(git_branch)\[$txtred\]$(git_dirty)\[$txtblu\]\$\[$txtrst\] ';;
+*) PS1='\u@\h:\W $last_status$(git_branch)$(git_dirty)\$ ';;
+esac  
 # }}} Prompt Customisation
 # {{{ Interactive Functions
 # these functions can't be written as scripts since they must act on the current shell not a sub-shell
