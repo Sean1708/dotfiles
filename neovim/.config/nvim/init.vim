@@ -12,7 +12,7 @@ if !filereadable($HOME . '/.config/nvim/autoload/plug.vim')
   autocmd VimEnter * UpgradePlugins
 endif
 
-call plug#begin('~/.nvim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'ervandew/supertab'
 Plug 'benekastah/neomake'
