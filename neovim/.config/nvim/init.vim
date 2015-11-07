@@ -17,7 +17,7 @@
 
 let g:plug_window = 'if winwidth(0)/2 < 80 | topleft new | else | vertical topleft new | endif'
 " launchd uses this command so don't fucking delete it!
-command! UpgradePlugins silent PlugUpgrade | silent PlugUpdate | silent UpdateRemotePlugins | quit
+command! UpgradePlugins silent PlugUpgrade | silent PlugUpdate | quit | silent UpdateRemotePlugins
 if !filereadable($HOME . '/.config/nvim/autoload/plug.vim')
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
