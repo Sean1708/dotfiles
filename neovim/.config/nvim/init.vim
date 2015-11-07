@@ -6,8 +6,8 @@
 let g:plug_window = 'if winwidth(0)/2 < 80 | topleft new | else | vertical topleft new | endif'
 " launchd uses this command so don't fucking delete it!
 command! UpgradePlugins silent PlugUpgrade | silent PlugUpdate | silent UpdateRemotePlugins | quit
-if !filereadable($HOME . '/.nvim/autoload/plug.vim')
-  silent !curl -fLo ~/.nvim/autoload/plug.vim --create-dirs
+if !filereadable($HOME . '/.config/nvim/autoload/plug.vim')
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * UpgradePlugins
 endif
@@ -43,20 +43,17 @@ set foldlevelstart=99
 set spelllang=en_gb
 
 set noswapfile
-set autoread
 set autowriteall
 
 set lazyredraw
 
 set clipboard+=unnamed
 
-set history=500
-
 augroup NeoVimRC
   autocmd!
   autocmd FocusLost * silent wall
   autocmd BufWritePre *
-        \ if &ft !=? 'markdown' && expand('%:t') !~ '\v\c^n\?vimrc$' |
+        \ if &filetype !=? 'markdown' && &filetype !=? 'vim' && expand('%:t') !~ '\v\c^n\?vimrc$' |
         \   silent %s/\s\+$//e |
         \ endif
   autocmd WinEnter term://* startinsert
@@ -64,9 +61,6 @@ augroup END
 
 " }}}1 END GENERAL
 " MAPPINGS {{{1
-
-let g:mapleader = '\'
-let g:maplocalleader = g:mapleader
 
 " maps <C-Space>
 " TODO: how fragile is this?
@@ -99,7 +93,7 @@ nnoremap <silent> <leader>t :update <BAR> execute b:test_cmd<CR>
 " }}}1 END MAPPINGS
 " EDITING {{{1
 
-set complete+=kspell
+set complete+=kspell,i
 set omnifunc=syntaxcomplete#Complete
 
 set nrformats+=alpha
@@ -108,6 +102,8 @@ set whichwrap=h,l
 set nojoinspaces
 
 set shiftround
+
+set formatoptions+=r,o
 
 " incsearch doesn't set magic in substitutions
 cnoremap s/ s/\v
@@ -127,9 +123,10 @@ set relativenumber
 
 set ruler
 set rulerformat=%40(%t%=\ %P:\ %4l:\ %3c%)
+set laststatus=1
 set showcmd
 
-set textwidth=80
+set textwidth=120
 set nowrap
 " TODO: reexamine these settings
 set tabstop=4  " number of columns <Tab> counts as visually
