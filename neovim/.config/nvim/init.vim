@@ -29,6 +29,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'Sean1708/replicate.nvim'
 Plug 'powerman/vim-plugin-viewdoc'
+Plug 'Chiel92/vim-autoformat'
 Plug 'ervandew/supertab'
 Plug 'benekastah/neomake'
 " Currently vim-plug has no proper support for remote plugins, once it does we can go back to just
@@ -155,6 +156,11 @@ let g:viewdoc_open = "topleft new"
 let g:viewdoc_openempty = 0
 
 " }}}2 END VIEWDOC
+" VIM-AUTOFORMAT {{{2
+
+nnoremap <M-f> :Autoformat<CR>
+
+" }}}2 END VIM-AUTOFORMAT
 " SUPERTAB {{{2
 
 let g:SuperTabDefaultCompletionType = 'context'
