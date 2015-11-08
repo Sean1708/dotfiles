@@ -137,10 +137,8 @@ set showcmd
 
 set textwidth=100
 set nowrap
-" TODO: reexamine these settings
-set tabstop=4  " number of columns <Tab> counts as visually
 set shiftwidth=4  " columns added/removed when changing indent level
-set softtabstop=4  " amount of whitespace corresponding to tab presses
+let &softtabstop=&shiftwidth  " amount of whitespace corresponding to tab presses
 set expandtab
 
 " }}}1 END DISPLAY
