@@ -102,6 +102,7 @@ nnoremap <silent> <leader>t :update <BAR> execute b:test_cmd<CR>
 " }}}1 END MAPPINGS
 " EDITING {{{1
 
+" TODO: only set kspell when in text, markdown or latex.
 set complete+=kspell,i
 set omnifunc=syntaxcomplete#Complete
 
