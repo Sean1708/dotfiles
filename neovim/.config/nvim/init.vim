@@ -148,6 +148,7 @@ set expandtab
 " TODO: set up some handlers!
 " TODO: syntax highligh python with rst and use pydoc3 if available
 let g:viewdoc_open = "topleft new"
+let g:viewdoc_openempty = 0
 
 " }}}2 END VIEWDOC
 " SUPERTAB {{{2
