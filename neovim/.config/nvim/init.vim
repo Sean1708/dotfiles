@@ -18,6 +18,7 @@
 let g:plug_window = 'if winwidth(0)/2 < 80 | topleft new | else | vertical topleft new | endif'
 " launchd uses this command so don't fucking delete it!
 command! UpgradePlugins silent PlugUpgrade | silent PlugUpdate | quit | silent UpdateRemotePlugins
+" Install vim-plug if it isn't already.
 if !filereadable($HOME . '/.config/nvim/autoload/plug.vim')
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -77,21 +78,21 @@ augroup END
 " TODO: how fragile is this?
 inoremap <NUL> <ESC>
 vnoremap <NUL> <ESC>
-tnoremap <ESC><ESC> <C-\><C-N>
+tnoremap <ESC><ESC> <C-\><C-n>
 
-nnoremap <S-Left> <C-W>h
-nnoremap <S-Down> <C-W>j
-nnoremap <S-Up> <C-W>k
-nnoremap <S-Right> <C-W>l
-tnoremap <S-Left> <C-\><C-N><C-W>h
-tnoremap <S-Down> <C-\><C-N><C-W>j
-tnoremap <S-Up> <C-\><C-N><C-W>k
-tnoremap <S-Right> <C-\><C-N><C-W>l
+nnoremap <S-Left> <C-w>h
+nnoremap <S-Down> <C-w>j
+nnoremap <S-Up> <C-w>k
+nnoremap <S-Right> <C-w>l
+tnoremap <S-Left> <C-\><C-n><C-w>h
+tnoremap <S-Down> <C-\><C-n><C-w>j
+tnoremap <S-Up> <C-\><C-n><C-w>k
+tnoremap <S-Right> <C-\><C-n><C-w>l
 
 nnoremap <Left> :bprev<CR>
 nnoremap <Right> :bnext<CR>
-nnoremap <Down> <C-D>
-nnoremap <Up> <C-U>
+nnoremap <Down> <C-d>
+nnoremap <Up> <C-u>
 
 " ' is more convenient than , and has redundancy with `
 nnoremap ' ,
