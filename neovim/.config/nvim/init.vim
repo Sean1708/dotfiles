@@ -98,7 +98,6 @@ nnoremap ' ,
 nnoremap Y y$
 
 nnoremap <silent> K :<C-U>call kwp#KeywordPrg()<CR>
-nnoremap <silent> <leader>t :update <BAR> execute b:test_cmd<CR>
 
 " }}}1 END MAPPINGS
 " EDITING {{{1
@@ -167,8 +166,6 @@ augroup Neomake
   autocmd!
   autocmd InsertLeave,BufWritePost * call <SID>Update() | Neomake
 augroup END
-
-nnoremap <localleader>m :update <bar> Neomake!<CR>
 
 " }}}2 END NEOMAKE
 " BUFTABLINE {{{2
