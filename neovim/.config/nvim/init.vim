@@ -31,10 +31,10 @@ Plug 'Sean1708/replicate.nvim'
 Plug 'powerman/vim-plugin-viewdoc'
 Plug 'ervandew/supertab'
 Plug 'benekastah/neomake'
+Plug 'critiqjo/lldb.nvim', {'for': ['rust', 'c']}
 Plug 'ap/vim-buftabline'
 Plug 'JuliaLang/julia-vim'
 Plug 'rust-lang/rust.vim'
-Plug 'critiqjo/lldb.nvim', {'for': ['rust', 'c']}
 Plug 'klen/python-mode'
 Plug 'haya14busa/incsearch.vim'
 Plug 'vim-scripts/repmo.vim'
@@ -176,6 +176,16 @@ augroup Neomake
 augroup END
 
 " }}}2 END NEOMAKE
+" LLDB.NVIM {{{2
+
+nmap <M-b> <Plug>LLBreakSwitch
+nnoremap <M-c> :LLmode code<CR>
+nnoremap <M-d> :LLmode debug<CR>
+nnoremap <M-i> :LL process interrupt<CR>
+nnoremap <M-p> :LL print <C-r>=expand('<cword>')<CR>
+nnoremap <M-s> :LL thread step-over<CR>
+
+" }}}2 END LLDB.NVIM
 " BUFTABLINE {{{2
 
 let g:buftabline_show = 1
