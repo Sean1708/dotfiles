@@ -12,5 +12,3 @@ let g:neomake_julia_lint_maker = {
 \ }
 
 let g:neomake_julia_enabled_makers = ['lint']
-
-nnoremap <buffer> K :call kwp#KeywordPrg("julia -e 'help(ARGS[1])'", 'markdown')<CR>

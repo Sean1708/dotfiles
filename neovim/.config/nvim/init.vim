@@ -27,6 +27,7 @@ endif
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'Sean1708/replicate.nvim'
+Plug 'powerman/vim-plugin-viewdoc'
 Plug 'ervandew/supertab'
 Plug 'benekastah/neomake'
 Plug 'ap/vim-buftabline'
@@ -97,8 +98,6 @@ nnoremap ' ,
 
 nnoremap Y y$
 
-nnoremap <silent> K :<C-U>call kwp#KeywordPrg()<CR>
-
 " }}}1 END MAPPINGS
 " EDITING {{{1
 
@@ -138,12 +137,18 @@ set showcmd
 
 set textwidth=100
 set nowrap
-set shiftwidth=4  " columns added/removed when changing indent level
-let &softtabstop=&shiftwidth  " amount of whitespace corresponding to tab presses
+set shiftwidth=4
+let &softtabstop=&shiftwidth
 set expandtab
 
 " }}}1 END DISPLAY
 " PLUGIN-SETTINGS {{{1
+" VIEWDOC {{{2
+
+" TODO: set up some handlers!
+let g:viewdoc_open = "topleft new"
+
+" }}}2 END VIEWDOC
 " SUPERTAB {{{2
 
 let g:SuperTabDefaultCompletionType = 'context'
