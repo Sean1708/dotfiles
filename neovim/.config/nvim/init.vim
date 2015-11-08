@@ -135,7 +135,7 @@ set rulerformat=%40(%t%=\ %P:\ %4l:\ %3c%)
 set laststatus=1
 set showcmd
 
-set textwidth=120
+set textwidth=100
 set nowrap
 " TODO: reexamine these settings
 set tabstop=4  " number of columns <Tab> counts as visually
