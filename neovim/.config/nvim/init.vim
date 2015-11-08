@@ -26,6 +26,7 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged')
 
+Plug 'Sean1708/replicate.nvim'
 Plug 'ervandew/supertab'
 Plug 'benekastah/neomake'
 Plug 'ap/vim-buftabline'
