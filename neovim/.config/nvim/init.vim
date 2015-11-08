@@ -17,7 +17,7 @@
 
 let g:plug_window = 'if winwidth(0)/2 < 80 | topleft new | else | vertical topleft new | endif'
 " launchd uses this command so don't fucking delete it!
-command! UpgradePlugins silent PlugUpgrade | silent PlugUpdate | quit | silent UpdateRemotePlugins
+command! UpgradePlugins silent PlugUpgrade | silent PlugUpdate | quit | silent UpdateRemotePlugins 
 " Install vim-plug if it isn't already.
 if !filereadable($HOME . '/.config/nvim/autoload/plug.vim')
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
@@ -31,7 +31,10 @@ Plug 'Sean1708/replicate.nvim'
 Plug 'powerman/vim-plugin-viewdoc'
 Plug 'ervandew/supertab'
 Plug 'benekastah/neomake'
-Plug 'critiqjo/lldb.nvim', {'for': ['rust', 'c']}
+" Currently vim-plug has no proper support for remote plugins, once it does we can go back to just
+" using lldb.nvim on rust and c.
+" Plug 'critiqjo/lldb.nvim', {'for': ['rust', 'c']}
+Plug 'critiqjo/lldb.nvim'
 Plug 'ap/vim-buftabline'
 Plug 'JuliaLang/julia-vim'
 Plug 'rust-lang/rust.vim'
