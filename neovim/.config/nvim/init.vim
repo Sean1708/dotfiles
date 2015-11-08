@@ -31,10 +31,7 @@ Plug 'benekastah/neomake'
 Plug 'ap/vim-buftabline'
 Plug 'JuliaLang/julia-vim'
 Plug 'rust-lang/rust.vim'
-" I want to use this but it's just more trouble than it's worth at the moment.
-" It requires system python.
-" Maybe when the issues with homebrew's llvm have been sorted I can use it.
-" Plug 'critiqjo/lldb.nvim', {'for': 'rust'}
+Plug 'critiqjo/lldb.nvim', {'for': ['rust', 'c']}
 Plug 'klen/python-mode'
 Plug 'haya14busa/incsearch.vim'
 Plug 'vim-scripts/repmo.vim'
