@@ -164,11 +164,11 @@ nnoremap <M-f> :Autoformat<CR>
 " SUPERTAB {{{2
 
 let g:SuperTabDefaultCompletionType = 'context'
-let g:SuperTabContextDefaultCompletionType = '<C-N>'
+let g:SuperTabContextDefaultCompletionType = '<C-n>'
 let g:SuperTabLongestEnhaced = 1
 let g:SuperTabCrMapping = 1
 let g:SuperTabCompleteCase = 'match'
-autocmd FileType * call SuperTabChain(&omnifunc, '<C-N>')
+autocmd FileType * call SuperTabChain(&omnifunc, '<C-n>')
 
 " }}}2 END SUPERTAB
 " NEOMAKE {{{2
