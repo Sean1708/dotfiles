@@ -107,8 +107,7 @@ nnoremap Y y$
 " }}}1 END MAPPINGS
 " EDITING {{{1
 
-" TODO: only set kspell when in text, markdown or latex.
-set complete+=kspell,i
+set complete+=i
 set omnifunc=syntaxcomplete#Complete
 
 set nrformats+=alpha
