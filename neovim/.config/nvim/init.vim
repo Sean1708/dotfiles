@@ -79,10 +79,6 @@ augroup END
 " }}}1 END GENERAL
 " MAPPINGS {{{1
 
-" maps <C-Space>
-" TODO: how fragile is this?
-inoremap <NUL> <ESC>
-vnoremap <NUL> <ESC>
 tnoremap <ESC><ESC> <C-\><C-n>
 
 nnoremap <S-Left> <C-w>h
