@@ -7,7 +7,7 @@ do
     echo -n "Stowing ${pkg}... "
 
     case "$pkg" in
-      *vim | ipython | bash)
+      *vim | ipython | *sh)
         opts='--no-folding'
         ;;
       *)
