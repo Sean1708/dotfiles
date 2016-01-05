@@ -40,7 +40,11 @@ git_branch() {
 git_dirty() {
   if exists git
   then
-    git diff --quiet || echo '*'
+    local status="$(git status --porcelain 2> /dev/null)"
+    if [[ "$status" != '' ]]
+    then
+      echo '*'
+    fi
   fi
 }
 
