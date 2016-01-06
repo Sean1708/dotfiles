@@ -15,9 +15,9 @@ fi
 export ADOTDIR="$HOME/.local/share/antigen"
 
 # load up antigen
-if [[ -f "$HOME/.zsh/antigen/antigen.zsh" ]]
+if [[ -f "$HOME/.config/zsh/antigen/antigen.zsh" ]]
 then
-    source "$HOME/.zsh/antigen/antigen.zsh"
+    source "$HOME/.config/zsh/antigen/antigen.zsh"
 fi
 
 antigen use oh-my-zsh
