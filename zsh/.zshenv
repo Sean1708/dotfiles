@@ -1,8 +1,7 @@
-# TODO: have .config/bash, .config/sh, and .config/zsh
 # system specific zsh config goes in .zsh/profile
-if [[ -f "$HOME/.zsh/profile" ]]
+if [[ -f "$HOME/.config/zsh/profile" ]]
 then
-  source "$HOME/.zsh/profile"
+  source "$HOME/.config/zsh/profile"
 fi
 
 # config compatible with bash and zsh

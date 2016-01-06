@@ -1,7 +1,7 @@
-# system specific bash config goes in .bash/profile
-if [[ -f "$HOME/.bash/profile" ]]
+# system specific bash config goes in ~/.config/bash/profile
+if [[ -f "$HOME/.config/bash/profile" ]]
 then
-  source "$HOME/.bash/profile"
+  source "$HOME/.config/bash/profile"
 fi
 
 # config compatible with bash and zsh

@@ -24,14 +24,14 @@ exists() {
 # }}} Script Functions
 # {{{ System-Specific Config
 # system specific config goes in .sh/profile
-if [[ -f "$HOME/.sh/profile" ]]
+if [[ -f "$HOME/.config/sh/profile" ]]
 then
-  source "$HOME/.sh/profile"
+  source "$HOME/.config/sh/profile"
 fi
 
-if [[ -d "$HOME/.sh/scripts" ]]
+if [[ -d "$HOME/.config/sh/scripts" ]]
 then
-  PATH="$HOME/.sh/scripts:$PATH"
+  PATH="$HOME/.config/sh/scripts:$PATH"
 fi
 
 if exists nvim
