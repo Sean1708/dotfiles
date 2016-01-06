@@ -21,10 +21,6 @@ exists() {
     error 'Must specifiy exactly one command.'
   fi
 }
-
-# make these available to non-interactive shells
-export -f error
-export -f exists
 # }}} Script Functions
 # {{{ System-Specific Config
 # system specific config goes in .sh/profile

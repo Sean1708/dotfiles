@@ -10,6 +10,10 @@ then
   source "$HOME/.profile"
 fi
 
+# make these functions available to non-interactive shells
+export -f error
+export -f exists
+
 # {{{ Prompt Customisation
 # heavily influenced by https://github.com/jimeh/git-aware-prompt
 txtblk="$(tput setaf 0 2>/dev/null || echo '\e[0;30m')"  # Black
