@@ -14,6 +14,9 @@ then
   source "$HOME/.profile"
 fi
 
+unalias run-help
+autoload run-help
+
 # {{{ antigen
 
 export ADOTDIR="$HOME/.local/share/antigen"
