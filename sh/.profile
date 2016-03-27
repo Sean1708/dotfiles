@@ -45,8 +45,6 @@ else
 fi
 # }}} System-Specifc Config
 # {{{ Aliases
-alias julia-dev="$HOME/Downloads/src/julia-dev/julia"
-
 if exists hub
 then
   eval "$(hub alias -s)"
