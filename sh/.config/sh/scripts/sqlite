@@ -2,7 +2,7 @@
 
 if [[ $(uname) == Linux ]]
 then
-  sqlite3 $@
+  sqlite3 "$@"
 else
   sqlite_dir="/usr/local/Cellar/sqlite/"
   exec_file="/bin/sqlite3"

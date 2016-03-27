@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
-if [[ $(uname) == Darwin ]]
+exists() {
+    source "$HOME/.config/sh/utils/exists"
+}
+
+if exists caffeinate
 then
   caffeinate -dim
 else
-  error 'Only implemented for Mac, look into xdotool.' 1
+  error 'requires caffeinate, look into xdotool'
 fi

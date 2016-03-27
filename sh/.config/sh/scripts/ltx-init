@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+error() {
+    source "$HOME/.config/sh/utils/error"
+}
+
 if [ ! -f Makefile ]
 then
   echo -n 'Downloading Makefile... '

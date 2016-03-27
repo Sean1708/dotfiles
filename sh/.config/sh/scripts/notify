@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+exists() {
+    source "$HOME/.config/sh/utils/exists"
+}
+
+# run command
+"$@"
+
+# name of command which was run
+msg="$1"
+
+if [[ "$?" -eq 0 ]]
+then
+    msg="$msg succeeded"
+else
+    msg="$msg failed"
+fi
+
+if exists say
+then
+    say "$msg"
+else
+    echo -ne "$msg\a"
+fi
