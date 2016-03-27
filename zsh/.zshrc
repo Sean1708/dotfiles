@@ -37,12 +37,13 @@ antigen use oh-my-zsh
 
 # {{{2 plugins
 
-# antigen bundle brew
+antigen bundle brew
 # antigen bundle compleat
 antigen bundle gitfast
-# antigen bundle pip
+# antigen bundle git-extras
+antigen bundle pip
 # antigen bundle pyenv  # or maybe antigen bundle Tarrasch/zsh-autoenv  # or both
-# antigen bundle sudo
+antigen bundle python
 antigen bundle zsh-users/zsh-syntax-highlighting
 
 # }}}2 plugins
@@ -52,6 +53,8 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen theme kphoen
 
 # }}}2 themes
+
+antigen apply
 # }}} antigen
 
 # vim: foldmethod=marker foldlevel=0 tabstop=2 shiftwidth=2
