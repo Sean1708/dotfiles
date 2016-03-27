@@ -1,0 +1,11 @@
+# this is a function body which is to be sourced NOT a script
+
+local last_status="${2:-$?}"
+echo "Error: ${1:-Unknown}" 1>&2
+# interrupt interactive shells rather than exit
+if [[ $- == *i* ]]
+then
+    kill -INT $$
+else
+    exit "$last_status"
+fi

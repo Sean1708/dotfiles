@@ -1,0 +1,14 @@
+# this is a function body which is to be sourced NOT a script
+
+if [[ ! -e "$1" ]]
+then
+    error "directory $1 does not exist"
+elif [[ ! -d "$1" ]]
+then
+    error "file $1 is not a directory"
+fi
+
+# `cd` has no useful command line arguments
+cd "$1" || error 'cd failed'
+shift
+ls "$@"

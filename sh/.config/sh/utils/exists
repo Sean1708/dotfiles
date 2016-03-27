@@ -1,0 +1,8 @@
+# this is a function body which is to be sourced NOT a script
+
+if [[ "$#" -eq 1 ]]
+then
+    hash "$1" 2>/dev/null
+else
+    error 'must specifiy exactly one command'
+fi

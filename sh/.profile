@@ -1,27 +1,5 @@
 # config which works for bash and zsh #
 
-# {{{ Script Functions
-error() {
-  local last_status="${2:-$?}"
-  echo "Error: ${1:-Unknown}" 1>&2
-  # interrupt interactive shells rather than exit
-  if [[ $- == *i* ]]
-  then
-    kill -INT $$
-  else
-    exit ${2:-1}
-  fi
-}
-
-exists() {
-  if [[ "$#" -eq 1 ]]
-  then
-    hash "$1" 2>/dev/null
-  else
-    error 'Must specifiy exactly one command.'
-  fi
-}
-# }}} Script Functions
 # {{{ System-Specific Config
 # system specific config goes in .sh/profile
 if [[ -f "$HOME/.config/sh/profile" ]]
@@ -51,26 +29,6 @@ then
 fi
 # }}} Aliases
 # {{{ Interactive Functions
-# these functions can't be written as scripts since they must act on the current shell not a sub-shell
-cdl() {
-  if [[ ! -e "$1" ]]
-  then
-    error "Directory $1 does not exist."
-  elif [[ ! -d "$1" ]]
-  then
-    error "File $1 is not a directory."
-  fi
-
-  # `cd` has no useful command line arguments
-  cd "$1"
-  shift
-  ls $@
-}
-
-mcd() {
-  mkdir "$1"
-  cd "$1"
-}
 # }}} Interactive Functions
 
 # vim: foldmethod=marker foldlevel=0

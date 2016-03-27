@@ -1,0 +1,4 @@
+# this is a function body which is to be sourced NOT a script
+
+mkdir "$1"
+cd "$1" || error 'cd failed'

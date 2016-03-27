@@ -1,4 +1,15 @@
 # system specific bash config goes in ~/.config/bash/profile
+
+# Utility Functions {{{
+error() {
+    source "$HOME/.config/sh/utils/error"
+}
+
+exists() {
+    source "$HOME/.config/sh/utils/exists"
+}
+# }}} Utility Functions
+
 if [[ -f "$HOME/.config/bash/profile" ]]
 then
   source "$HOME/.config/bash/profile"
@@ -9,10 +20,6 @@ if [[ -f "$HOME/.profile" ]]
 then
   source "$HOME/.profile"
 fi
-
-# make these functions available to non-interactive shells
-export -f error
-export -f exists
 
 # {{{ Prompt Customisation
 # heavily influenced by https://github.com/jimeh/git-aware-prompt
@@ -58,5 +65,14 @@ case "$TERM" in
 *) PS1='\u@\h:\W $last_status$(git_branch)$(git_dirty)\$ ';;
 esac
 # }}} Prompt Customisation
+# Script Functions {{{
+mcd() {
+    source "$HOME/.config/sh/utils/mcd"
+}
+
+cdl() {
+    source "$HOME/.config/sh/utils/cdl"
+}
+# }}} Script Functions
 
 # vim: foldmethod=marker foldlevel=0
