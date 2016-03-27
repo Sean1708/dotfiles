@@ -2,7 +2,7 @@
 
 for pkg in [^.]*
 do
-  if [[ "$pkg" != 'bootstrap.sh' && "$pkg" != 'README.md' ]]
+  if [[ -d "$pkg" ]]
   then
     echo -n "Stowing ${pkg}... "
 
