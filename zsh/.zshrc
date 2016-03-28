@@ -1,7 +1,3 @@
-# TODO: I'm thinking a theme like
-#     [<user>@<start of domain>:<location> | git:<branch> <status symbols> | env:<env name>]
-#     »                                127 ↵ alway green when 0
-
 # these two functions are needed for initialisation
 fpath=($HOME/.config/sh/utils $fpath)
 autoload error
@@ -49,8 +45,7 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 # }}}2 plugins
 # {{{2 themes
 
-# antigen theme gallifrey
-antigen theme kphoen
+antigen theme $HOME/.config/zsh/themes thematique
 
 # }}}2 themes
 
