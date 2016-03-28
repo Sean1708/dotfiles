@@ -4,13 +4,13 @@ exists() {
     source "$HOME/.config/sh/utils/exists"
 }
 
-# run command
 "$@"
 
-# name of command which was run
-msg="$1"
+stat="$?"
 
-if [[ "$?" -eq 0 ]]
+msg="notify: $1"
+
+if [[ "$stat" -eq 0 ]]
 then
     msg="$msg succeeded"
 else
