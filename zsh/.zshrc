@@ -38,7 +38,15 @@ antigen bundle brew
 antigen bundle gitfast
 # antigen bundle git-extras
 antigen bundle pip
-# antigen bundle pyenv  # or maybe antigen bundle Tarrasch/zsh-autoenv  # or both
+
+# {{{3 zsh-autoenv
+
+AUTOENV_FILE_ENTER='.autoenv.in.zsh'
+AUTOENV_FILE_LEAVE='.autoenv.out.zsh'
+antigen bundle Tarrasch/zsh-autoenv
+
+# }}}3 zsh-autoenv
+
 antigen bundle python
 antigen bundle safe-paste
 antigen bundle unixorn/autoupdate-antigen.zshplugin
