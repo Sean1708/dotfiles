@@ -41,6 +41,7 @@ antigen bundle pip
 # antigen bundle pyenv  # or maybe antigen bundle Tarrasch/zsh-autoenv  # or both
 antigen bundle python
 antigen bundle safe-paste
+antigen bundle unixorn/autoupdate-antigen.zshplugin
 antigen bundle zsh-users/zsh-syntax-highlighting
 
 # }}}2 plugins
