@@ -22,3 +22,6 @@ do
     fi
   fi
 done
+
+# link .git so that antigen can self-update
+# ln -s zsh/.config/zsh/antigen/.git "$HOME"/.config/zsh/antigen/.git
