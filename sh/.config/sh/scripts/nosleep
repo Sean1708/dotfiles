@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+error() {
+    source "$HOME/.config/sh/utils/error"
+}
+
 exists() {
     source "$HOME/.config/sh/utils/exists"
 }
