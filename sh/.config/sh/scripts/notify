@@ -21,5 +21,5 @@ if exists say
 then
     say --voice='Fiona' "$msg"
 else
-    echo -ne "$msg\a"
+    echo -e "$msg\a"
 fi
