@@ -15,7 +15,7 @@ then
   source "$HOME/.profile"
 fi
 
-unalias run-help; autoload run-help
+unalias run-help; autoload run-help; alias '?'='run-help'
 autoload mcd
 autoload cdl
 
