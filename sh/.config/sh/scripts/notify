@@ -19,7 +19,7 @@ fi
 
 if exists say
 then
-    say "$msg"
+    say --voice='Fiona' "$msg"
 else
     echo -ne "$msg\a"
 fi
