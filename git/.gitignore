@@ -58,3 +58,5 @@ pip-selfcheck.json
 todo.txt
 done.txt
 .ipynb_checkpoints/
+.autoenv.in.zsh
+.autoenv.out.zsh
