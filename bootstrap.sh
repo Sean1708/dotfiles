@@ -4,17 +4,9 @@ for pkg in [^.]*
 do
   if [[ -d "$pkg" ]]
   then
-    echo -n "Stowing ${pkg}... "
+    echo -n "Stowing $pkg... "
 
-    case "$pkg" in
-      *vim | ipython | *sh)
-        opts='--no-folding'
-        ;;
-      *)
-        unset opts
-        ;;
-    esac
-    stow --target="$HOME" $opts "$pkg"
+    stow --target="$HOME" --no-folding "$pkg"
 
     if [[ $? -eq 0 ]]
     then
@@ -22,6 +14,3 @@ do
     fi
   fi
 done
-
-# link .git so that antigen can self-update
-# ln -s zsh/.config/zsh/antigen/.git "$HOME"/.config/zsh/antigen/.git

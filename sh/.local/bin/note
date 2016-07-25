@@ -1,0 +1,48 @@
+#!/bin/sh
+
+error() {
+    source "$HOME/.local/share/sh/functions/error"
+}
+
+exists() {
+    source "$HOME/.local/share/sh/functions/exists"
+}
+
+usage() {
+    error 'usage: note [take|view|list] <file>'
+}
+
+if [ "$#" -lt 1 ]
+then
+    usage
+elif [ "$#" -lt 2 ] && [ "$1" != 'list' ]
+then
+    usage
+fi
+
+note_dir="${NOTES_DIR:-"$HOME/Dropbox/Personal/Notes"}"
+note_path="$note_dir/${2}.md"
+
+case "$1" in
+    list)
+        ls -R "$note_dir"
+        ;;
+    take)
+        mkdir -p "$(dirname "$note_path")"
+        $EDITOR "$note_path"
+        ;;
+    view)
+        if exists open
+        then
+            open "$note_path"
+        elif exists xdg-open
+        then
+            xdg-open "$note_path"
+        else
+            error 'could not find `open` or `xdg-open`'
+        fi
+        ;;
+    *)
+        usage
+        ;;
+esac

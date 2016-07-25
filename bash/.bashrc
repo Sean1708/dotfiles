@@ -1,15 +1,14 @@
-# system specific bash config goes in ~/.config/bash/profile
-
 # Utility Functions {{{
 error() {
-    source "$HOME/.config/sh/utils/error"
+    source "$HOME/.local/share/sh/functions/error"
 }
 
 exists() {
-    source "$HOME/.config/sh/utils/exists"
+    source "$HOME/.local/share/sh/functions/exists"
 }
 # }}} Utility Functions
 
+# system specific bash config goes in ~/.config/bash/profile
 if [[ -f "$HOME/.config/bash/profile" ]]
 then
   source "$HOME/.config/bash/profile"
@@ -67,11 +66,11 @@ esac
 # }}} Prompt Customisation
 # Script Functions {{{
 mcd() {
-    source "$HOME/.config/sh/utils/mcd"
+    source "$HOME/.local/share/sh/functions/mcd"
 }
 
 cdl() {
-    source "$HOME/.config/sh/utils/cdl"
+    source "$HOME/.local/share/sh/functions/cdl"
 }
 # }}} Script Functions
 

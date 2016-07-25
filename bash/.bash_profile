@@ -3,5 +3,6 @@
 
 if [[ -f "$HOME/.bashrc" ]]
 then
-  source "$HOME/.bashrc"
+    source "$HOME/.bashrc"
 fi
+if [ -e /Users/sean/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/sean/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

@@ -1,0 +1,37 @@
+[user]
+	name = Sean Marshallsay
+	email = srm.1708@gmail.com
+[github]
+	user = Sean1708
+[gitlab]
+	user = seamsay
+
+[core]
+	excludesfile = ~/.config/git/ignore
+
+[diff]
+	mnemonicPrefix = true
+[merge]
+	ff = false
+[push]
+	default = current
+[rebase]
+	autosquash = true
+
+[alias]
+	aliases = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ / | grep -v ^'alias ' | sort
+
+	amend = commit --amend --no-edit
+	discard = checkout --
+	fixup = "! sh -c '(git diff-files --quiet || (echo Unstaged changes, please commit or stash with --keep-index; exit 1)) && COMMIT=$(git rev-parse $1) && git commit --fixup=$COMMIT && git rebase -i --autosquash $COMMIT~1' -"
+	uncommit = revert --mixed HEAD~1
+	unstage = revert --mixed HEAD --
+
+	conflicts = diff --name-only --diff-filter=U
+	; TODO: open at correct lines
+	edit-conflicts = ! $EDITOR $(git conflicts)
+	; TODO: can the following work?
+	; add-conflicts = add $(git conflicts)
+	add-conflicts = ! git add $(git conflicts)
+
+; vim: noexpandtab shiftwidth=8 tabstop=8

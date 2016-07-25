@@ -1,0 +1,22 @@
+#!/bin/sh
+
+error() {
+    source "$HOME/.local/share/sh/functions/error"
+}
+
+if [ ! -f Makefile ]
+then
+    printf %s 'Downloading Makefile... '
+    curl -sO https://raw.githubusercontent.com/Sean1708/LaTeX-Build-Files/master/Makefile || error 'Could not download Makefile.'
+    echo 'ok!'
+fi
+if [ ! -f .gitignore ]
+then
+    printf %s 'Downloading .gitignore... '
+    curl -sO https://raw.githubusercontent.com/Sean1708/LaTeX-Build-Files/master/.gitignore || error 'Could not download Makefile.'
+    echo 'ok!'
+fi
+
+mkdir media
+mkdir data
+mkdir graphs

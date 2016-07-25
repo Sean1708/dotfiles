@@ -1,18 +1,18 @@
 # these two functions are needed for initialisation
-fpath=($HOME/.config/sh/utils $fpath)
+fpath=($HOME/.local/share/sh/functions $fpath)
 autoload error
 autoload exists
 
 # system specific zsh config goes in .zsh/profile
 if [[ -f "$HOME/.config/zsh/profile" ]]
 then
-  source "$HOME/.config/zsh/profile"
+    source "$HOME/.config/zsh/profile"
 fi
 
 # config compatible with bash and zsh
 if [[ -f "$HOME/.profile" ]]
 then
-  source "$HOME/.profile"
+    source "$HOME/.profile"
 fi
 
 unalias run-help; autoload run-help; alias '?'='run-help'
@@ -63,4 +63,4 @@ antigen theme $HOME/.config/zsh/themes thematique
 antigen apply
 # }}} antigen
 
-# vim: foldmethod=marker foldlevel=0 tabstop=2 shiftwidth=2
+# vim: foldmethod=marker foldlevel=0

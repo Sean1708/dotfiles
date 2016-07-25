@@ -1,16 +1,17 @@
-# config which works for bash and zsh #
+# CONFIG WHICH WORKS FOR BASH AND ZSH #
 
-# {{{ System-Specific Config
-# system specific config goes in .sh/profile
-if [[ -f "$HOME/.config/sh/profile" ]]
+# system specific config goes in .config/sh/profile
+if [ -f "$HOME/.config/sh/profile" ]
 then
   source "$HOME/.config/sh/profile"
 fi
 
-if [[ -d "$HOME/.config/sh/scripts" ]]
-then
-  PATH="$HOME/.config/sh/scripts:$PATH"
-fi
+# load nix
+# TODO: start using nix
+# if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]
+# then
+#     source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+# fi
 
 if exists nvim
 then
@@ -21,14 +22,12 @@ then
 else
   export EDITOR=vi
 fi
-# }}} System-Specifc Config
-# {{{ Aliases
-if exists hub
-then
-  eval "$(hub alias -s)"
-fi
-# }}} Aliases
-# {{{ Interactive Functions
-# }}} Interactive Functions
 
-# vim: foldmethod=marker foldlevel=0
+# some programs will only follow XDG of these are set
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_RUNTIME_DIR="$HOME/.local/run"
+
+# directory for user scripts and other non-managed executables
+export PATH="$HOME/.local/bin:$PATH"
