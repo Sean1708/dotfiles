@@ -25,7 +25,7 @@
 	discard = checkout --
 	fixup = "! sh -c '(git diff-files --quiet || (echo Unstaged changes, please commit or stash with --keep-index; exit 1)) && COMMIT=$(git rev-parse $1) && git commit --fixup=$COMMIT && git rebase -i --autosquash $COMMIT~1' -"
 	uncommit = revert --mixed HEAD~1
-	unstage = revert --mixed HEAD --
+	unstage = reset HEAD
 
 	conflicts = diff --name-only --diff-filter=U
 	; TODO: open at correct lines
