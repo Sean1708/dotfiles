@@ -7,7 +7,7 @@
 	user = seamsay
 
 [core]
-	excludesfile = ~/.config/git/ignore
+	excludesfile = ~/.local/share/git/ignore
 
 [diff]
 	mnemonicPrefix = true
