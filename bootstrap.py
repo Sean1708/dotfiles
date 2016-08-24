@@ -15,17 +15,20 @@ def main(packages):
 
 def link(package):
     for root, _, files in os.walk(package):
+        # ignore package name
+        # TODO: yes I know this is terrible and I should feel bad
+        _, *p_dirs = root.split("/")
+
         dir = os.path.join(
             os.path.expanduser("~"),
-            # ignore package name
-            os.path.split(root)[1:],
+            *p_dirs,
         )
 
         os.makedirs(dir, exist_ok=True)
 
         for file in files:
             os.symlink(
-                os.path.join(root, file),
+                os.path.abspath(os.path.join(root, file)),
                 os.path.join(dir, file),
             )
 
