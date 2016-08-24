@@ -6,17 +6,10 @@ then
   source "$HOME/.config/sh/profile"
 fi
 
-# load nix
-# TODO: start using nix
-# if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]
-# then
-#     source "$HOME/.nix-profile/etc/profile.d/nix.sh"
-# fi
-
-if exists nvim
+if hash nvim 2>/dev/null
 then
   export EDITOR=nvim
-elif exists vim
+elif hash vim 2>/dev/null
 then
   export EDITOR=vim
 else
