@@ -16,7 +16,7 @@ else
   export EDITOR=vi
 fi
 
-# some programs will only follow XDG of these are set
+# some programs will only follow XDG if these are set
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
