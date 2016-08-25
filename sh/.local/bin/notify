@@ -18,12 +18,13 @@ fi
 if exists osascript
 then
     osascript -e "display notification \"$msg\" with title \"$1\" sound name \"beep\""
-elif exists zenity
-then
-    zenity --info --title="$1" --text="$msg"
 elif exists notify-send
 then
     notify-send "$1" "$msg"
+elif exists zenity
+then
+    # Gtk-Message: GtkDialog mapped without a transient parent. This is discouraged.
+    zenity --info --title="$1" --text="$msg"
 elif exists say
 then
     say "notify: $1 $msg"
