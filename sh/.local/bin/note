@@ -32,12 +32,12 @@ case "$1" in
         $EDITOR "$note_path"
         ;;
     view)
-        if exists open
-        then
-            open "$note_path"
-        elif exists xdg-open
+        if exists xdg-open
         then
             xdg-open "$note_path"
+        elif exists open
+        then
+            open "$note_path"
         else
             error 'could not find `open` or `xdg-open`'
         fi
