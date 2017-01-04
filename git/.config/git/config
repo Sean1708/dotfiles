@@ -19,6 +19,8 @@
 	default = current
 [rebase]
 	autosquash = true
+[rerere]
+	enabled = true
 
 [alias]
 	aliases = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ / | grep -v ^'alias ' | sort
