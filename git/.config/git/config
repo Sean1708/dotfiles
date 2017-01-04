@@ -9,6 +9,8 @@
 [core]
 	excludesfile = ~/.local/share/git/ignore
 
+[commit]
+	verbose = true
 [diff]
 	mnemonicPrefix = true
 [merge]
