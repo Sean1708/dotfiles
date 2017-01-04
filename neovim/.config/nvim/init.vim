@@ -1,23 +1,17 @@
-" TODO: Get rid of:
-"     - Fugitive
-"         - All I want is the branch, maybe that comes with airline
-"     - supertab
-"         - will just using deoplete solve this
-"     - buftabline
-"         - airline
+" TODO:
+" - remove
 "     - python-mode
 "         - neomake gets most of the way there
 "         - might need better syntax highlighting
 "         - virtualenv support
 "             - automatically pip install neovim
-" TODO: Anything (including Fugitive) that comes from a plugin should have an
-"     if_has guard around it.
+" - add
+"     - YouCompleteMe
 " TODO: Defaults will be changing soon (https://github.com/neovim/neovim/issues/2676)
 " PLUGINS {{{1
 
 let g:plug_window = 'if winwidth(0)/2 < 80 | topleft new | else | vertical topleft new | endif'
-" launchd uses this command so don't fucking delete it!
-command! UpgradePlugins silent PlugUpgrade | silent PlugUpdate | quit | silent UpdateRemotePlugins 
+command! UpgradePlugins silent PlugUpgrade | silent PlugUpdate | quit | silent UpdateRemotePlugins
 " Install vim-plug if it isn't already.
 if !filereadable($HOME . '/.config/nvim/autoload/plug.vim')
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
@@ -25,18 +19,15 @@ if !filereadable($HOME . '/.config/nvim/autoload/plug.vim')
   autocmd VimEnter * UpgradePlugins
 endif
 
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin('~/.cache/nvim/plugged')
 
-Plug 'Sean1708/replicate.nvim'
 Plug 'powerman/vim-plugin-viewdoc'
 Plug 'Chiel92/vim-autoformat'
 Plug 'ervandew/supertab'
 Plug 'benekastah/neomake'
-" Currently vim-plug has no proper support for remote plugins, once it does we can go back to just
-" using lldb.nvim on rust and c.
-" Plug 'critiqjo/lldb.nvim', {'for': ['rust', 'c']}
-Plug 'critiqjo/lldb.nvim'
-Plug 'ap/vim-buftabline'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'JuliaLang/julia-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
@@ -69,6 +60,7 @@ set clipboard+=unnamed
 augroup NeoVimRC
   autocmd!
   autocmd FocusLost * silent wall
+  " TODO: need to prevent removing trailing whitespace in vim script because ...?
   autocmd BufWritePre *
         \ if &filetype !=? 'markdown' && &filetype !=? 'vim' && expand('%:t') !~ '\v\c^n\?vimrc$' |
         \   silent %s/\s\+$//e |
@@ -127,36 +119,45 @@ set gdefault
 
 set cursorline
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 set number
 set relativenumber
 
-set ruler
-set rulerformat=%40(%t%=\ %P:\ %4l:\ %3c%)
-set laststatus=1
 set showcmd
+set noshowmode
 
 set textwidth=100
 set nowrap
 set shiftwidth=4
+let &tabstop=&shiftwidth
 let &softtabstop=&shiftwidth
-set expandtab
+
+set sidescroll=1
+set scrolloff=1
+set sidescrolloff=5
+
+if $PREFER_TAB == '1'
+  set noexpandtab
+else
+  set expandtab
+endif
 
 " }}}1 END DISPLAY
 " PLUGIN-SETTINGS {{{1
 " VIEWDOC {{{2
 
-" TODO: set up some handlers!
-" TODO: syntax highligh python with rst and use pydoc3 if available
 let g:viewdoc_open = "topleft new"
 let g:viewdoc_openempty = 0
 
+" TODO: syntax highlight python with rst
+if $PREFER_PYTHON2 == '1'
+  let g:viewdoc_pydoc_cmd = 'pydoc'
+else
+  let g:viewdoc_pydoc_cmd = 'pydoc3'
+endif
+
 " }}}2 END VIEWDOC
-" VIM-AUTOFORMAT {{{2
-
-nnoremap <M-f> :Autoformat<CR>
-
-" }}}2 END VIM-AUTOFORMAT
 " SUPERTAB {{{2
 
 let g:SuperTabDefaultCompletionType = 'context'
@@ -181,28 +182,11 @@ augroup Neomake
 augroup END
 
 " }}}2 END NEOMAKE
-" LLDB.NVIM {{{2
+" AIRLINE {{{2
 
-nmap <M-b> <Plug>LLBreakSwitch
-nnoremap <M-c> :LLmode code<CR>
-nnoremap <M-d> :LLmode debug<CR>
-nnoremap <M-i> :LL process interrupt<CR>
-nnoremap <M-p> :LL print <C-r>=expand('<cword>')<CR>
-nnoremap <M-s> :LL thread step-over<CR>
+let g:airline#extensions#tabline#enabled = 1
 
-" }}}2 END LLDB.NVIM
-" BUFTABLINE {{{2
-
-let g:buftabline_show = 1
-let g:buftabline_indicators = 1
-let g:buftabline_seperators = 1
-
-highlight link BufTabLineCurrent StatusLine
-highlight link BufTablineActive StatusLineNC
-highlight link BufTablineHidden Normal
-highlight link BufTablineFill Normal
-
-" }}}2 END BUFTABLINE
+" }}}2 END AIRLINE
 " RUST.VIM {{{2
 
 let g:rust_fold = 1
@@ -211,14 +195,20 @@ let g:rust_bang_comment_leader = 1
 " }}}2 END RUST
 " PYTHON-MODE {{{2
 
-let g:pymode_python = 'python3'
-let g:pymode_lint_checkers = ['pyflakes', 'pylint', 'pep8', 'pep257', 'mccabe']
-let g:pymode_syntax_print_as_function = 1
+if $PREFER_PYTHON2 == '1'
+  let g:pymode_python = 'python'
+else
+  let g:pymode_python = 'python3'
+  let g:pymode_syntax_print_as_function = 1
+endif
 
-let g:pymode_options_colorcolumn = 0
 let g:pymode_doc = 0
 let g:pymode_run = 0
+let g:pymode_lint = 0
 let g:pymode_rope = 0
+let g:pymode_indent = 0
+let g:pymode_breakpoint = 0
+let g:pymode_options_colorcolumn = 0
 
 " }}}2 END PYTHON-MODE
 " INCSEARCH.VIM {{{2
@@ -248,4 +238,4 @@ colorscheme solarized
 " }}}2 END COLORSCHEMES
 " }}}1 END PLUGIN-SETTINGS
 
-" vim: foldmethod=marker foldlevel=0
+" vim: foldmethod=marker foldlevel=0 expandtab shiftwidth=2
