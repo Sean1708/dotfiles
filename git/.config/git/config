@@ -13,6 +13,7 @@
 	verbose = true
 [diff]
 	mnemonicPrefix = true
+	ignoreSubmodules = all
 [merge]
 	ff = false
 [push]
