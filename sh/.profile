@@ -16,11 +16,21 @@ else
   export EDITOR=vi
 fi
 
+if hash xclip 2>/dev/null
+then
+    alias copy='xclip -in -selection primary'
+    alias paste='xclip -out -selection primary'
+elif hash pbcopy 2>/dev/null && hash pbpaste 2>/dev/null
+then
+    alias copy='pbcopy'
+    alias paste='pbpaste'
+fi
+
 # some programs will only follow XDG if these are set
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_RUNTIME_DIR="$HOME/.local/run"
 
-# directory for user scripts and other non-managed executables
+# directory for non-managed executables/libs/manpages
 export PATH="$HOME/.local/bin:$PATH"
