@@ -56,6 +56,7 @@ Session.vim
 /[Ss]cripts
 pyvenv.cfg
 pip-selfcheck.json
+.eggs
 
 ## MISC
 todo.txt
@@ -63,3 +64,4 @@ done.txt
 .ipynb_checkpoints/
 .autoenv.in.zsh
 .autoenv.out.zsh
+.ropeproject
