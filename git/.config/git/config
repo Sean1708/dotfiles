@@ -26,7 +26,7 @@
 	enabled = true
 
 [alias]
-	aliases = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ / | grep -v ^'alias ' | sort
+	aliases = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\0/ | grep -v '^aliases' | sort | column -ts \\0
 
 	amend = commit --amend --no-edit
 	discard = checkout --
