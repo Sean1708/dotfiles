@@ -46,22 +46,28 @@ Session.vim
 ## Visual Studio Code
 .vscode
 
-## Virtualenv
-## https://github.com/github/gitignore/blob/master/Global/VirtualEnv.gitignore
-## http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
+## Python
+# Virtualenv
+# https://github.com/github/gitignore/blob/master/Global/VirtualEnv.gitignore
+# http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
 /.Python
 /[Bb]in
 /[Ii]nclude
 /[Ll]ib
 /[Ss]cripts
+/share
 pyvenv.cfg
 pip-selfcheck.json
 .eggs
 
-## MISC
+# Misc
+.ipynb_checkpoints/
+.ropeproject
+tags
+
+## Misc
 todo.txt
 done.txt
-.ipynb_checkpoints/
 .autoenv.in.zsh
 .autoenv.out.zsh
-.ropeproject
+build
