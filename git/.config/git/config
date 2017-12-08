@@ -35,10 +35,11 @@
 	unstage = reset -- HEAD
 
 	conflicts = diff --name-only --diff-filter=U
-	; TODO: open at correct lines
 	edit-conflicts = ! $EDITOR $(git conflicts)
 	; TODO: can the following work?
 	; add-conflicts = add $(git conflicts)
 	add-conflicts = ! git add $(git conflicts)
+
+	unpushed = ! git for-each-ref --format='%(refname:short)\t%(push:trackshort)' refs/heads | grep -e '\t$' -e '\t.*>.*$' | cut -f 1
 
 ; vim: noexpandtab shiftwidth=8 tabstop=8
