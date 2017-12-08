@@ -34,3 +34,4 @@ export XDG_RUNTIME_DIR="$HOME/.local/run"
 
 # directory for non-managed executables/libs/manpages
 export PATH="$HOME/.local/bin:$PATH"
+export MANPATH="$HOME/.local/man:$MANPATH"
