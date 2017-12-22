@@ -41,9 +41,6 @@ source "$ANTIGEN_REPO/antigen.zsh"
 
 antigen use oh-my-zsh
 
-# Must go first otherwise it overwrites key bindings.
-antigen bundle vi-mode
-
 # {{{2 plugins
 
 antigen bundle gitfast
