@@ -26,7 +26,13 @@ then
 	alias paste='pbpaste'
 fi
 
-# some programs will only follow XDG if these are set
+# Start the SSH Agent if it hasn't already.
+if hash ssh-agent 2>/dev/null && [ -z "$SSH_AUTH_SOCK" ]
+then
+	eval $(ssh-agent -s)
+fi
+
+# Some programs will only follow XDG if these are set.
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
