@@ -19,9 +19,6 @@ unalias run-help; autoload -Uz run-help; alias '?'='run-help'; alias 'help'='run
 autoload mcd
 autoload cdl
 
-# Vim Mode screws with delete and shit like that.
-bindkey -e
-
 # {{{ antigen
 
 export ANTIGEN_HOME="$(realpath --relative-to "$HOME" "$XDG_RUNTIME_DIR")/antigen"
@@ -83,5 +80,7 @@ antigen theme $HOME/.config/zsh/themes thematique
 # TODO: Delete all aliases.
 antigen apply
 # }}} antigen
+
+# TODO: Fix Home, End, Insert, and Delete (mainly Delete) which Vim Mode breaks.
 
 # vim: foldmethod=marker foldlevel=0
