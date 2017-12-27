@@ -21,7 +21,7 @@ autoload cdl
 
 # {{{ antigen
 
-export ANTIGEN_HOME="$(realpath --relative-to "$HOME" "$XDG_RUNTIME_DIR")/antigen"
+export ANTIGEN_HOME="$XDG_RUNTIME_DIR/antigen"
 mkdir -p "$ANTIGEN_HOME"
 
 export ANTIGEN_REPO="$ANTIGEN_HOME/repo"
@@ -60,8 +60,8 @@ antigen bundle Tarrasch/zsh-autoenv
 # }}}3 zsh-autoenv
 # {{{3 autoupdate-antigen.zshplugin
 
-ANTIGEN_SYSTEM_RECEIPT_F="$ANTIGEN_HOME/.autoupdate-antigen_system_lastupdate"
-ANTIGEN_PLUGIN_RECEIPT_F="$ANTIGEN_HOME/.autoupdate-antigen_plugin_lastupdate"
+ANTIGEN_SYSTEM_RECEIPT_F="$(realpath --relative-to "$HOME" "$ANTIGEN_HOME")/.autoupdate-antigen_system_lastupdate"
+ANTIGEN_PLUGIN_RECEIPT_F="$(realpath --relative-to "$HOME" "$ANTIGEN_HOME")/.autoupdate-antigen_plugin_lastupdate"
 antigen bundle unixorn/autoupdate-antigen.zshplugin
 
 # }}}3 autoupdate-antigen.zshplugin
