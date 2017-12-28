@@ -20,6 +20,10 @@ if hash xclip 2>/dev/null
 then
 	alias copy='xclip -in -selection primary'
 	alias paste='xclip -out -selection primary'
+elif hash xsel 2>/dev/null
+then
+	alias copy='xsel'
+	alias paste='xsel'
 elif hash pbcopy 2>/dev/null && hash pbpaste 2>/dev/null
 then
 	alias copy='pbcopy'

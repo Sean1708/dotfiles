@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 exists() {
-    source "$HOME/.local/share/sh/functions/exists"
+	source "$HOME/.local/share/sh/functions/exists"
 }
 
 "$@"
@@ -10,25 +10,28 @@ stat="$?"
 
 if [[ "$stat" -eq 0 ]]
 then
-    msg="succeeded"
+	msg="succeeded"
 else
-    msg="failed"
+	msg="failed"
 fi
 
 if exists osascript
 then
-    osascript -e "display notification \"$msg\" with title \"$1\" sound name \"beep\""
+	osascript -e "display notification \"$msg\" with title \"$1\" sound name \"beep\""
+elif exists awesome-client
+then
+	awesome-client "require('naughty').notify({ preset = require('naughty').config.presets.info, title = '$1', text = '$msg' })"
 elif exists notify-send
 then
-    notify-send "$1" "$msg"
+	notify-send "$1" "$msg"
 elif exists zenity
 then
-    # TODO: fix this error:
-    #     Gtk-Message: GtkDialog mapped without a transient parent. This is discouraged.
-    zenity --info --title="$1" --text="$msg" 2>/dev/null
+	# TODO: fix this error:
+	#     Gtk-Message: GtkDialog mapped without a transient parent. This is discouraged.
+	zenity --info --title="$1" --text="$msg" 2>/dev/null
 elif exists say
 then
-    say "notify: $1 $msg"
+	say "notify: $1 $msg"
 else
-    echo -e "notify: $1 $msg\a"
+	echo -e "notify: $1 $msg\a"
 fi
