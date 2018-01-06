@@ -415,6 +415,8 @@ end
 
 -- TODO: Brightness and volume indicators (progress bar with a symbol overlaid, extra information in pop-up).
 -- TODO: Music bar (with controls).
+-- TODO: WiFi
+-- TODO: Notification widget.
 
 
 -- Create a wibox for each screen and add it
@@ -783,18 +785,22 @@ root.keys(globalkeys)
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
-    -- All clients will match this rule.
-    { rule = { },
-      properties = { border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
-                     focus = awful.client.focus.filter,
-                     raise = true,
-                     keys = clientkeys,
-                     buttons = clientbuttons,
-                     screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
-     }
-    },
+	-- All clients will match this rule.
+	{
+		rule = { },
+		properties = {
+			border_width = beautiful.border_width,
+			border_color = beautiful.border_normal,
+			buttons = clientbuttons,
+			focus = awful.client.focus.filter,
+			keys = clientkeys,
+			maximized_horizontal = false,
+			maximized_vertical = false,
+			placement = awful.placement.no_overlap+awful.placement.no_offscreen,
+			raise = true,
+			screen = awful.screen.preferred,
+		},
+	},
 
     -- Floating clients.
     { rule_any = {
