@@ -236,9 +236,9 @@ awful.screen.connect_for_each_screen(function (s)
 	local layouts = {
 		awful.layout.suit.tile,
 		awful.layout.suit.fair,
-		awful.layout.suit.max.fullscreen,
-		awful.layout.suit.max.fullscreen,
-		awful.layout.suit.max.fullscreen,
+		awful.layout.suit.max,
+		awful.layout.suit.max,
+		awful.layout.suit.max,
 	}
 	awful.tag(names, s, layouts)
 
@@ -519,8 +519,9 @@ awful.rules.rules = {
 	{
 		rule = { },
 		properties = {
-			border_width = beautiful.border_width,
 			border_color = beautiful.border_normal,
+			-- TODO: Border on unmaximised, but not maximised.
+			border_width = beautiful.border_width,
 			buttons = clientbuttons,
 			focus = awful.client.focus.filter,
 			keys = clientkeys,
@@ -559,9 +560,9 @@ awful.rules.rules = {
       }, properties = { floating = true }},
 
     -- Add titlebars to normal clients and dialogs
-    { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = true }
-    },
+    -- { rule_any = {type = { "normal", "dialog" }
+    --   }, properties = { titlebars_enabled = true }
+    -- },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
@@ -615,11 +616,12 @@ client.connect_signal("request::titlebars", function(c)
             layout  = wibox.layout.flex.horizontal
         },
         { -- Right
-            awful.titlebar.widget.floatingbutton (c),
+            awful.titlebar.widget.floatingbutton(c),
             awful.titlebar.widget.maximizedbutton(c),
-            awful.titlebar.widget.stickybutton   (c),
-            awful.titlebar.widget.ontopbutton    (c),
-            awful.titlebar.widget.closebutton    (c),
+            awful.titlebar.widget.stickybutton(c),
+            awful.titlebar.widget.ontopbutton(c),
+            awful.titlebar.widget.closebutton(c),
+
             layout = wibox.layout.fixed.horizontal()
         },
         layout = wibox.layout.align.horizontal
