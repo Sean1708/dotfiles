@@ -10,9 +10,6 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
--- Enable hotkeys help widget for VIM and other apps
--- when client with a matching name is opened:
---require("awful.hotkeys_popup.keys")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -130,8 +127,11 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- NOTE: Spaces around the string are far more visually pleasing.
 -- TODO: Can the spaces be replaced by padding?
 textclock = wibox.widget.textclock(" %a %d %b, %H:%M ")
--- TODO: Have 1 & 3 change month and 2 close it.
 calendar = awful.widget.calendar_popup.month()
+calendar:buttons(gears.table.join(
+	awful.button({ }, 1, function () calendar:call_calendar(-1) end),
+	awful.button({ }, 2, function () calendar.visible = false end),
+	awful.button({ }, 3, function () calendar:call_calendar(1) end)))
 calendar:attach(textclock, "tr")
 
 -- TODO: Move into a seperate file.
