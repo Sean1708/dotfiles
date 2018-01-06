@@ -102,7 +102,7 @@ end
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
-myawesomemenu = {
+awesomemenu = {
    { "hotkeys", function () return false, hotkeys_popup.show_help end},
    { "manual", terminal .. " -e man awesome" },
    { "edit config", editor_cmd .. " " .. awesome.conffile },
@@ -110,16 +110,16 @@ myawesomemenu = {
    { "quit", function () awesome.quit() end},
 }
 
-mymainmenu = awful.menu({
+mainmenu = awful.menu({
 	items = {
-		{ "awesome", myawesomemenu, beautiful.awesome_icon },
+		{ "awesome", awesomemenu, beautiful.awesome_icon },
 		{ "open terminal", terminal },
 	},
 })
 
-mylauncher = awful.widget.launcher({
+launcher = awful.widget.launcher({
 	image = beautiful.awesome_icon,
-	menu = mymainmenu,
+	menu = mainmenu,
 })
 
 -- Menubar configuration
@@ -129,10 +129,10 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- {{{ Wibar
 -- NOTE: Spaces around the string are far more visually pleasing.
 -- TODO: Can the spaces be replaced by padding?
-mytextclock = wibox.widget.textclock(" %a %d %b, %H:%M ")
+textclock = wibox.widget.textclock(" %a %d %b, %H:%M ")
 -- TODO: Have 1 & 3 change month and 2 close it.
-mycalendar = awful.widget.calendar_popup.month()
-mycalendar:attach(mytextclock, "tr")
+calendar = awful.widget.calendar_popup.month()
+calendar:attach(textclock, "tr")
 
 -- TODO: Move into a seperate file.
 -- TODO: Notification on low battery.
@@ -513,48 +513,52 @@ awful.screen.connect_for_each_screen(function (s)
 	awful.tag(names, s, layouts)
 
 	-- Create a promptbox for each screen
-	s.mypromptbox = awful.widget.prompt()
+	s.prompt = awful.widget.prompt()
 	-- Create an imagebox widget which will contain an icon indicating which layout we're using.
 	-- We need one layoutbox per screen.
-	s.mylayoutbox = awful.widget.layoutbox(s)
-	s.mylayoutbox:buttons(gears.table.join(
+	s.layoutbox = awful.widget.layoutbox(s)
+	s.layoutbox:buttons(gears.table.join(
 		awful.button({ }, 1, function () awful.layout.inc( 1) end),
 		awful.button({ }, 3, function () awful.layout.inc(-1) end),
 		awful.button({ }, 4, function () awful.layout.inc( 1) end),
 		awful.button({ }, 5, function () awful.layout.inc(-1) end)))
 	-- Create a taglist widget
-	s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
+	s.taglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
 
 	-- Create a tasklist widget
-	s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
+	-- TODO: Need to visually distinguish tasklist from taglist.
+	s.tasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
 
 	-- Create the wibox
-	s.mywibox = awful.wibar({ position = "top", screen = s })
+	s.wibox = awful.wibar({ position = "top", screen = s })
 
 	-- Add widgets to the wibox
-	s.mywibox:setup {
-		layout = wibox.layout.align.horizontal,
+	s.wibox:setup {
 		{ -- Left widgets
+			launcher,
+			s.taglist,
+			s.prompt,
+
 			layout = wibox.layout.fixed.horizontal,
-			mylauncher,
-			s.mytaglist,
-			s.mypromptbox,
 		},
-		s.mytasklist, -- Middle widget
+		s.tasklist, -- Middle widget
 		{ -- Right widgets
-			layout = wibox.layout.fixed.horizontal,
 			battery.bar,
 			wibox.widget.systray(),
-			mytextclock,
-			s.mylayoutbox,
+			textclock,
+			s.layoutbox,
+
+			layout = wibox.layout.fixed.horizontal,
 		},
+
+		layout = wibox.layout.align.horizontal,
 	}
 end)
 -- }}}
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
-	awful.button({ }, 3, function () mymainmenu:toggle() end),
+	awful.button({ }, 3, function () mainmenu:toggle() end),
 	awful.button({ }, 4, awful.tag.viewnext),
 	awful.button({ }, 5, awful.tag.viewprev)
 ))
@@ -583,7 +587,7 @@ globalkeys = gears.table.join(
         end,
         {description = "focus previous by index", group = "client"}
     ),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
+    awful.key({ modkey,           }, "w", function () mainmenu:show() end,
               {description = "show main menu", group = "awesome"}),
 
     -- Layout manipulation
@@ -643,14 +647,14 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
+    awful.key({ modkey },            "r",     function () awful.screen.focused().prompt:run() end,
               {description = "run prompt", group = "launcher"}),
 
     awful.key({ modkey }, "x",
               function ()
                   awful.prompt.run {
                     prompt       = "Run Lua code: ",
-                    textbox      = awful.screen.focused().mypromptbox.widget,
+                    textbox      = awful.screen.focused().prompt.widget,
                     exe_callback = awful.util.eval,
                     history_path = awful.util.get_cache_dir() .. "/history_eval"
                   }
