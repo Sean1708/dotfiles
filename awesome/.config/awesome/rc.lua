@@ -126,6 +126,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- {{{ Wibar
 -- NOTE: Spaces around the string are far more visually pleasing.
 -- TODO: Can the spaces be replaced by padding?
+--	- Prob want to spacing between all widgets on right side.
 textclock = wibox.widget.textclock(" %a %d %b, %H:%M ")
 calendar = awful.widget.calendar_popup.month()
 calendar:buttons(gears.table.join(
@@ -412,8 +413,68 @@ do
 	battery:update()
 end
 
+local brightness
+do
+	local progress = wibox.widget {
+		widget = wibox.widget.progressbar,
 
--- TODO: Brightness and volume indicators (progress bar with a symbol overlaid, extra information in pop-up).
+		min_value = 0,
+		max_value = 100,
+		value = nil,
+
+		forced_width = 50,
+		paddings = 1,
+	}
+
+	function progress:update(brightness)
+		self.value = brightness
+	end
+
+	-- TODO: Make this an icon.
+	local text = wibox.widget {
+		widget = wibox.widget.textbox,
+
+		text = "BRIGHT",
+
+		align = "center",
+	}
+
+	local bar = wibox.widget {
+		progress,
+		text,
+
+		layout = wibox.layout.stack,
+	}
+	bar.progress = progress
+	bar.text = text
+
+	function bar:update(brightness)
+		self.progress:update(brightness)
+	end
+
+	brightness = {
+		brightness = nil,
+
+		bar = bar,
+	}
+
+	function brightness:update()
+		assert(awful.spawn.easy_async(
+			"xbacklight -get",
+			function (out)
+				local brightness = tonumber(out)
+				self.brightness = brightness
+				self.bar:update(brightness)
+			end))
+	end
+
+	brightness:update()
+	assert(awful.spawn.with_line_callback(
+		"inotifywait -m -e modify /sys/class/backlight/intel_backlight/actual_brightness",
+		{ stdout = function () brightness:update() end }))
+end
+
+-- TODO: Volume indicators (progress bar with a symbol overlaid, extra information in pop-up look up volnoti).
 -- TODO: Music bar (with controls).
 -- TODO: WiFi
 -- TODO: Notification widget.
@@ -544,6 +605,7 @@ awful.screen.connect_for_each_screen(function (s)
 		},
 		s.tasklist, -- Middle widget
 		{ -- Right widgets
+			brightness.bar,
 			battery.bar,
 			wibox.widget.systray(),
 			textclock,
