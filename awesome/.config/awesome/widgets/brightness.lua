@@ -1,6 +1,8 @@
 local awful = require('awful')
 local wibox = require('wibox')
 
+-- TODO: This should be a brightness icon next to a _vertical_ progressbar.
+
 
 local progress = wibox.widget {
 	widget = wibox.widget.progressbar,

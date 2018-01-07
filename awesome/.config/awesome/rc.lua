@@ -40,20 +40,12 @@ do
 end
 -- }}}
 
--- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
--- This is used later as the default terminal and editor to run.
-terminal = "konsole"
-editor = os.getenv("EDITOR") or "vi"
-editor_cmd = terminal .. " -e " .. editor
-
--- Default modkey.
--- Usually, Mod4 is the key with a logo between Control and Alt.
--- If you do not like this or do not have such a key,
--- I suggest you to remap Mod4 to another key using xmodmap or other tools.
--- However, you can use another modifier like Mod1, but it may interact with others.
-modkey = "Mod4"
+local terminal = "konsole"
+local editor = os.getenv("EDITOR") or "vi"
+local editor_cmd = terminal .. " -e " .. editor
+local modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
@@ -103,7 +95,7 @@ end
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
-awesomemenu = {
+local awesomemenu = {
    { "hotkeys", function () return false, hotkeys_popup.show_help end},
    { "manual", terminal .. " -e man awesome" },
    { "edit config", editor_cmd .. " " .. awesome.conffile },
@@ -111,14 +103,14 @@ awesomemenu = {
    { "quit", function () awesome.quit() end},
 }
 
-mainmenu = awful.menu({
+local mainmenu = awful.menu({
 	items = {
 		{ "awesome", awesomemenu, beautiful.awesome_icon },
 		{ "open terminal", terminal },
 	},
 })
 
-launcher = awful.widget.launcher({
+local launcher = awful.widget.launcher({
 	image = beautiful.awesome_icon,
 	menu = mainmenu,
 })
@@ -131,8 +123,8 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- NOTE: Spaces around the string are far more visually pleasing.
 -- TODO: Can the spaces be replaced by padding?
 --	- Prob want to spacing between all widgets on right side.
-textclock = wibox.widget.textclock(" %a %d %b, %H:%M ")
-calendar = awful.widget.calendar_popup.month()
+local textclock = wibox.widget.textclock(" %a %d %b, %H:%M ")
+local calendar = awful.widget.calendar_popup.month()
 calendar:buttons(gears.table.join(
 	awful.button({ }, 1, function () calendar:call_calendar(-1) end),
 	awful.button({ }, 2, function () calendar.visible = false end),
@@ -296,7 +288,7 @@ root.buttons(gears.table.join(
 -- }}}
 
 -- {{{ Key bindings
-globalkeys = gears.table.join(
+local globalkeys = gears.table.join(
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
@@ -409,7 +401,7 @@ globalkeys = gears.table.join(
               {description = "show the menubar", group = "launcher"})
 )
 
-clientkeys = gears.table.join(
+local clientkeys = gears.table.join(
     awful.key({ modkey,           }, "f",
         function (c)
             c.fullscreen = not c.fullscreen
@@ -503,7 +495,7 @@ for i = 1, 9 do
     )
 end
 
-clientbuttons = gears.table.join(
+local clientbuttons = gears.table.join(
     awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
     awful.button({ modkey }, 1, awful.mouse.client.move),
     awful.button({ modkey }, 3, awful.mouse.client.resize))
@@ -517,6 +509,7 @@ root.keys(globalkeys)
 awful.rules.rules = {
 	-- All clients will match this rule.
 	{
+		-- TODO: Terminals don't seem to adhere to this.
 		rule = { },
 		properties = {
 			border_color = beautiful.border_normal,
