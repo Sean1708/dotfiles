@@ -133,12 +133,13 @@ calendar:attach(textclock, "tr")
 
 local battery = load_widget('battery')
 local brightness = load_widget('brightness')
+local network = load_widget('network')
 
 -- TODO: Volume indicators (progress bar with a symbol overlaid, extra information in pop-up, look up volnoti).
 -- TODO: Music bar (with controls).
--- TODO: WiFi
 -- TODO: Notification widget.
 
+local seperate = wibox.widget.textbox('  ')
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -265,8 +266,13 @@ awful.screen.connect_for_each_screen(function (s)
 		},
 		s.tasklist, -- Middle widget
 		{ -- Right widgets
+			seperate,
+			network.bar,
+			seperate,
 			brightness.bar,
+			seperate,
 			battery.bar,
+			seperate,
 			wibox.widget.systray(),
 			textclock,
 			s.layoutbox,
@@ -526,40 +532,34 @@ awful.rules.rules = {
 		},
 	},
 
-    -- Floating clients.
-    { rule_any = {
-        instance = {
-          "DTA",  -- Firefox addon DownThemAll.
-          "copyq",  -- Includes session name in class.
-        },
-        class = {
-          "Arandr",
-          "Gpick",
-          "Kruler",
-          "MessageWin",  -- kalarm.
-          "Sxiv",
-          "Wpa_gui",
-          "pinentry",
-          "veromix",
-          "xtightvncviewer"},
-
-        name = {
-          "Event Tester",  -- xev.
-        },
-        role = {
-          "AlarmWindow",  -- Thunderbird's calendar.
-          "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
-        }
-      }, properties = { floating = true }},
-
-    -- Add titlebars to normal clients and dialogs
-    -- { rule_any = {type = { "normal", "dialog" }
-    --   }, properties = { titlebars_enabled = true }
-    -- },
-
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
+	-- Floating clients.
+	{
+		rule_any = {
+			instance = {
+				"DTA",  -- Firefox addon DownThemAll.
+				"copyq",  -- Includes session name in class.
+			},
+			class = {
+				"Arandr",
+				"Gpick",
+				"Kruler",
+				"MessageWin",  -- kalarm.
+				"Sxiv",
+				"Wpa_gui",
+				"pinentry",
+				"veromix",
+				"xtightvncviewer",
+			},
+			name = {
+				"Event Tester",  -- xev.
+			},
+			role = {
+				"AlarmWindow",  -- Thunderbird's calendar.
+				"pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
+			},
+		},
+		properties = { floating = true },
+	},
 }
 -- }}}
 

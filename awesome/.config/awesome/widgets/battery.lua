@@ -304,12 +304,12 @@ battery.bar:buttons(gears.table.join(
 	awful.button({ }, 1, function () battery.popup:toggle() end)))
 
 
+battery:update()
 gears.timer {
 	timeout = 1,
 	autostart = true,
 	callback = function () battery:update() end,
 }
-battery:update()
 
 
 return battery
