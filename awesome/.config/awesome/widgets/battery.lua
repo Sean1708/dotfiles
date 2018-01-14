@@ -306,7 +306,7 @@ battery.bar:buttons(gears.table.join(
 
 battery:update()
 gears.timer {
-	timeout = 1,
+	timeout = 30,
 	autostart = true,
 	callback = function () battery:update() end,
 }

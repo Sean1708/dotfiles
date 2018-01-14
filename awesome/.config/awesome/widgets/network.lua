@@ -97,7 +97,7 @@ end
 
 network:update()
 gears.timer {
-	timeout = 1,
+	timeout = 5,
 	autostart = true,
 	callback = function () network:update() end,
 }
