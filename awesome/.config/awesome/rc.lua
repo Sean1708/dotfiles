@@ -134,8 +134,8 @@ calendar:attach(textclock, "tr")
 local battery = load_widget('battery')
 local brightness = load_widget('brightness')
 local network = load_widget('network')
+local volume = load_widget('volume')
 
--- TODO: Volume indicators (progress bar with a symbol overlaid, extra information in pop-up, look up volnoti).
 -- TODO: Music bar (with controls).
 -- TODO: Notification widget.
 
@@ -268,6 +268,8 @@ awful.screen.connect_for_each_screen(function (s)
 		{ -- Right widgets
 			seperate,
 			network.bar,
+			seperate,
+			volume.bar,
 			seperate,
 			brightness.bar,
 			seperate,
