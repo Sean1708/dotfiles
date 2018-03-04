@@ -48,6 +48,7 @@ do
 
 
 	volume = {
+		mute = nil,
 		volume = nil,
 
 		bar = bar,
@@ -58,11 +59,17 @@ do
 			'amixer get Master',
 			{
 				stdout = function (out)
-					local volume = out:match('%[(%d+)%%%]')
-					if volume then
+					local volume, mute = out:match(
+						'%w+: Playback %d+ %[(%d+)%%%] %[.-%] %[(%w+)%]')
+
+					if volume and mute then
+						mute = mute == 'off'
+						self.mute = mute
+
 						volume = tonumber(volume)
 						self.volume = volume
-						self.bar:update(volume)
+
+						self.bar:update(mute and 0 or volume)
 					end
 				end,
 			}))
