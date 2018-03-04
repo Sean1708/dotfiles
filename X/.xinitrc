@@ -53,9 +53,3 @@ if hash xbindkeys 2>/dev/null
 then
 	xbindkeys
 fi
-
-
-if hash awesome 2>/dev/null
-then
-	exec awesome
-fi
