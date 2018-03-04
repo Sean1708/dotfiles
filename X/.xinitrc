@@ -53,3 +53,9 @@ if hash xbindkeys 2>/dev/null
 then
 	xbindkeys
 fi
+
+
+if hash i3 2>/dev/null
+then
+	exec i3
+fi
