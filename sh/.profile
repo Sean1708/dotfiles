@@ -30,11 +30,12 @@ then
 	alias paste='pbpaste'
 fi
 
-# Start the SSH Agent if it hasn't already.
 if hash ssh-agent 2>/dev/null && [ -z "$SSH_AUTH_SOCK" ]
 then
 	eval $(ssh-agent -s)
 fi
+
+alias gotemp='cd $(mktemp -d)'
 
 # Some programs will only follow XDG if these are set.
 export XDG_CONFIG_HOME="$HOME/.config"
