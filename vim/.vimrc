@@ -24,6 +24,7 @@ colorscheme solarized
 set autoindent
 set backspace=indent,eol,start
 set formatoptions+=o,r
+set noexpandtab
 set nojoinspaces
 set nowrap
 set scrolloff=1
