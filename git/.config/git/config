@@ -28,6 +28,8 @@
 [alias]
 	aliases = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\0/ | grep -v '^aliases' | sort | column -ts \\0
 
+	create = "! sh -c \"git branch $1 && git checkout $1 && git push -u\""
+
 	amend = commit --amend --no-edit
 	discard = checkout --
 	fixup = "! sh -c '(git diff-files --quiet || (echo \"Unstaged changes, please commit or stash with --keep-index.\"; exit 1)) && COMMIT=$(git rev-parse $1) && git commit --fixup=$COMMIT && git rebase -i --autosquash $COMMIT~1' -"
