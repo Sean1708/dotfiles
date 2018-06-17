@@ -78,6 +78,7 @@ mode "$mode_i3" {
 	bindsym c reload
 	bindsym r restart
 	bindsym q exit
+	bindsym s exec shutdown now
 
 	bindsym BackSpace mode "default"
 }
