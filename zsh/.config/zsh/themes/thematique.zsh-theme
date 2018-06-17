@@ -4,10 +4,10 @@ GIT_DELETED='✖'  # \u2716
 GIT_RENAMED='→'  # \u2192
 GIT_UNMERGED='≠'  # \u2260
 GIT_UNTRACKED='★'  # \u2605
-JOBS='⚙'  # \u2699
-ROOT='⚡'  # \u26a1
-RETURN='↵'  # \u21b5
-USER='≫'  # \u226b
+MY_JOBS='⚙'  # \u2699
+MY_ROOT='⚡'  # \u26a1
+MY_RETURN='↵'  # \u21b5
+MY_USER='≫'  # \u226b
 
 prompt_thematique_colour() {
 	if [[ "$TERM" != "dumb" ]] && [[ "$DISABLE_LS_COLORS" != "true" ]]
@@ -34,9 +34,9 @@ prompt_thematique_start() {
 	print
 	if [[ $UID -eq 0 ]]
 	then
-		prompt_thematique_colour yellow "$LIGHTNING "
+		prompt_thematique_colour yellow "$MY_ROOT "
 	else
-		prompt_thematique_colour gray "$USER "
+		prompt_thematique_colour gray "$MY_USER "
 	fi
 }
 
@@ -69,7 +69,7 @@ prompt_thematique_return_info() {
 	if [[ "$RETVAL" -gt 0 ]]
 	then
 		prompt_thematique_separate
-		prompt_thematique_colour red "$RETURN $RETVAL"
+		prompt_thematique_colour red "$MY_RETURN $RETVAL"
 	fi
 }
 
@@ -78,7 +78,7 @@ prompt_thematique_job_info() {
 	if [[ "$num_jobs" -gt 0 ]]
 	then
 		prompt_thematique_separate
-		prompt_thematique_colour blue "$JOBS $num_jobs"
+		prompt_thematique_colour blue "$MY_JOBS $num_jobs"
 	fi
 }
 
