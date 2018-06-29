@@ -16,6 +16,12 @@ else
 	export EDITOR=vi
 fi
 
+# If present, prefer `konsole`.
+if hash konsole 2>/dev/null
+then
+	export TERMINAL=konsole
+fi
+
 if hash xclip 2>/dev/null
 then
 	alias copy='xclip -in -selection primary'
