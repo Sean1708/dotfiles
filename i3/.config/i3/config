@@ -39,7 +39,7 @@ bindsym $mod+0 workspace 10
 
 bindsym $mod+f fullscreen toggle
 
-set $mode_app app
+set $mode_app Applications | b: Browser (FireFox) - e: Editor (Visual Studio Code) - m: Music (spotify)
 bindsym $mod+a mode "$mode_app"
 mode "$mode_app" {
 	bindsym h split horizontal
@@ -54,7 +54,7 @@ mode "$mode_app" {
 	bindsym BackSpace mode "default"
 }
 
-set $mode_container container
+set $mode_container Container | d: Split - f: Floating - s: Stacking - t: Tabbed | <space>: Focus Floating
 bindsym $mod+c mode "$mode_container"
 mode "$mode_container" {
 	bindsym h resize shrink width 10 px or 10 ppt
@@ -62,28 +62,17 @@ mode "$mode_container" {
 	bindsym k resize grow height 10 px or 10 ppt
 	bindsym l resize grow width 10 px or 10 ppt
 
+	bindsym d layout toggle split
+	bindsym f floating toggle
 	bindsym s layout stacking
 	bindsym t layout tabbed
-	bindsym d layout toggle split
 
-	bindsym f floating toggle
 	bindsym space focus mode_toggle
 
 	bindsym BackSpace mode "default"
 }
 
-set $mode_i3 i3
-bindsym $mod+i mode "$mode_i3"
-mode "$mode_i3" {
-	bindsym c reload
-	bindsym r restart
-	bindsym q exit
-	bindsym s exec shutdown now
-
-	bindsym BackSpace mode "default"
-}
-
-set $mode_move move
+set $mode_move Move
 bindsym $mod+m mode "$mode_move"
 mode "$mode_move" {
 	bindsym h move left
@@ -101,6 +90,18 @@ mode "$mode_move" {
 	bindsym 8 move container to workspace 8
 	bindsym 9 move container to workspace 9
 	bindsym 0 move container to workspace 10
+
+	bindsym BackSpace mode "default"
+}
+
+set $mode_system System | b: Reboot - c: Reload Config - l: Lock - q: Quit i3 - r: Restart i3 - s: Shutdown
+bindsym $mod+s mode "$mode_system"
+mode "$mode_system" {
+	bindsym b exec systemctl reboot
+	bindsym c reload
+	bindsym q exit
+	bindsym r restart
+	bindsym s exec systemctl poweroff
 
 	bindsym BackSpace mode "default"
 }
