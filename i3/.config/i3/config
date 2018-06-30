@@ -99,6 +99,7 @@ bindsym $mod+s mode "$mode_system"
 mode "$mode_system" {
 	bindsym b exec systemctl reboot
 	bindsym c reload
+	bindsym l exec xautolock -locknow, mode "default"
 	bindsym q exit
 	bindsym r restart
 	bindsym s exec systemctl poweroff
