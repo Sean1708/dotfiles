@@ -99,7 +99,7 @@ bindsym $mod+s mode "$mode_system"
 mode "$mode_system" {
 	bindsym b exec --no-startup-id systemctl reboot
 	bindsym c reload
-	bindsym l exec --no-startup-id xautolock -locknow, mode "default"
+	bindsym l exec --no-startup-id loginctl lock-session, mode "default"
 	bindsym q exit
 	bindsym r restart
 	bindsym s exec --no-startup-id systemctl poweroff
