@@ -62,10 +62,10 @@ mode "$mode_container" {
 	bindsym k resize grow height 10 px or 10 ppt
 	bindsym l resize grow width 10 px or 10 ppt
 
-	bindsym d layout toggle split
-	bindsym f floating toggle
-	bindsym s layout stacking
-	bindsym t layout tabbed
+	bindsym d layout toggle split, mode "default"
+	bindsym f floating toggle, mode "default"
+	bindsym s layout stacking, mode "default"
+	bindsym t layout tabbed, mode "default"
 
 	bindsym space focus mode_toggle
 
