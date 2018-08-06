@@ -54,7 +54,7 @@ mode "$mode_app" {
 	bindsym BackSpace mode "default"
 }
 
-set $mode_container Container | d: Split - f: Floating - s: Stacking - t: Tabbed | <space>: Focus Floating
+set $mode_container Container | d: Split - f: Floating - s: Stacking - t: Tabbed | space: Focus Floating
 bindsym $mod+c mode "$mode_container"
 mode "$mode_container" {
 	bindsym h resize shrink width 10 px or 10 ppt
