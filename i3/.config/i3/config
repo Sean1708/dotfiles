@@ -38,6 +38,7 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 bindsym $mod+f fullscreen toggle
+bindsym $mod+Tab focus mode_toggle
 
 set $mode_app Applications | b: Browser (FireFox) - e: Editor (Visual Studio Code) - m: Music (spotify)
 bindsym $mod+a mode "$mode_app"
@@ -66,8 +67,6 @@ mode "$mode_container" {
 	bindsym f floating toggle, mode "default"
 	bindsym s layout stacking, mode "default"
 	bindsym t layout tabbed, mode "default"
-
-	bindsym space focus mode_toggle
 
 	bindsym BackSpace mode "default"
 }
