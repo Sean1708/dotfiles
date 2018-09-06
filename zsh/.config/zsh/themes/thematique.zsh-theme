@@ -7,7 +7,7 @@ GIT_UNTRACKED='★'  # \u2605
 MY_JOBS='⚙'  # \u2699
 MY_ROOT='⚡'  # \u26a1
 MY_RETURN='↵'  # \u21b5
-MY_USER='≫'  # \u226b
+MY_USER='$'
 
 prompt_thematique_colour() {
 	if [[ "$TERM" != "dumb" ]] && [[ "$DISABLE_LS_COLORS" != "true" ]]
