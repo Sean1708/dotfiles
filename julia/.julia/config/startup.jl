@@ -365,12 +365,14 @@ PromptStatus() = PromptStatus(
 )
 
 function Base.show(io::IO, status::PromptStatus)
-	if startswith(status.pwd, homedir())
-		pwd = joinpath("~", relpath(status.pwd, homedir()))
+	pwd = if status.pwd == homedir() || status.pwd == readlink(homedir())
+		"~"
+	elseif startswith(status.pwd, homedir())
+		joinpath("~", relpath(status.pwd, homedir()))
 	elseif startswith(status.pwd, readlink(homedir()))
-		pwd = joinpath("~", relpath(status.pwd, readlink(homedir())))
+		joinpath("~", relpath(status.pwd, readlink(homedir())))
 	else
-		pwd = status.pwd
+		status.pwd
 	end
 
 	print(io, "[")
