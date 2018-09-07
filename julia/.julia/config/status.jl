@@ -56,7 +56,7 @@ const ACTIONS2 = Dict(
 )
 
 
-struct GitStatus
+struct Git
 	branch::String
 
 	ahead::Int
@@ -75,7 +75,7 @@ end
 # TODO: Can we use `LibGit2`?
 # TODO: What other information is available?
 #	- Upstream info.
-function GitStatus()
+function Git()
 	status = Dict(
 		:branch => "",
 		:ahead => 0,
@@ -90,7 +90,7 @@ function GitStatus()
 	)
 
 	if !success(`git rev-parse --is-in-work-tree`)
-		return GitStatus(
+		return Git(
 			status[:branch],
 			status[:ahead],
 			status[:behind],
@@ -284,7 +284,7 @@ function GitStatus()
 		entry!(output, status)
 	end
 
-	GitStatus(
+	Git(
 		status[:branch],
 		status[:ahead],
 		status[:behind],
@@ -298,7 +298,7 @@ function GitStatus()
 	)
 end
 
-function Base.show(io::IO, status::GitStatus)
+function Base.show(io::IO, status::Git)
 	if isempty(status.branch)
 		return
 	end
@@ -333,40 +333,40 @@ function Base.show(io::IO, status::GitStatus)
 	end
 end
 
-function isrepo(status::GitStatus)
+function isrepo(status::Git)
 	!isempty(status.branch)
 end
 
 
-struct JobStatus
+struct Job
 	shell::UInt
 	julia::UInt
 end
 
-JobStatus() = JobStatus(0, 0)
+Job() = Job(0, 0)
 
 
-struct ShellStatus
+struct System
 	host::String
 	pwd::String
 	root::Bool
 	user::String
 
-	git::GitStatus
-	jobs::JobStatus
+	git::Git
+	jobs::Job
 end
 
-ShellStatus() = ShellStatus(
+System() = System(
 	gethostname(),
 	pwd(),
 	false,
 	# TODO: Is there a better way to do this?
 	ENV["USER"],
-	GitStatus(),
-	JobStatus(),
+	Git(),
+	Job(),
 )
 
-function Base.show(io::IO, status::ShellStatus)
+function Base.show(io::IO, status::System)
 	pwd = if status.pwd == homedir() || status.pwd == readlink(homedir())
 		"~"
 	elseif startswith(status.pwd, homedir())

@@ -9,9 +9,17 @@ end
 include("status.jl")
 
 const keys = Dict{Any, Any}(
-	'#' => function (s, _r, c)
+	'#' => function (s, _, c)
 		if isempty(s)
-			println(Status.ShellStatus())
+			println(Status.System())
+			LineEdit.edit_clear(s)
+		else
+			LineEdit.edit_insert(s, c)
+		end
+	end,
+	'~' => function (s, _, c)
+		if isempty(s)
+			display(Status.System())
 			LineEdit.edit_clear(s)
 		else
 			LineEdit.edit_insert(s, c)
