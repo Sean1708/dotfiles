@@ -2,8 +2,11 @@ module Status
 
 const SYMBOLS = @static if uppercase(ENV["TERM"]) == "DUMB"
 	Dict(
+		:DIRECTORY => ':',
+		:HOST => '@',
 		:ROOT => '#',
 		:USER => '$',
+		:branch => 'Y',
 		:ahead => '^',
 		:behind => 'v',
 		:added => '+',
@@ -16,8 +19,11 @@ const SYMBOLS = @static if uppercase(ENV["TERM"]) == "DUMB"
 	)
 else
 	Dict(
+		:DIRECTORY => ':',
+		:HOST => '@',
 		:ROOT => '\u26a1',
 		:USER => '$',
+		:branch => 'Y',
 		:ahead => '\u2191',
 		:behind => '\u2193',
 		:added => '\u271a',
@@ -333,6 +339,17 @@ function Base.show(io::IO, status::Git)
 	end
 end
 
+function Base.show(io::IO, ::MIME"text/plain", status::Git)
+	for (field, colour) in zip(
+			[:branch, :ahead, :behind, :added, :copied, :deleted, :modified, :renamed, :unmerged, :untracked],
+			[:yellow, :green, :red, :red, :yellow, :green, :cyan, :blue, :magenta, :white],
+	)
+		# TODO: Print the sets as an indented, ordered list.
+		name = String(field)
+		print_with_color(colour, io, SYMBOLS[field], " ", titlecase(name), ": ", " " ^ (9 - length(name)), getfield(status, field), '\n')
+	end
+end
+
 function isrepo(status::Git)
 	!isempty(status.branch)
 end
@@ -377,12 +394,15 @@ function Base.show(io::IO, status::System)
 		status.pwd
 	end
 
+	user_colour = status.root ? :red : :green
+	user_symbol = status.root ? :ROOT : :USER
+
 	print(io, "[")
 
-	print_with_color(:red, io, status.user)
-	print(io, "@")
+	print_with_color(user_colour, io, status.user)
+	print(io, SYMBOLS[:HOST])
 	print_with_color(:magenta, io, status.host)
-	print(io, ":")
+	print(io, SYMBOLS[:DIRECTORY])
 	print_with_color(:blue, io, pwd)
 
 	if isrepo(status.git)
@@ -391,10 +411,27 @@ function Base.show(io::IO, status::System)
 
 	print(io, "] ")
 
+	print_with_color(user_colour, io, SYMBOLS[user_symbol])
+end
+
+function Base.show(io::IO, m::MIME"text/plain", status::System)
 	if status.root
-		print_with_color(:red, io, SYMBOLS[:ROOT])
+		print_with_color(:red, io, SYMBOLS[:ROOT], " Username: ", " " ^ 9, status.user, '\n')
 	else
-		print(io, SYMBOLS[:USER])
+		print_with_color(:green, io, SYMBOLS[:USER], " Username: ", " " ^ 9, status.user, '\n')
+	end
+
+	print_with_color(:magenta, io, SYMBOLS[:HOST], " Hostname: ", " " ^ 9, status.host, '\n')
+	print_with_color(:blue, io, SYMBOLS[:DIRECTORY], " Working Directory: ", status.pwd, '\n')
+
+	b = IOBuffer()
+	Base.show(b, m, status.git)
+	seekstart(b)
+	git = readlines(b)
+
+	println(io, "Git:")
+	for line in git
+		println(io, '\t', line)
 	end
 end
 

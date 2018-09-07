@@ -19,6 +19,7 @@ const keys = Dict{Any, Any}(
 	end,
 	'~' => function (s, _, c)
 		if isempty(s)
+			println()
 			display(Status.System())
 			LineEdit.edit_clear(s)
 		else
