@@ -331,13 +331,18 @@ function Base.show(io::IO, status::Git)
 end
 
 function Base.show(io::IO, ::MIME"text/plain", status::Git)
+	# TODO: Only print the part of the path that changed, like git does.
+	_string(s::Set{Pair{String, String}}) = join(map(el -> "\n\t$(el[1]) => $(el[2])", s), "")
+	_string(s::Set) = join(map(el -> "\n\t$el", s), "")
+	_string(s) = string(s)
+
 	for (field, colour) in zip(
 			[:branch, :ahead, :behind, :added, :copied, :deleted, :modified, :renamed, :unmerged, :untracked],
 			[:yellow, :green, :red, :red, :yellow, :green, :cyan, :blue, :magenta, :white],
 	)
 		# TODO: Print the sets as an indented, ordered list.
 		name = String(field)
-		print_with_color(colour, io, SYMBOLS[field], " ", titlecase(name), " ", " " ^ (9 - length(name)), getfield(status, field), '\n')
+		print_with_color(colour, io, SYMBOLS[field], " ", titlecase(name), " ", " " ^ (9 - length(name)), _string(getfield(status, field)), '\n')
 	end
 end
 
