@@ -337,7 +337,7 @@ function Base.show(io::IO, ::MIME"text/plain", status::Git)
 	)
 		# TODO: Print the sets as an indented, ordered list.
 		name = String(field)
-		print_with_color(colour, io, SYMBOLS[field], " ", titlecase(name), ": ", " " ^ (9 - length(name)), getfield(status, field), '\n')
+		print_with_color(colour, io, SYMBOLS[field], " ", titlecase(name), " ", " " ^ (9 - length(name)), getfield(status, field), '\n')
 	end
 end
 
@@ -407,13 +407,13 @@ end
 
 function Base.show(io::IO, m::MIME"text/plain", status::System)
 	if status.root
-		print_with_color(:red, io, SYMBOLS[:ROOT], " Username: ", " " ^ 9, status.user, '\n')
+		print_with_color(:red, io, SYMBOLS[:ROOT], " Username ", " " ^ 9, status.user, '\n')
 	else
-		print_with_color(:green, io, SYMBOLS[:USER], " Username: ", " " ^ 9, status.user, '\n')
+		print_with_color(:green, io, SYMBOLS[:USER], " Username ", " " ^ 9, status.user, '\n')
 	end
 
-	print_with_color(:magenta, io, SYMBOLS[:HOST], " Hostname: ", " " ^ 9, status.host, '\n')
-	print_with_color(:blue, io, SYMBOLS[:DIRECTORY], " Working Directory: ", status.pwd, '\n')
+	print_with_color(:magenta, io, SYMBOLS[:HOST], " Hostname ", " " ^ 9, status.host, '\n')
+	print_with_color(:blue, io, SYMBOLS[:DIRECTORY], " Working Directory ", status.pwd, '\n')
 
 	b = IOBuffer()
 	Base.show(b, m, status.git)
