@@ -77,6 +77,19 @@ struct Git
 	untracked::Set{String}
 end
 
+Git(status) = Git(
+	status[:branch],
+	status[:ahead],
+	status[:behind],
+	status[:added],
+	status[:copied],
+	status[:deleted],
+	status[:modified],
+	status[:renamed],
+	status[:unmerged],
+	status[:untracked],
+)
+
 # TODO: Do the parsing better. Maybe move it into it's own module (i.e. not just a big bunch of closures inside this function).
 # TODO: Can we use `LibGit2`?
 # TODO: What other information is available?
@@ -96,18 +109,7 @@ function Git()
 	)
 
 	if !success(`git rev-parse --is-in-work-tree`)
-		return Git(
-			status[:branch],
-			status[:ahead],
-			status[:behind],
-			status[:added],
-			status[:copied],
-			status[:deleted],
-			status[:modified],
-			status[:renamed],
-			status[:unmerged],
-			status[:untracked],
-		)
+		return Git(status)
 	end
 
 	field(buffer, delim=' ') = strip(readuntil(buffer, delim), delim)
@@ -290,18 +292,7 @@ function Git()
 		entry!(output, status)
 	end
 
-	Git(
-		status[:branch],
-		status[:ahead],
-		status[:behind],
-		status[:added],
-		status[:copied],
-		status[:deleted],
-		status[:modified],
-		status[:renamed],
-		status[:unmerged],
-		status[:untracked],
-	)
+	Git(status)
 end
 
 function Base.show(io::IO, status::Git)
