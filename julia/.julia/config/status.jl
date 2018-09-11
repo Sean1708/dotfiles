@@ -112,10 +112,8 @@ function Git()
 		return Git(status)
 	end
 
-	field(buffer, delim=' ') = strip(readuntil(buffer, delim), delim)
-
 	function entry!(buffer, status)
-		marker = field(buffer)
+		marker = readuntil(buffer, ' ')
 
 		if marker == "#"
 			header!(buffer, status)
@@ -136,21 +134,21 @@ function Git()
 	end
 
 	function header!(buffer, status)
-		typ = field(buffer, '.')
+		typ = readuntil(buffer, '.')
 		if typ != "branch"
 			warn("Unknown header type: $typ")
 			readuntil(buffer, '\0')
 			return
 		end
 
-		key = field(buffer)
+		key = readuntil(buffer, ' ')
 		if key == "oid"
 			branch!(buffer, status)
 		elseif key == "head"
 			warn("Expected `branch.head` to have come after `branch.oid`.")
 		elseif key == "ab"
 			for delim in (' ', '\0')
-				ab = field(buffer, delim)
+				ab = readuntil(buffer, delim)
 
 				key = if ab[1] == '+'
 					:ahead
@@ -171,9 +169,9 @@ function Git()
 	end
 
 	function branch!(buffer, status)
-		commit = field(buffer, '\0')
+		commit = readuntil(buffer, '\0')
 
-		marker = field(buffer)
+		marker = readuntil(buffer, ' ')
 		if marker != "#"
 			warn("Expected `branch.oid` to be followed by `#`: $marker")
 
@@ -184,7 +182,7 @@ function Git()
 			return
 		end
 
-		typ = field(buffer, '.')
+		typ = readuntil(buffer, '.')
 		if typ != "branch"
 			warn("Expected `branch.oid` to be followed by another `branch`: $typ")
 
@@ -195,7 +193,7 @@ function Git()
 			return
 		end
 
-		key = field(buffer)
+		key = readuntil(buffer, ' ')
 		if key != "head"
 			warn("Expected `branch.oid` to be followed by `branch.head`: $key")
 
@@ -206,9 +204,9 @@ function Git()
 			return
 		end
 
-		branch = field(buffer, '\0')
+		branch = readuntil(buffer, '\0')
 		if branch == "(detached)"
-			commit = chomp(readstring(`git rev-parse --short $commit`))
+			commit = chomp(read(`git rev-parse --short $commit`, String))
 			status[:branch] = "(detached:$commit)"
 		else
 			status[:branch] = branch
@@ -216,16 +214,16 @@ function Git()
 	end
 
 	function changed1!(buffer, status)
-		state = field(buffer)
+		state = readuntil(buffer, ' ')
 
-		_submodule = field(buffer)
-		_mode_head = field(buffer)
-		_mode_indx = field(buffer)
-		_mode_tree = field(buffer)
-		_name_head = field(buffer)
-		_name_indx = field(buffer)
+		_submodule = readuntil(buffer, ' ')
+		_mode_head = readuntil(buffer, ' ')
+		_mode_indx = readuntil(buffer, ' ')
+		_mode_tree = readuntil(buffer, ' ')
+		_name_head = readuntil(buffer, ' ')
+		_name_indx = readuntil(buffer, ' ')
 
-		path = field(buffer, '\0')
+		path = readuntil(buffer, '\0')
 
 		key = get(ACTIONS1, state, :ERROR)
 		if key === :ERROR
@@ -236,18 +234,18 @@ function Git()
 	end
 
 	function changed2!(buffer, status)
-		state = field(buffer)
+		state = readuntil(buffer, ' ')
 
-		_submodule = field(buffer)
-		_mode_head = field(buffer)
-		_mode_indx = field(buffer)
-		_mode_tree = field(buffer)
-		_name_head = field(buffer)
-		_name_indx = field(buffer)
-		_sim_score = field(buffer)
+		_submodule = readuntil(buffer, ' ')
+		_mode_head = readuntil(buffer, ' ')
+		_mode_indx = readuntil(buffer, ' ')
+		_mode_tree = readuntil(buffer, ' ')
+		_name_head = readuntil(buffer, ' ')
+		_name_indx = readuntil(buffer, ' ')
+		_sim_score = readuntil(buffer, ' ')
 
-		target = field(buffer, '\0')
-		source = field(buffer, '\0')
+		target = readuntil(buffer, '\0')
+		source = readuntil(buffer, '\0')
 
 		key = get(ACTIONS2, state, :ERROR)
 		if key === :ERROR
@@ -266,21 +264,21 @@ function Git()
 	end
 
 	function unmerged!(buffer, status)
-		_state = field(buffer)
-		_submodule = field(buffer)
-		_mode_stage1 = field(buffer)
-		_mode_stage2 = field(buffer)
-		_mode_stage3 = field(buffer)
-		_name_stage1 = field(buffer)
-		_name_stage2 = field(buffer)
-		_name_stage3 = field(buffer)
+		_state = readuntil(buffer, ' ')
+		_submodule = readuntil(buffer, ' ')
+		_mode_stage1 = readuntil(buffer, ' ')
+		_mode_stage2 = readuntil(buffer, ' ')
+		_mode_stage3 = readuntil(buffer, ' ')
+		_name_stage1 = readuntil(buffer, ' ')
+		_name_stage2 = readuntil(buffer, ' ')
+		_name_stage3 = readuntil(buffer, ' ')
 
-		path = field(buffer, '\0')
+		path = readuntil(buffer, '\0')
 		push!(status[:unmerged], path)
 	end
 
 	function untracked!(buffer, status)
-		push!(status[:untracked], field(buffer, '\0'))
+		push!(status[:untracked], readuntil(buffer, '\0'))
 	end
 
 	function ignored!(buffer, status)
@@ -300,12 +298,12 @@ function Base.show(io::IO, status::Git)
 		return
 	end
 
-	print_with_color(:yellow, io, status.branch)
+	printstyled(io, status.branch, color=:yellow)
 
 	if status.ahead > 0 || status.behind > 0
 		print(io, " ")
-		print_with_color(:green, io, SYMBOLS[:ahead], status.ahead)
-		print_with_color(:red, io, SYMBOLS[:behind], status.behind)
+		printstyled(io, SYMBOLS[:ahead], status.ahead, color=:green)
+		printstyled(io, SYMBOLS[:behind], status.behind, color=:red)
 	end
 
 	if !(
@@ -325,24 +323,33 @@ function Base.show(io::IO, status::Git)
 			[:red, :yellow, :green, :cyan, :blue, :magenta, :white],
 	)
 		if !isempty(getfield(status, field))
-			print_with_color(colour, io, SYMBOLS[field])
+			printstyled(io, SYMBOLS[field], color=colour)
 		end
 	end
 end
 
 function Base.show(io::IO, ::MIME"text/plain", status::Git)
-	# TODO: Only print the part of the path that changed, like git does.
-	_string(s::Set{Pair{String, String}}) = join(map(el -> "\n\t$(el[1]) => $(el[2])", s), "")
-	_string(s::Set) = join(map(el -> "\n\t$el", s), "")
+	_string(s::Set{Pair{String, String}}) = join(("\n\t$(el[1]) => $(el[2])" for el in s), "")
+	_string(s::Set) = join(("\n\t$el" for el in s), "")
 	_string(s) = string(s)
 
-	for (field, colour) in zip(
-			[:branch, :ahead, :behind, :added, :copied, :deleted, :modified, :renamed, :unmerged, :untracked],
-			[:yellow, :green, :red, :red, :yellow, :green, :cyan, :blue, :magenta, :white],
-	)
-		# TODO: Print the sets as an indented, ordered list.
+	fields = [:branch, :ahead, :behind, :added, :copied, :deleted, :modified, :renamed, :unmerged, :untracked]
+	colours = [:yellow, :green, :red, :red, :yellow, :green, :cyan, :blue, :magenta, :white]
+	width = maximum(length(String(field)) for field in fields)
+
+	for (field, colour) in zip(fields, colours)
 		name = String(field)
-		print_with_color(colour, io, SYMBOLS[field], " ", titlecase(name), " ", " " ^ (9 - length(name)), _string(getfield(status, field)), '\n')
+		printstyled(
+			io,
+			SYMBOLS[field],
+			" ",
+			titlecase(name),
+			" ",
+			" " ^ (width - length(name)),
+			_string(getfield(status, field)),
+			'\n',
+			color=colour,
+		)
 	end
 end
 
@@ -395,11 +402,11 @@ function Base.show(io::IO, status::System)
 
 	print(io, "[")
 
-	print_with_color(user_colour, io, status.user)
+	printstyled(io, status.user, color=user_colour)
 	print(io, SYMBOLS[:HOST])
-	print_with_color(:magenta, io, status.host)
+	printstyled(io, status.host, color=:magenta)
 	print(io, SYMBOLS[:DIRECTORY])
-	print_with_color(:blue, io, pwd)
+	printstyled(io, pwd, color=:blue)
 
 	if isrepo(status.git)
 		print(io, " | git:", status.git)
@@ -407,21 +414,44 @@ function Base.show(io::IO, status::System)
 
 	print(io, "] ")
 
-	print_with_color(user_colour, io, SYMBOLS[user_symbol])
+	printstyled(io, SYMBOLS[user_symbol], color=user_colour)
 end
 
 function Base.show(io::IO, m::MIME"text/plain", status::System)
-	if status.root
-		print_with_color(:red, io, SYMBOLS[:ROOT], " Username ", " " ^ 9, status.user, '\n')
-	else
-		print_with_color(:green, io, SYMBOLS[:USER], " Username ", " " ^ 9, status.user, '\n')
-	end
+	padding = length("Working Directory") - length("Username")
 
-	print_with_color(:magenta, io, SYMBOLS[:HOST], " Hostname ", " " ^ 9, status.host, '\n')
-	print_with_color(:blue, io, SYMBOLS[:DIRECTORY], " Working Directory ", status.pwd, '\n')
+	user_colour = status.root ? :red : :green
+	user_symbol = status.root ? :ROOT : :USER
+
+	printstyled(
+		io,
+		SYMBOLS[user_symbol],
+		" Username ",
+		" " ^ padding,
+		status.user,
+		'\n',
+		color=user_colour,
+	)
+	printstyled(
+		io,
+		SYMBOLS[:HOST],
+		" Hostname ",
+		" " ^ padding,
+		status.host,
+		'\n',
+		color=:magenta,
+	)
+	printstyled(
+		io,
+		SYMBOLS[:DIRECTORY],
+		" Working Directory ",
+		status.pwd,
+		'\n',
+		color=:blue
+	)
 
 	b = IOBuffer()
-	Base.show(b, m, status.git)
+	Base.show(IOContext(b, :color => true), m, status.git)
 	seekstart(b)
 	git = readlines(b)
 
