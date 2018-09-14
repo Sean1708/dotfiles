@@ -387,11 +387,11 @@ System() = System(
 )
 
 function Base.show(io::IO, status::System)
-	pwd = if status.pwd == homedir() || status.pwd == readlink(homedir())
+	pwd = if status.pwd == homedir() || (islink(homedir()) && status.pwd == readlink(homedir()))
 		"~"
 	elseif startswith(status.pwd, homedir())
 		joinpath("~", relpath(status.pwd, homedir()))
-	elseif startswith(status.pwd, readlink(homedir()))
+	elseif islink(homedir()) && startswith(status.pwd, readlink(homedir()))
 		joinpath("~", relpath(status.pwd, readlink(homedir())))
 	else
 		status.pwd
