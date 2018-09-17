@@ -1,10 +1,5 @@
-if VERSION < v"0.7"
-	import Base.REPL
-	import Base.REPL.LineEdit
-else
-	import REPL
-	import REPL.LineEdit
-end
+import REPL
+import REPL.LineEdit
 
 include("status.jl")
 
