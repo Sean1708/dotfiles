@@ -43,6 +43,7 @@ bindsym $mod+Tab focus mode_toggle
 
 bindsym $mod+b exec i3-vis -k
 bindsym $mod+t exec i3-vis
+for_window [class="i3-vis"] floating enable
 
 set $mode_app Applications
 bindsym $mod+a mode "$mode_app"
