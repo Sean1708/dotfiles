@@ -40,7 +40,10 @@ bindsym $mod+0 workspace 10
 bindsym $mod+f fullscreen toggle
 bindsym $mod+Tab focus mode_toggle
 
-set $mode_app Applications | b: Browser (FireFox) - e: Editor (Visual Studio Code) - m: Music (spotify)
+bindsym $mod+b exec i3-vis -k
+bindsym $mod+t exec i3-vis
+
+set $mode_app Applications
 bindsym $mod+a mode "$mode_app"
 mode "$mode_app" {
 	bindsym h split horizontal
@@ -55,7 +58,7 @@ mode "$mode_app" {
 	bindsym BackSpace mode "default"
 }
 
-set $mode_container Container | d: Split - f: Floating - s: Stacking - t: Tabbed | space: Focus Floating
+set $mode_container Container
 bindsym $mod+c mode "$mode_container"
 mode "$mode_container" {
 	bindsym h resize shrink width 10 px or 10 ppt
@@ -93,7 +96,7 @@ mode "$mode_move" {
 	bindsym BackSpace mode "default"
 }
 
-set $mode_system System | b: Reboot - c: Reload Config - l: Lock - q: Quit i3 - r: Restart i3 - s: Shutdown
+set $mode_system System
 bindsym $mod+s mode "$mode_system"
 mode "$mode_system" {
 	bindsym b exec --no-startup-id systemctl reboot
