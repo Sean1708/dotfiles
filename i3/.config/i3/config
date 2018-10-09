@@ -5,6 +5,7 @@
 set $mod Mod4
 
 font pango:FiraMono 8
+workspace_layout stacking
 
 focus_follows_mouse no
 
