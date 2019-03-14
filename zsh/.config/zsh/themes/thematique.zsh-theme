@@ -1,16 +1,30 @@
-GIT_ADDED='✚'  # \u271a
-GIT_MODIFIED='✹'  # \u2739
-GIT_DELETED='✖'  # \u2716
-GIT_RENAMED='→'  # \u2192
-GIT_UNMERGED='≠'  # \u2260
-GIT_UNTRACKED='★'  # \u2605
-MY_JOBS='⚙'  # \u2699
-MY_ROOT='⚡'  # \u26a1
-MY_RETURN='↵'  # \u21b5
+if [[ "$TERM" != dumb ]]
+then
+	GIT_ADDED='✚'  # \u271a
+	GIT_MODIFIED='✹'  # \u2739
+	GIT_DELETED='✖'  # \u2716
+	GIT_RENAMED='→'  # \u2192
+	GIT_UNMERGED='≠'  # \u2260
+	GIT_UNTRACKED='★'  # \u2605
+	MY_JOBS='⚙'  # \u2699
+	MY_ROOT='⚡'  # \u26a1
+	MY_RETURN='↵'  # \u21b5
+else
+	GIT_ADDED='+'  # \u271a
+	GIT_MODIFIED='o'  # \u2739
+	GIT_DELETED='x'  # \u2716
+	GIT_RENAMED='>'  # \u2192
+	GIT_UNMERGED='!'  # \u2260
+	GIT_UNTRACKED='*'  # \u2605
+	MY_JOBS='@'  # \u2699
+	MY_ROOT='#'  # \u26a1
+	MY_RETURN='¬'  # \u21b5
+fi
+
 MY_USER='$'
 
 prompt_thematique_colour() {
-	if [[ "$TERM" != "dumb" ]] && [[ "$DISABLE_LS_COLORS" != "true" ]]
+	if [[ "$TERM" != dumb ]] && [[ "$DISABLE_LS_COLORS" != true ]]
 	then
 		print -n "%{$fg[$1]%}$2%{$reset_color%}"
 	else
