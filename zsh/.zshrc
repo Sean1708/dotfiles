@@ -15,7 +15,7 @@ then
 	source "$HOME/.config/zsh/profile"
 fi
 
-unalias run-help; autoload -Uz run-help; alias '?'='run-help'; alias 'help'='run-help'
+unalias run-help 2>/dev/null; autoload -Uz run-help; alias '?'='run-help'; alias 'help'='run-help'
 autoload mcd
 autoload cdl
 
@@ -76,20 +76,20 @@ antigen apply
 # TODO: Won't need this once we load the standard git completions.
 # {{{3 gitfast
 
-unalias g ga gaa gap gapa gau gav gb gba gbd gbD gbda gbl gbnm gbr gbs gbsb gbsg gbsr gbss gc gc! gca gca! gcam gcan! gcans! gcb gcd gcf gcl gclean gcm gcmsg gcn! gco gcount gcp gcpa gcpc gcs gcsm gd gdca gdct gdcw gds gdt gdw gf gfa gfo gg gga ggpull ggpur ggpush ggsup ghh gignore gignored git-svn-dcommit-push gk gke gl glg glgg glgga glgm glgp glo glod glods glog gloga glol glols glola glp glum gm gma gmom gmt gmtvim gmum gp gpd gpf gpf! gpoat gpristine gpsup gpu gpv gr gra grb grba grbc grbd grbi grbm grbs grh grhh grm grmc grmv groh grrm grset grt gru grup grv gsb gsd gsh gsi gsps gsr gss gst gsta gstaa gstall gstc gstd gstl gstp gsts gsu gts gtv gunignore gunwip gup gupa gupav gupv gwch gwip
+unalias g ga gaa gap gapa gau gav gb gba gbd gbD gbda gbl gbnm gbr gbs gbsb gbsg gbsr gbss gc gc! gca gca! gcam gcan! gcans! gcb gcd gcf gcl gclean gcm gcmsg gcn! gco gcount gcp gcpa gcpc gcs gcsm gd gdca gdct gdcw gds gdt gdw gf gfa gfo gg gga ggpull ggpur ggpush ggsup ghh gignore gignored git-svn-dcommit-push gk gke gl glg glgg glgga glgm glgp glo glod glods glog gloga glol glols glola glp glum gm gma gmom gmt gmtvim gmum gp gpd gpf gpf! gpoat gpristine gpsup gpu gpv gr gra grb grba grbc grbd grbi grbm grbs grh grhh grm grmc grmv groh grrm grset grt gru grup grv gsb gsd gsh gsi gsps gsr gss gst gsta gstaa gstall gstc gstd gstl gstp gsts gsu gts gtv gunignore gunwip gup gupa gupav gupv gwch gwip 2>/dev/null
 
 # }}}3 gitfast
 
 # {{{3 sudo
 
-unalias _
+unalias _ 2>/dev/null
 
 # }}}3 sudo
 
 # TODO: Won't need this once we don't use oh-my-zsh.
 # {{{3 oh-my-zsh
 
-unalias '...' '....' '.....' '......' 1 2 3 4 5 6 7 8 9 afind d l la ll ls lsa md rd '-'
+unalias '...' '....' '.....' '......' '-' 1 2 3 4 5 6 7 8 9 afind d l la ll ls lsa md rd 2>/dev/null
 
 # }}}3 oh-my-zsh
 
