@@ -57,7 +57,6 @@ antigen bundle unixorn/autoupdate-antigen.zshplugin
 
 # }}}3 autoupdate-antigen.zshplugin
 antigen bundle zlsun/solarized-man
-antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-syntax-highlighting
 
