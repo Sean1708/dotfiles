@@ -38,8 +38,6 @@
 
 	conflicts = diff --name-only --diff-filter=U
 	edit-conflicts = ! $EDITOR $(git conflicts)
-	; TODO: can the following work?
-	; add-conflicts = add $(git conflicts)
 	add-conflicts = ! git add $(git conflicts)
 
 	unpushed = ! git for-each-ref --format='%(refname:short)\t%(push:trackshort)' refs/heads | grep -e '\t$' -e '\t.*>.*$' | cut -f 1
