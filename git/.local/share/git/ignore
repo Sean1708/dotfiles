@@ -50,10 +50,11 @@ Session.vim
 # Virtualenv
 # https://github.com/github/gitignore/blob/master/Global/VirtualEnv.gitignore
 # http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
+.eggs
 /.Python
 pyvenv.cfg
 pip-selfcheck.json
-.eggs
+/.venv
 
 # Misc
 .ipynb_checkpoints/
