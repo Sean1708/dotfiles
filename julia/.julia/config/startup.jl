@@ -1,36 +1,24 @@
 import REPL
 import REPL.LineEdit
 
-include("status.jl")
+status = let
+	# TODO: Make this not a module, and use only functions (no types).
+	include("status.jl")
 
-const extra_repl_keymap = Dict{Any, Any}(
-	'#' => function (s, _, c)
-		if isempty(s)
-			println(Status.System())
-			# HINT: Needed so that the prompt appears. Root cause unknown.
-			LineEdit.edit_insert(s, '\n')
-			LineEdit.edit_clear(s)
+	function (verbose=false)
+		if verbose
+			display(__Status.System())
 		else
-			LineEdit.edit_insert(s, c)
+			println(__Status.System())
 		end
-	end,
-	'~' => function (s, _, c)
-		if isempty(s)
-			println()
-			display(Status.System())
-			# HINT: Needed so that the prompt appears. Root cause unknown.
-			LineEdit.edit_insert(s, '\n')
-			LineEdit.edit_clear(s)
-		else
-			LineEdit.edit_insert(s, c)
-		end
-	end,
-)
-
-atreplinit(repl -> repl.interface = REPL.setup_interface(repl, extra_repl_keymap = extra_repl_keymap))
+	end
+end
 
 
-const INIT_FILE = "_init.jl"
-if isfile(INIT_FILE)
-	include(joinpath(pwd(), INIT_FILE))
+let
+	init_file = "_init.jl"
+
+	if isfile(init_file)
+		include(joinpath(pwd(), init_file))
+	end
 end

@@ -1,4 +1,5 @@
-module Status
+# TODO: Find a way to keep all of these outside of the global namespace (get rid of structs and make it not a module).
+module __Status
 
 const SYMBOLS = @static if uppercase(ENV["TERM"]) == "DUMB"
 	Dict(
@@ -36,7 +37,7 @@ else
 	)
 end
 
-const ACTIONS1 = Dict(
+ACTIONS1 = Dict(
 	"AD" => :UNCHANGED,
 	".A" => :added,
 	"A." => :added,
@@ -49,7 +50,7 @@ const ACTIONS1 = Dict(
 	"MM" => :modified,
 )
 
-const ACTIONS2 = Dict(
+ACTIONS2 = Dict(
 	"CD" => :UNCHANGED,
 	"CM" => :COPIED_MODIFIED,
 	"RM" => :RENAMED_MODIFIED,
