@@ -41,10 +41,6 @@ bindsym $mod+0 workspace 10
 bindsym $mod+f fullscreen toggle
 bindsym $mod+Tab focus mode_toggle
 
-bindsym $mod+b exec i3-vis -k
-bindsym $mod+t exec i3-vis
-for_window [class="i3-vis"] floating enable
-
 set $mode_app Applications
 bindsym $mod+a mode "$mode_app"
 mode "$mode_app" {
@@ -110,6 +106,19 @@ mode "$mode_system" {
 
 	bindsym BackSpace mode "default"
 }
+
+##
+# Horrible hack to set a window to a specific size.
+for_window [title="^i3-vis:"] resize shrink width 99999px
+for_window [title="^i3-vis:"] resize grow width 900px
+for_window [title="^i3-vis:"] resize shrink height 99999px
+for_window [title="^i3-vis:"] resize grow height 600px
+##
+for_window [title="^i3-vis:"] sticky enable
+for_window [title="^i3-vis:"] move scratchpad
+bindsym $mod+b [title="^i3-vis:keybindings$"] scratchpad show, focus tiling
+bindsym $mod+t [title="^i3-vis:tree$"] scratchpad show, focus tiling
+exec --no-startup-id i3-vis
 
 # TODO: Try i3status-rust.
 bar {
